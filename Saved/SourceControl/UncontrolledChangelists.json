@@ -1,0 +1,12 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"D:/Main System/Unreal Engine/UE_5.6/Engine/Content/Maps/Entry.umap"
+			]
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "5.6",
+  "Category": "",
+  "Description": "SocialGolf base project",
+  "Modules": [
+    {
+      "Name": "SocialGolf",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "EnhancedInput",
+      "Enabled": false
+    },
+    {
+      "Name": "VisualStudioTools",
+      "Enabled": true,
+      "SupportedTargetPlatforms": [
+        "Win64"
+      ]
+    }
+  ],
+  "TargetPlatforms": [],
+  "AdditionalRootDirectories": [],
+  "AdditionalPluginDirectories": [],
+  "EpicSampleNameHash": ""
+}

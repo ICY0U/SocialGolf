@@ -1,0 +1,186 @@
+# Quick Start Guide: Candle System Setup
+
+## ?? **Getting Started**
+
+Your candle system is now fully implemented and ready to use! Here's how to get started immediately.
+
+## ? **Instant Testing**
+
+### 1. **In-Game Console Commands**
+Open console with **`** key and try these commands:
+
+```
+SpawnTestCandle        // Spawns a lit candle in front of you
+LightAllCandles        // Lights all candles in the level  
+ExtinguishAllCandles   // Puts out all candles
+ToggleAllCandles       // Toggles all candles on/off
+```
+
+### 2. **Quick Level Setup**
+1. **Open your level** in Unreal Editor
+2. **Search** for "SGCandle" or "SGAdvancedCandle" in the Content Browser
+3. **Drag** a candle into your level
+4. **Set** `Start Lit = true` in the Details panel
+5. **Play** and test interaction with E key
+
+## ?? **Ready-to-Use Features**
+
+### ? **What Works Right Now:**
+- **Interactive candles** - Press E to light/extinguish
+- **Focus effects** - Candles scale when you look at them
+- **Realistic lighting** - Warm candle colors with flickering
+- **Multiplayer sync** - All players see the same candle states
+- **Sound effects** - Lighting/extinguishing sounds (when audio assets added)
+- **6 candle types** - Small, Medium, Large, Torch, Lantern, Oil Lamp
+- **4 lighting modes** - Realistic, Steady, Dramatic, Magical
+
+### ?? **Visual Variety:**
+```cpp
+// Different candle sizes and behaviors
+ECandleType::SmallCandle    // Intimate, flickery lighting
+ECandleType::MediumCandle   // Standard room lighting  
+ECandleType::LargeCandle    // Bright area lighting
+ECandleType::Torch          // Dramatic outdoor lighting
+ECandleType::Lantern        // Protected steady light
+ECandleType::OilLamp        // Classic reading lamp
+```
+
+## ??? **Blueprint Usage**
+
+### **Method 1: Drag & Drop**
+1. **Content Browser** ? Search "SGAdvancedCandle"
+2. **Drag** into level 
+3. **Details Panel** ? Set:
+   - `Candle Type` = Medium Candle
+   - `Light Mode` = Realistic  
+   - `Start Lit` = true
+4. **Play** and press E to interact
+
+### **Method 2: Spawning in Blueprint**
+```blueprint
+// In Blueprint Graph:
+Spawn Actor from Class
+?? Class: SG Advanced Candle
+?? Transform: (Your desired location)
+?? Connect to:
+    ?? Set Candle Type (Medium Candle)
+    ?? Set Light Mode (Realistic)  
+    ?? Light Candle
+```
+
+## ?? **Common Configurations**
+
+### **Dining Room Setup:**
+```cpp
+CandleType = MediumCandle
+LightMode = Steady
+StartLit = true
+```
+
+### **Spooky Atmosphere:**
+```cpp  
+CandleType = Torch
+LightMode = Dramatic
+FlickerIntensity = 0.6
+```
+
+### **Magical Shrine:**
+```cpp
+CandleType = LargeCandle  
+LightMode = Magical
+bMagicalCandle = true
+bCanBeExtinguished = false
+```
+
+### **Reading Nook:**
+```cpp
+CandleType = OilLamp
+LightMode = Steady
+StartLit = true
+```
+
+## ?? **Default Controls**
+
+- **E Key** - Light/Extinguish candle (when looking at it)
+- **Looking at candle** - Automatic focus effect (scales slightly)
+- **Console Commands** - Debug and mass control
+
+## ?? **Performance Tips**
+
+### **For Better Performance:**
+- Use **`LightMode = Steady`** for background candles (no flickering)
+- Limit **Magical candles** to special areas only  
+- Use **Basic SGCandle** for simple needs
+- Use **Advanced SGCandle** for hero lighting
+
+### **For Better Visuals:**
+- Mix different candle types in the same room
+- Use **fill lighting** with other light sources
+- Combine with particle effects for atmosphere
+- Adjust `FlickerIntensity` based on candle size
+
+## ?? **What to Add Next**
+
+### **Asset Recommendations:**
+1. **Custom Candle Meshes** - Replace default cylinders
+2. **Flame Particle Systems** - Better flame effects  
+3. **Sound Effects** - Lighting/crackling sounds
+4. **Materials** - Wax dripping, emissive wicks
+
+### **Easy Upgrades:**
+1. **Replace** `CandleBaseMesh` with your candle models
+2. **Assign** `FlameParticleSystem` with flame effects
+3. **Add** `LightSound`, `ExtinguishSound`, `AmbientFlameSound`
+4. **Create** custom materials for realistic wax
+
+## ?? **Example Scenes**
+
+### **Cozy Cabin:**
+```
+3x SmallCandle (WindowSills) - Realistic mode
+1x LargeCandle (CenterTable) - Steady mode  
+2x OilLamp (ReadingAreas) - Realistic mode
+```
+
+### **Medieval Tavern:**
+```
+4x Torch (WallMounts) - Dramatic mode
+2x Lantern (TableCenters) - Realistic mode
+1x LargeCandle (Bar) - Steady mode
+```
+
+### **Magical Study:**
+```
+1x MagicalCandle (CenterAltar) - Magical mode, permanent
+6x SmallCandle (BookShelves) - Realistic mode
+2x OilLamp (WritingDesk) - Steady mode
+```
+
+## ?? **Quick Troubleshooting**
+
+### **Candle won't light:**
+- Check you're looking directly at it
+- Verify `bCanBeExtinguished = true`
+- Try console command `LightAllCandles`
+
+### **No focus effect:**
+- Ensure `SGFocusableComponent` is added
+- Check `bEnableFocusEffect = true`
+- Verify interaction component settings
+
+### **Performance issues:**  
+- Use `stat fps` to monitor framerate
+- Switch background candles to Steady mode
+- Reduce magical candles count
+
+## ?? **You're Ready!**
+
+The candle system is fully functional and ready for your game. Start with the console commands to see it in action, then begin placing candles in your levels for atmospheric lighting.
+
+**Next Steps:**
+1. Test with `SpawnTestCandle` console command
+2. Place some candles in your main level
+3. Experiment with different types and modes
+4. Add custom assets as needed
+
+Enjoy your new atmospheric lighting system! ????

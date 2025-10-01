@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SocialGolf",
+			"Path": "..\\Source\\SocialGolf.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SocialGolfEditor",
+			"Path": "..\\Source\\SocialGolfEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
