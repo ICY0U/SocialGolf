@@ -5,16 +5,9 @@ USGGolfClubManager::USGGolfClubManager()
 {
     PrimaryComponentTick.bCanEverTick = false;
 
-    // Set default club order for cycling
+    // Set default club order for cycling (only one club now)
     ClubOrder = {
-        EGolfClubType::Driver,
-        EGolfClubType::Iron3,
-        EGolfClubType::Iron5,
-        EGolfClubType::Iron7,
-        EGolfClubType::Iron9,
-        EGolfClubType::PitchingWedge,
-        EGolfClubType::SandWedge,
-        EGolfClubType::Putter
+        EGolfClubType::Iron7  // Only one club
     };
 
     CurrentClubType = DefaultClub;
@@ -34,104 +27,22 @@ void USGGolfClubManager::BeginPlay()
 
 void USGGolfClubManager::InitializeDefaultClubs()
 {
-    // Create default club data if not already set
+    // Create only one golf club for mini golf
     if (ClubDatabase.Num() == 0)
     {
-        // Driver
-        USGGolfClubData* Driver = NewObject<USGGolfClubData>(this);
-        Driver->ClubType = EGolfClubType::Driver;
-        Driver->ClubName = TEXT("Driver");
-        Driver->ClubDisplayName = FText::FromString(TEXT("Driver"));
-        Driver->PowerMultiplier = 1.5f;
-        Driver->LaunchAngle = 12.0f;
-        Driver->MaxDistance = 300.0f;
-        Driver->Accuracy = 0.6f;
-        Driver->SpinEffect = 0.2f;
-        ClubDatabase.Add(EGolfClubType::Driver, Driver);
-
-        // 3 Iron
-        USGGolfClubData* Iron3 = NewObject<USGGolfClubData>(this);
-        Iron3->ClubType = EGolfClubType::Iron3;
-        Iron3->ClubName = TEXT("3 Iron");
-        Iron3->ClubDisplayName = FText::FromString(TEXT("3 Iron"));
-        Iron3->PowerMultiplier = 1.3f;
-        Iron3->LaunchAngle = 18.0f;
-        Iron3->MaxDistance = 220.0f;
-        Iron3->Accuracy = 0.7f;
-        Iron3->SpinEffect = 0.3f;
-        ClubDatabase.Add(EGolfClubType::Iron3, Iron3);
-
-        // 5 Iron
-        USGGolfClubData* Iron5 = NewObject<USGGolfClubData>(this);
-        Iron5->ClubType = EGolfClubType::Iron5;
-        Iron5->ClubName = TEXT("5 Iron");
-        Iron5->ClubDisplayName = FText::FromString(TEXT("5 Iron"));
-        Iron5->PowerMultiplier = 1.1f;
-        Iron5->LaunchAngle = 22.0f;
-        Iron5->MaxDistance = 180.0f;
-        Iron5->Accuracy = 0.75f;
-        Iron5->SpinEffect = 0.4f;
-        ClubDatabase.Add(EGolfClubType::Iron5, Iron5);
-
-        // 7 Iron (Default)
-        USGGolfClubData* Iron7 = NewObject<USGGolfClubData>(this);
-        Iron7->ClubType = EGolfClubType::Iron7;
-        Iron7->ClubName = TEXT("7 Iron");
-        Iron7->ClubDisplayName = FText::FromString(TEXT("7 Iron"));
-        Iron7->PowerMultiplier = 1.0f;
-        Iron7->LaunchAngle = 28.0f;
-        Iron7->MaxDistance = 150.0f;
-        Iron7->Accuracy = 0.8f;
-        Iron7->SpinEffect = 0.5f;
-        ClubDatabase.Add(EGolfClubType::Iron7, Iron7);
-
-        // 9 Iron
-        USGGolfClubData* Iron9 = NewObject<USGGolfClubData>(this);
-        Iron9->ClubType = EGolfClubType::Iron9;
-        Iron9->ClubName = TEXT("9 Iron");
-        Iron9->ClubDisplayName = FText::FromString(TEXT("9 Iron"));
-        Iron9->PowerMultiplier = 0.8f;
-        Iron9->LaunchAngle = 35.0f;
-        Iron9->MaxDistance = 120.0f;
-        Iron9->Accuracy = 0.85f;
-        Iron9->SpinEffect = 0.7f;
-        ClubDatabase.Add(EGolfClubType::Iron9, Iron9);
-
-        // Pitching Wedge
-        USGGolfClubData* PitchingWedge = NewObject<USGGolfClubData>(this);
-        PitchingWedge->ClubType = EGolfClubType::PitchingWedge;
-        PitchingWedge->ClubName = TEXT("Pitching Wedge");
-        PitchingWedge->ClubDisplayName = FText::FromString(TEXT("Pitching Wedge"));
-        PitchingWedge->PowerMultiplier = 0.6f;
-        PitchingWedge->LaunchAngle = 45.0f;
-        PitchingWedge->MaxDistance = 90.0f;
-        PitchingWedge->Accuracy = 0.9f;
-        PitchingWedge->SpinEffect = 0.8f;
-        ClubDatabase.Add(EGolfClubType::PitchingWedge, PitchingWedge);
-
-        // Sand Wedge
-        USGGolfClubData* SandWedge = NewObject<USGGolfClubData>(this);
-        SandWedge->ClubType = EGolfClubType::SandWedge;
-        SandWedge->ClubName = TEXT("Sand Wedge");
-        SandWedge->ClubDisplayName = FText::FromString(TEXT("Sand Wedge"));
-        SandWedge->PowerMultiplier = 0.5f;
-        SandWedge->LaunchAngle = 55.0f;
-        SandWedge->MaxDistance = 70.0f;
-        SandWedge->Accuracy = 0.85f;
-        SandWedge->SpinEffect = 0.9f;
-        ClubDatabase.Add(EGolfClubType::SandWedge, SandWedge);
-
-        // Putter
-        USGGolfClubData* Putter = NewObject<USGGolfClubData>(this);
-        Putter->ClubType = EGolfClubType::Putter;
-        Putter->ClubName = TEXT("Putter");
-        Putter->ClubDisplayName = FText::FromString(TEXT("Putter"));
-        Putter->PowerMultiplier = 0.2f;
-        Putter->LaunchAngle = 2.0f;
-        Putter->MaxDistance = 20.0f;
-        Putter->Accuracy = 0.95f;
-        Putter->SpinEffect = 0.1f;
-        ClubDatabase.Add(EGolfClubType::Putter, Putter);
+        // Mini Golf Club (only one needed)
+        USGGolfClubData* MiniGolfClub = NewObject<USGGolfClubData>(this);
+        MiniGolfClub->ClubType = EGolfClubType::Iron7; // Use Iron7 as the base type
+        MiniGolfClub->ClubName = TEXT("Mini Golf Club");
+        MiniGolfClub->ClubDisplayName = FText::FromString(TEXT("Mini Golf Club"));
+        MiniGolfClub->PowerMultiplier = 1.0f;
+        MiniGolfClub->LaunchAngle = 5.0f; // Low angle for rolling
+        MiniGolfClub->MaxDistance = 100.0f;
+        MiniGolfClub->Accuracy = 0.95f; // High accuracy for mini golf
+        MiniGolfClub->SpinEffect = 0.1f; // Minimal spin for rolling
+        ClubDatabase.Add(EGolfClubType::Iron7, MiniGolfClub);
+        
+        UE_LOG(LogTemp, Warning, TEXT("SGGolfClubManager: Initialized with single Mini Golf Club"));
     }
 }
 

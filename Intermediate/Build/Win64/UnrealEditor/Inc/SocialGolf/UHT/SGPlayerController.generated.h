@@ -18,6 +18,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin Class ASGPlayerController ******************************************************
 #define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execHitBallHardPower); \
+	DECLARE_FUNCTION(execHitBallMediumPower); \
+	DECLARE_FUNCTION(execHitBallLightPower); \
+	DECLARE_FUNCTION(execToggleChaosPhysics); \
+	DECLARE_FUNCTION(execCheckGolfBallStatus); \
+	DECLARE_FUNCTION(execToggleMiniGolfMode); \
+	DECLARE_FUNCTION(execToggleGolfBallPhysics); \
 	DECLARE_FUNCTION(execSpawnGolfTee); \
 	DECLARE_FUNCTION(execShowCharacterStatus); \
 	DECLARE_FUNCTION(execShowCurrentClubInfo); \

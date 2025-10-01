@@ -78,15 +78,14 @@ void ASGGolfTee::Interact_Implementation(APawn* InstigatorPawn)
     
     if (!bHasBall || !CurrentBall)
     {
-        // Spawn a golf ball
+        // Spawn a golf ball at tee location and remove tee
         SpawnGolfBall();
-        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: %s spawned a golf ball"), *Character->GetName());
+        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: %s spawned a golf ball and tee will be removed"), *Character->GetName());
     }
     else
     {
-        // Ball already exists, reset it to tee position
-        CurrentBall->PlaceBall(GetActorLocation() + FVector(0, 0, 25.0f));
-        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: %s reset the golf ball"), *Character->GetName());
+        // This shouldn't happen since tee gets destroyed after spawning ball
+        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: Ball already exists somehow"));
     }
 }
 
@@ -98,16 +97,27 @@ void ASGGolfTee::SpawnGolfBall()
         return;
     }
     
-    // Calculate spawn location (slightly above the tee)
-    FVector SpawnLocation = GetActorLocation() + FVector(0, 0, 25.0f);
+    // Spawn ball exactly where the tee is (slightly above ground)
+    FVector TeeLocation = GetActorLocation();
+    FVector SpawnLocation = TeeLocation + FVector(0, 0, 30.0f); // Just above the tee
     FRotator SpawnRotation = FRotator::ZeroRotator;
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: Spawning ball at tee location %s"), *SpawnLocation.ToString());
     
     // Spawn the golf ball
     CurrentBall = GetWorld()->SpawnActor<ASGGolfBall>(ASGGolfBall::StaticClass(), SpawnLocation, SpawnRotation);
     if (CurrentBall)
     {
         bHasBall = true;
-        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: Spawned golf ball at %s"), *SpawnLocation.ToString());
+        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: Successfully spawned golf ball at %s"), *CurrentBall->GetActorLocation().ToString());
+        
+        // Force the ball to be visible and enable collision
+        CurrentBall->SetActorHiddenInGame(false);
+        CurrentBall->SetActorEnableCollision(true);
+        
+        // Remove the tee after spawning the ball
+        UE_LOG(LogTemp, Warning, TEXT("SGGolfTee: Removing tee after spawning ball"));
+        Destroy();
     }
     else
     {

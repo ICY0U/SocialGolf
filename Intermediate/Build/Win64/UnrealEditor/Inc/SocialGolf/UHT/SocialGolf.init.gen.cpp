@@ -43,7 +43,7 @@ void EmptyLinkFunctionForGeneratedCodeSocialGolf_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xFA0B1BA9,
+				0xEED4FC99,
 				0xCF5D974A,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -51,5 +51,5 @@ void EmptyLinkFunctionForGeneratedCodeSocialGolf_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_SocialGolf.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SocialGolf(Z_Construct_UPackage__Script_SocialGolf, TEXT("/Script/SocialGolf"), Z_Registration_Info_UPackage__Script_SocialGolf, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xFA0B1BA9, 0xCF5D974A));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SocialGolf(Z_Construct_UPackage__Script_SocialGolf, TEXT("/Script/SocialGolf"), Z_Registration_Info_UPackage__Script_SocialGolf, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xEED4FC99, 0xCF5D974A));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

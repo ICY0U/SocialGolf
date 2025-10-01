@@ -278,6 +278,36 @@ void FOnRecordingProgress_DelegateWrapper(const FMulticastScriptDelegate& OnReco
 }
 // ********** End Delegate FOnRecordingProgress ****************************************************
 
+// ********** Begin Class USGCameraRecorder Function CreateTestRecordingAndExport ******************
+struct Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "File Management" },
+		{ "ModuleRelativePath", "Camera/SGCameraRecorder.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_USGCameraRecorder, nullptr, "CreateTestRecordingAndExport", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport_Statics::Function_MetaDataParams), Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(USGCameraRecorder::execCreateTestRecordingAndExport)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateTestRecordingAndExport();
+	P_NATIVE_END;
+}
+// ********** End Class USGCameraRecorder Function CreateTestRecordingAndExport ********************
+
 // ********** Begin Class USGCameraRecorder Function DeleteRecording *******************************
 struct Z_Construct_UFunction_USGCameraRecorder_DeleteRecording_Statics
 {
@@ -320,6 +350,78 @@ DEFINE_FUNCTION(USGCameraRecorder::execDeleteRecording)
 	P_NATIVE_END;
 }
 // ********** End Class USGCameraRecorder Function DeleteRecording *********************************
+
+// ********** Begin Class USGCameraRecorder Function ExportAllRecordingsToDesktop ******************
+struct Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "File Management" },
+		{ "ModuleRelativePath", "Camera/SGCameraRecorder.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_USGCameraRecorder, nullptr, "ExportAllRecordingsToDesktop", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop_Statics::Function_MetaDataParams), Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(USGCameraRecorder::execExportAllRecordingsToDesktop)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ExportAllRecordingsToDesktop();
+	P_NATIVE_END;
+}
+// ********** End Class USGCameraRecorder Function ExportAllRecordingsToDesktop ********************
+
+// ********** Begin Class USGCameraRecorder Function GetDesktopPathForTesting **********************
+struct Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics
+{
+	struct SGCameraRecorder_eventGetDesktopPathForTesting_Parms
+	{
+		FString ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "File Management" },
+		{ "ModuleRelativePath", "Camera/SGCameraRecorder.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStrPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraRecorder_eventGetDesktopPathForTesting_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_USGCameraRecorder, nullptr, "GetDesktopPathForTesting", Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::PropPointers), sizeof(Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::SGCameraRecorder_eventGetDesktopPathForTesting_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::Function_MetaDataParams), Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::SGCameraRecorder_eventGetDesktopPathForTesting_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(USGCameraRecorder::execGetDesktopPathForTesting)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(FString*)Z_Param__Result=P_THIS->GetDesktopPathForTesting();
+	P_NATIVE_END;
+}
+// ********** End Class USGCameraRecorder Function GetDesktopPathForTesting ************************
 
 // ********** Begin Class USGCameraRecorder Function GetRecordingCount *****************************
 struct Z_Construct_UFunction_USGCameraRecorder_GetRecordingCount_Statics
@@ -951,12 +1053,51 @@ DEFINE_FUNCTION(USGCameraRecorder::execStopRecording)
 }
 // ********** End Class USGCameraRecorder Function StopRecording ***********************************
 
+// ********** Begin Class USGCameraRecorder Function TestDesktopExport *****************************
+struct Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "File Management" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Test and Debug Functions\n" },
+#endif
+		{ "ModuleRelativePath", "Camera/SGCameraRecorder.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Test and Debug Functions" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_USGCameraRecorder, nullptr, "TestDesktopExport", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport_Statics::Function_MetaDataParams), Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(USGCameraRecorder::execTestDesktopExport)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->TestDesktopExport();
+	P_NATIVE_END;
+}
+// ********** End Class USGCameraRecorder Function TestDesktopExport *******************************
+
 // ********** Begin Class USGCameraRecorder ********************************************************
 void USGCameraRecorder::StaticRegisterNativesUSGCameraRecorder()
 {
 	UClass* Class = USGCameraRecorder::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "CreateTestRecordingAndExport", &USGCameraRecorder::execCreateTestRecordingAndExport },
 		{ "DeleteRecording", &USGCameraRecorder::execDeleteRecording },
+		{ "ExportAllRecordingsToDesktop", &USGCameraRecorder::execExportAllRecordingsToDesktop },
+		{ "GetDesktopPathForTesting", &USGCameraRecorder::execGetDesktopPathForTesting },
 		{ "GetRecordingCount", &USGCameraRecorder::execGetRecordingCount },
 		{ "GetRecordingData", &USGCameraRecorder::execGetRecordingData },
 		{ "IsPlaying", &USGCameraRecorder::execIsPlaying },
@@ -973,6 +1114,7 @@ void USGCameraRecorder::StaticRegisterNativesUSGCameraRecorder()
 		{ "StartRecording", &USGCameraRecorder::execStartRecording },
 		{ "StopPlayback", &USGCameraRecorder::execStopPlayback },
 		{ "StopRecording", &USGCameraRecorder::execStopRecording },
+		{ "TestDesktopExport", &USGCameraRecorder::execTestDesktopExport },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -1177,7 +1319,10 @@ struct Z_Construct_UClass_USGCameraRecorder_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_USGCameraRecorder_CreateTestRecordingAndExport, "CreateTestRecordingAndExport" }, // 1850147099
 		{ &Z_Construct_UFunction_USGCameraRecorder_DeleteRecording, "DeleteRecording" }, // 3971258063
+		{ &Z_Construct_UFunction_USGCameraRecorder_ExportAllRecordingsToDesktop, "ExportAllRecordingsToDesktop" }, // 953856688
+		{ &Z_Construct_UFunction_USGCameraRecorder_GetDesktopPathForTesting, "GetDesktopPathForTesting" }, // 3030248621
 		{ &Z_Construct_UFunction_USGCameraRecorder_GetRecordingCount, "GetRecordingCount" }, // 381212656
 		{ &Z_Construct_UFunction_USGCameraRecorder_GetRecordingData, "GetRecordingData" }, // 1464068963
 		{ &Z_Construct_UFunction_USGCameraRecorder_IsPlaying, "IsPlaying" }, // 2236294368
@@ -1194,6 +1339,7 @@ struct Z_Construct_UClass_USGCameraRecorder_Statics
 		{ &Z_Construct_UFunction_USGCameraRecorder_StartRecording, "StartRecording" }, // 2622188268
 		{ &Z_Construct_UFunction_USGCameraRecorder_StopPlayback, "StopPlayback" }, // 669233203
 		{ &Z_Construct_UFunction_USGCameraRecorder_StopRecording, "StopRecording" }, // 3880435048
+		{ &Z_Construct_UFunction_USGCameraRecorder_TestDesktopExport, "TestDesktopExport" }, // 1398938162
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
@@ -1304,10 +1450,10 @@ struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_So
 		{ FCameraRecordingData::StaticStruct, Z_Construct_UScriptStruct_FCameraRecordingData_Statics::NewStructOps, TEXT("CameraRecordingData"), &Z_Registration_Info_UScriptStruct_FCameraRecordingData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCameraRecordingData), 1406517318U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_USGCameraRecorder, USGCameraRecorder::StaticClass, TEXT("USGCameraRecorder"), &Z_Registration_Info_UClass_USGCameraRecorder, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraRecorder), 1575978940U) },
+		{ Z_Construct_UClass_USGCameraRecorder, USGCameraRecorder::StaticClass, TEXT("USGCameraRecorder"), &Z_Registration_Info_UClass_USGCameraRecorder, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraRecorder), 3004223764U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_3840647987(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_2610501590(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::ScriptStructInfo),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecorder_h__Script_SocialGolf_Statics::EnumInfo));

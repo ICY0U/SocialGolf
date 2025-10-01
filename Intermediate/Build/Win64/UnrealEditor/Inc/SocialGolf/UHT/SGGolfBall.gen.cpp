@@ -89,6 +89,158 @@ UEnum* Z_Construct_UEnum_SocialGolf_EGolfBallState()
 }
 // ********** End Enum EGolfBallState **************************************************************
 
+// ********** Begin Class ASGGolfBall Function CanHitBall ******************************************
+struct Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics
+{
+	struct SGGolfBall_eventCanHitBall_Parms
+	{
+		AActor* Player;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// New function that checks proximity before hitting\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "New function that checks proximity before hitting" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventCanHitBall_Parms, Player), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((SGGolfBall_eventCanHitBall_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(SGGolfBall_eventCanHitBall_Parms), &Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_Player,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "CanHitBall", Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::SGGolfBall_eventCanHitBall_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::SGGolfBall_eventCanHitBall_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_CanHitBall()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_CanHitBall_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execCanHitBall)
+{
+	P_GET_OBJECT(AActor,Z_Param_Player);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->CanHitBall(Z_Param_Player);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function CanHitBall ********************************************
+
+// ********** Begin Class ASGGolfBall Function CanPlayerHitBall ************************************
+struct Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics
+{
+	struct SGGolfBall_eventCanPlayerHitBall_Parms
+	{
+		AActor* Player;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Multiplayer" },
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventCanPlayerHitBall_Parms, Player), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((SGGolfBall_eventCanPlayerHitBall_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(SGGolfBall_eventCanPlayerHitBall_Parms), &Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_Player,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "CanPlayerHitBall", Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::SGGolfBall_eventCanPlayerHitBall_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::SGGolfBall_eventCanPlayerHitBall_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execCanPlayerHitBall)
+{
+	P_GET_OBJECT(AActor,Z_Param_Player);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->CanPlayerHitBall(Z_Param_Player);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function CanPlayerHitBall **************************************
+
+// ********** Begin Class ASGGolfBall Function GetBallOwner ****************************************
+struct Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics
+{
+	struct SGGolfBall_eventGetBallOwner_Parms
+	{
+		AActor* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Multiplayer" },
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventGetBallOwner_Parms, ReturnValue), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "GetBallOwner", Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::SGGolfBall_eventGetBallOwner_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::SGGolfBall_eventGetBallOwner_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_GetBallOwner()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_GetBallOwner_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execGetBallOwner)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(AActor**)Z_Param__Result=P_THIS->GetBallOwner();
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function GetBallOwner ******************************************
+
 // ********** Begin Class ASGGolfBall Function GetBallRadius ***************************************
 struct Z_Construct_UFunction_ASGGolfBall_GetBallRadius_Statics
 {
@@ -407,6 +559,57 @@ DEFINE_FUNCTION(ASGGolfBall::execHitBall)
 }
 // ********** End Class ASGGolfBall Function HitBall ***********************************************
 
+// ********** Begin Class ASGGolfBall Function HitBallMiniGolf *************************************
+struct Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics
+{
+	struct SGGolfBall_eventHitBallMiniGolf_Parms
+	{
+		FVector HitDirection;
+		float Power;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HitDirection_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_HitDirection;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::NewProp_HitDirection = { "HitDirection", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventHitBallMiniGolf_Parms, HitDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitDirection_MetaData), NewProp_HitDirection_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventHitBallMiniGolf_Parms, Power), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::NewProp_HitDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::NewProp_Power,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "HitBallMiniGolf", Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::SGGolfBall_eventHitBallMiniGolf_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C20401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::SGGolfBall_eventHitBallMiniGolf_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execHitBallMiniGolf)
+{
+	P_GET_STRUCT_REF(FVector,Z_Param_Out_HitDirection);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HitBallMiniGolf(Z_Param_Out_HitDirection,Z_Param_Power);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function HitBallMiniGolf ***************************************
+
 // ********** Begin Class ASGGolfBall Function HitBallWithClub *************************************
 struct Z_Construct_UFunction_ASGGolfBall_HitBallWithClub_Statics
 {
@@ -529,6 +732,78 @@ DEFINE_FUNCTION(ASGGolfBall::execIsBallStationary)
 }
 // ********** End Class ASGGolfBall Function IsBallStationary **************************************
 
+// ********** Begin Class ASGGolfBall Function MulticastBallHit ************************************
+struct SGGolfBall_eventMulticastBallHit_Parms
+{
+	FVector HitDirection;
+	float Power;
+	AActor* HittingPlayer;
+};
+static FName NAME_ASGGolfBall_MulticastBallHit = FName(TEXT("MulticastBallHit"));
+void ASGGolfBall::MulticastBallHit(FVector const& HitDirection, float Power, AActor* HittingPlayer)
+{
+	SGGolfBall_eventMulticastBallHit_Parms Parms;
+	Parms.HitDirection=HitDirection;
+	Parms.Power=Power;
+	Parms.HittingPlayer=HittingPlayer;
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_MulticastBallHit);
+	ProcessEvent(Func,&Parms);
+}
+struct Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Multicast RPC for visual/audio effects\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Multicast RPC for visual/audio effects" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HitDirection_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_HitDirection;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HittingPlayer;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_HitDirection = { "HitDirection", nullptr, (EPropertyFlags)0x0010000008000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventMulticastBallHit_Parms, HitDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitDirection_MetaData), NewProp_HitDirection_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventMulticastBallHit_Parms, Power), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_HittingPlayer = { "HittingPlayer", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventMulticastBallHit_Parms, HittingPlayer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_HitDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_Power,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::NewProp_HittingPlayer,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "MulticastBallHit", Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::PropPointers), sizeof(SGGolfBall_eventMulticastBallHit_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00824CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(SGGolfBall_eventMulticastBallHit_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_MulticastBallHit()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_MulticastBallHit_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execMulticastBallHit)
+{
+	P_GET_STRUCT(FVector,Z_Param_HitDirection);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_GET_OBJECT(AActor,Z_Param_HittingPlayer);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->MulticastBallHit_Implementation(Z_Param_HitDirection,Z_Param_Power,Z_Param_HittingPlayer);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function MulticastBallHit **************************************
+
 // ********** Begin Class ASGGolfBall Function OnHit ***********************************************
 struct Z_Construct_UFunction_ASGGolfBall_OnHit_Statics
 {
@@ -599,6 +874,70 @@ DEFINE_FUNCTION(ASGGolfBall::execOnHit)
 	P_NATIVE_END;
 }
 // ********** End Class ASGGolfBall Function OnHit *************************************************
+
+// ********** Begin Class ASGGolfBall Function OnRep_BallOwner *************************************
+struct Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "OnRep_BallOwner", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execOnRep_BallOwner)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnRep_BallOwner();
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function OnRep_BallOwner ***************************************
+
+// ********** Begin Class ASGGolfBall Function OnRep_BallState *************************************
+struct Z_Construct_UFunction_ASGGolfBall_OnRep_BallState_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Replication callbacks\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Replication callbacks" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_OnRep_BallState_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "OnRep_BallState", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_OnRep_BallState_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_OnRep_BallState_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGGolfBall_OnRep_BallState()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_OnRep_BallState_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execOnRep_BallState)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnRep_BallState();
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function OnRep_BallState ***************************************
 
 // ********** Begin Class ASGGolfBall Function PlaceBall *******************************************
 struct Z_Construct_UFunction_ASGGolfBall_PlaceBall_Statics
@@ -676,6 +1015,391 @@ DEFINE_FUNCTION(ASGGolfBall::execResetBall)
 }
 // ********** End Class ASGGolfBall Function ResetBall *********************************************
 
+// ********** Begin Class ASGGolfBall Function ServerHitBall ***************************************
+struct SGGolfBall_eventServerHitBall_Parms
+{
+	FVector HitDirection;
+	float Power;
+	AActor* HittingPlayer;
+};
+static FName NAME_ASGGolfBall_ServerHitBall = FName(TEXT("ServerHitBall"));
+void ASGGolfBall::ServerHitBall(FVector const& HitDirection, float Power, AActor* HittingPlayer)
+{
+	SGGolfBall_eventServerHitBall_Parms Parms;
+	Parms.HitDirection=HitDirection;
+	Parms.Power=Power;
+	Parms.HittingPlayer=HittingPlayer;
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_ServerHitBall);
+	ProcessEvent(Func,&Parms);
+}
+struct Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Server RPC for hitting ball\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Server RPC for hitting ball" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HitDirection_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_HitDirection;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HittingPlayer;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_HitDirection = { "HitDirection", nullptr, (EPropertyFlags)0x0010000008000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBall_Parms, HitDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitDirection_MetaData), NewProp_HitDirection_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBall_Parms, Power), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_HittingPlayer = { "HittingPlayer", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBall_Parms, HittingPlayer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_HitDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_Power,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::NewProp_HittingPlayer,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "ServerHitBall", Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::PropPointers), sizeof(SGGolfBall_eventServerHitBall_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04A20CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(SGGolfBall_eventServerHitBall_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_ServerHitBall()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_ServerHitBall_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execServerHitBall)
+{
+	P_GET_STRUCT(FVector,Z_Param_HitDirection);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_GET_OBJECT(AActor,Z_Param_HittingPlayer);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ServerHitBall_Implementation(Z_Param_HitDirection,Z_Param_Power,Z_Param_HittingPlayer);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function ServerHitBall *****************************************
+
+// ********** Begin Class ASGGolfBall Function ServerHitBallMiniGolf *******************************
+struct SGGolfBall_eventServerHitBallMiniGolf_Parms
+{
+	FVector HitDirection;
+	float Power;
+	AActor* HittingPlayer;
+};
+static FName NAME_ASGGolfBall_ServerHitBallMiniGolf = FName(TEXT("ServerHitBallMiniGolf"));
+void ASGGolfBall::ServerHitBallMiniGolf(FVector const& HitDirection, float Power, AActor* HittingPlayer)
+{
+	SGGolfBall_eventServerHitBallMiniGolf_Parms Parms;
+	Parms.HitDirection=HitDirection;
+	Parms.Power=Power;
+	Parms.HittingPlayer=HittingPlayer;
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_ServerHitBallMiniGolf);
+	ProcessEvent(Func,&Parms);
+}
+struct Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Server RPC for mini golf hitting\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Server RPC for mini golf hitting" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HitDirection_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_HitDirection;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HittingPlayer;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_HitDirection = { "HitDirection", nullptr, (EPropertyFlags)0x0010000008000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallMiniGolf_Parms, HitDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitDirection_MetaData), NewProp_HitDirection_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallMiniGolf_Parms, Power), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_HittingPlayer = { "HittingPlayer", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallMiniGolf_Parms, HittingPlayer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_HitDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_Power,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::NewProp_HittingPlayer,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "ServerHitBallMiniGolf", Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::PropPointers), sizeof(SGGolfBall_eventServerHitBallMiniGolf_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04A20CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(SGGolfBall_eventServerHitBallMiniGolf_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execServerHitBallMiniGolf)
+{
+	P_GET_STRUCT(FVector,Z_Param_HitDirection);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_GET_OBJECT(AActor,Z_Param_HittingPlayer);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ServerHitBallMiniGolf_Implementation(Z_Param_HitDirection,Z_Param_Power,Z_Param_HittingPlayer);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function ServerHitBallMiniGolf *********************************
+
+// ********** Begin Class ASGGolfBall Function ServerHitBallWithClub *******************************
+struct SGGolfBall_eventServerHitBallWithClub_Parms
+{
+	FVector HitDirection;
+	float Power;
+	float ClubPowerMultiplier;
+	float ClubLaunchAngle;
+	float ClubAccuracy;
+	AActor* HittingPlayer;
+};
+static FName NAME_ASGGolfBall_ServerHitBallWithClub = FName(TEXT("ServerHitBallWithClub"));
+void ASGGolfBall::ServerHitBallWithClub(FVector const& HitDirection, float Power, float ClubPowerMultiplier, float ClubLaunchAngle, float ClubAccuracy, AActor* HittingPlayer)
+{
+	SGGolfBall_eventServerHitBallWithClub_Parms Parms;
+	Parms.HitDirection=HitDirection;
+	Parms.Power=Power;
+	Parms.ClubPowerMultiplier=ClubPowerMultiplier;
+	Parms.ClubLaunchAngle=ClubLaunchAngle;
+	Parms.ClubAccuracy=ClubAccuracy;
+	Parms.HittingPlayer=HittingPlayer;
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_ServerHitBallWithClub);
+	ProcessEvent(Func,&Parms);
+}
+struct Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Server RPC for club-based hitting\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Server RPC for club-based hitting" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HitDirection_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_HitDirection;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ClubPowerMultiplier;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ClubLaunchAngle;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ClubAccuracy;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HittingPlayer;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_HitDirection = { "HitDirection", nullptr, (EPropertyFlags)0x0010000008000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, HitDirection), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HitDirection_MetaData), NewProp_HitDirection_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, Power), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubPowerMultiplier = { "ClubPowerMultiplier", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, ClubPowerMultiplier), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubLaunchAngle = { "ClubLaunchAngle", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, ClubLaunchAngle), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubAccuracy = { "ClubAccuracy", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, ClubAccuracy), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_HittingPlayer = { "HittingPlayer", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerHitBallWithClub_Parms, HittingPlayer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_HitDirection,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_Power,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubPowerMultiplier,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubLaunchAngle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_ClubAccuracy,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::NewProp_HittingPlayer,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "ServerHitBallWithClub", Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::PropPointers), sizeof(SGGolfBall_eventServerHitBallWithClub_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04A20CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(SGGolfBall_eventServerHitBallWithClub_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execServerHitBallWithClub)
+{
+	P_GET_STRUCT(FVector,Z_Param_HitDirection);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_ClubPowerMultiplier);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_ClubLaunchAngle);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_ClubAccuracy);
+	P_GET_OBJECT(AActor,Z_Param_HittingPlayer);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ServerHitBallWithClub_Implementation(Z_Param_HitDirection,Z_Param_Power,Z_Param_ClubPowerMultiplier,Z_Param_ClubLaunchAngle,Z_Param_ClubAccuracy,Z_Param_HittingPlayer);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function ServerHitBallWithClub *********************************
+
+// ********** Begin Class ASGGolfBall Function ServerPlaceBall *************************************
+struct SGGolfBall_eventServerPlaceBall_Parms
+{
+	FVector NewLocation;
+};
+static FName NAME_ASGGolfBall_ServerPlaceBall = FName(TEXT("ServerPlaceBall"));
+void ASGGolfBall::ServerPlaceBall(FVector const& NewLocation)
+{
+	SGGolfBall_eventServerPlaceBall_Parms Parms;
+	Parms.NewLocation=NewLocation;
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_ServerPlaceBall);
+	ProcessEvent(Func,&Parms);
+}
+struct Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Server RPC for ball placement\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Server RPC for ball placement" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NewLocation_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_NewLocation;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::NewProp_NewLocation = { "NewLocation", nullptr, (EPropertyFlags)0x0010000008000082, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventServerPlaceBall_Parms, NewLocation), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NewLocation_MetaData), NewProp_NewLocation_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::NewProp_NewLocation,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "ServerPlaceBall", Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::PropPointers), sizeof(SGGolfBall_eventServerPlaceBall_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04A20CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(SGGolfBall_eventServerPlaceBall_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execServerPlaceBall)
+{
+	P_GET_STRUCT(FVector,Z_Param_NewLocation);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ServerPlaceBall_Implementation(Z_Param_NewLocation);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function ServerPlaceBall ***************************************
+
+// ********** Begin Class ASGGolfBall Function ServerResetBall *************************************
+static FName NAME_ASGGolfBall_ServerResetBall = FName(TEXT("ServerResetBall"));
+void ASGGolfBall::ServerResetBall()
+{
+	UFunction* Func = FindFunctionChecked(NAME_ASGGolfBall_ServerResetBall);
+	ProcessEvent(Func,NULL);
+}
+struct Z_Construct_UFunction_ASGGolfBall_ServerResetBall_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Server RPC for ball reset\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Server RPC for ball reset" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_ServerResetBall_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "ServerResetBall", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_ServerResetBall_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_ServerResetBall_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGGolfBall_ServerResetBall()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_ServerResetBall_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execServerResetBall)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ServerResetBall_Implementation();
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function ServerResetBall ***************************************
+
+// ********** Begin Class ASGGolfBall Function SetBallOwner ****************************************
+struct Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics
+{
+	struct SGGolfBall_eventSetBallOwner_Parms
+	{
+		AActor* NewOwner;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Multiplayer" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Multiplayer functions\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Multiplayer functions" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewOwner;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::NewProp_NewOwner = { "NewOwner", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventSetBallOwner_Parms, NewOwner), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::NewProp_NewOwner,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "SetBallOwner", Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::SGGolfBall_eventSetBallOwner_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::SGGolfBall_eventSetBallOwner_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_SetBallOwner()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_SetBallOwner_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execSetBallOwner)
+{
+	P_GET_OBJECT(AActor,Z_Param_NewOwner);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SetBallOwner(Z_Param_NewOwner);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function SetBallOwner ******************************************
+
 // ********** Begin Class ASGGolfBall Function SetBallSize *****************************************
 struct Z_Construct_UFunction_ASGGolfBall_SetBallSize_Statics
 {
@@ -719,11 +1443,71 @@ DEFINE_FUNCTION(ASGGolfBall::execSetBallSize)
 }
 // ********** End Class ASGGolfBall Function SetBallSize *******************************************
 
+// ********** Begin Class ASGGolfBall Function TryHitBallFromPlayer ********************************
+struct Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics
+{
+	struct SGGolfBall_eventTryHitBallFromPlayer_Parms
+	{
+		AActor* Player;
+		float Power;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf Ball" },
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Power;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventTryHitBallFromPlayer_Parms, Player), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_Power = { "Power", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGGolfBall_eventTryHitBallFromPlayer_Parms, Power), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((SGGolfBall_eventTryHitBallFromPlayer_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(SGGolfBall_eventTryHitBallFromPlayer_Parms), &Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_Player,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_Power,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGGolfBall, nullptr, "TryHitBallFromPlayer", Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::SGGolfBall_eventTryHitBallFromPlayer_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::SGGolfBall_eventTryHitBallFromPlayer_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGGolfBall::execTryHitBallFromPlayer)
+{
+	P_GET_OBJECT(AActor,Z_Param_Player);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Power);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->TryHitBallFromPlayer(Z_Param_Player,Z_Param_Power);
+	P_NATIVE_END;
+}
+// ********** End Class ASGGolfBall Function TryHitBallFromPlayer **********************************
+
 // ********** Begin Class ASGGolfBall **************************************************************
 void ASGGolfBall::StaticRegisterNativesASGGolfBall()
 {
 	UClass* Class = ASGGolfBall::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "CanHitBall", &ASGGolfBall::execCanHitBall },
+		{ "CanPlayerHitBall", &ASGGolfBall::execCanPlayerHitBall },
+		{ "GetBallOwner", &ASGGolfBall::execGetBallOwner },
 		{ "GetBallRadius", &ASGGolfBall::execGetBallRadius },
 		{ "GetBallState", &ASGGolfBall::execGetBallState },
 		{ "GetBallVelocity", &ASGGolfBall::execGetBallVelocity },
@@ -731,12 +1515,23 @@ void ASGGolfBall::StaticRegisterNativesASGGolfBall()
 		{ "GetDistanceTraveled", &ASGGolfBall::execGetDistanceTraveled },
 		{ "GetStrokeCount", &ASGGolfBall::execGetStrokeCount },
 		{ "HitBall", &ASGGolfBall::execHitBall },
+		{ "HitBallMiniGolf", &ASGGolfBall::execHitBallMiniGolf },
 		{ "HitBallWithClub", &ASGGolfBall::execHitBallWithClub },
 		{ "IsBallStationary", &ASGGolfBall::execIsBallStationary },
+		{ "MulticastBallHit", &ASGGolfBall::execMulticastBallHit },
 		{ "OnHit", &ASGGolfBall::execOnHit },
+		{ "OnRep_BallOwner", &ASGGolfBall::execOnRep_BallOwner },
+		{ "OnRep_BallState", &ASGGolfBall::execOnRep_BallState },
 		{ "PlaceBall", &ASGGolfBall::execPlaceBall },
 		{ "ResetBall", &ASGGolfBall::execResetBall },
+		{ "ServerHitBall", &ASGGolfBall::execServerHitBall },
+		{ "ServerHitBallMiniGolf", &ASGGolfBall::execServerHitBallMiniGolf },
+		{ "ServerHitBallWithClub", &ASGGolfBall::execServerHitBallWithClub },
+		{ "ServerPlaceBall", &ASGGolfBall::execServerPlaceBall },
+		{ "ServerResetBall", &ASGGolfBall::execServerResetBall },
+		{ "SetBallOwner", &ASGGolfBall::execSetBallOwner },
 		{ "SetBallSize", &ASGGolfBall::execSetBallSize },
+		{ "TryHitBallFromPlayer", &ASGGolfBall::execTryHitBallFromPlayer },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -812,54 +1607,164 @@ struct Z_Construct_UClass_ASGGolfBall_Statics
 		{ "ToolTip", "Standard golf ball mass in grams" },
 #endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AirResistance_MetaData[] = {
-		{ "Category", "Golf Ball" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Standard golf ball radius in cm (increased from 2.135f)\n" },
-#endif
-		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Standard golf ball radius in cm (increased from 2.135f)" },
-#endif
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RollingFriction_MetaData[] = {
-		{ "Category", "Golf Ball" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Reduced from 0.5f for less air resistance\n" },
-#endif
-		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Reduced from 0.5f for less air resistance" },
-#endif
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BounceDamping_MetaData[] = {
-		{ "Category", "Golf Ball" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "// Increased from 0.3f for more ground friction\n" },
-#endif
-		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Increased from 0.3f for more ground friction" },
-#endif
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StopVelocityThreshold_MetaData[] = {
 		{ "Category", "Golf Ball" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Reduced from 0.6f for less bouncy behavior\n" },
+		{ "Comment", "// Standard golf ball radius in cm\n" },
 #endif
 		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Reduced from 0.6f for less bouncy behavior" },
+		{ "ToolTip", "Standard golf ball radius in cm" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PhysicalMaterialFriction_MetaData[] = {
+		{ "Category", "Chaos Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Chaos Physics Properties (ONLY physics system)\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Chaos Physics Properties (ONLY physics system)" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PhysicalMaterialRestitution_MetaData[] = {
+		{ "Category", "Chaos Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Physical material friction\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Physical material friction" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LinearDamping_MetaData[] = {
+		{ "Category", "Chaos Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Bounce coefficient\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Bounce coefficient" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AngularDamping_MetaData[] = {
+		{ "Category", "Chaos Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Linear velocity damping\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Linear velocity damping" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bMiniGolfMode_MetaData[] = {
+		{ "Category", "Mini Golf Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Mini Golf Physics Properties (Chaos-based)\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Mini Golf Physics Properties (Chaos-based)" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GroundTraceDistance_MetaData[] = {
+		{ "Category", "Mini Golf Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Enable mini golf rolling physics\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Enable mini golf rolling physics" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RollingForce_MetaData[] = {
+		{ "Category", "Mini Golf Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// How far to trace for ground\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "How far to trace for ground" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MinimumRollingSpeed_MetaData[] = {
+		{ "Category", "Mini Golf Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Force applied for rolling\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Force applied for rolling" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GroundStickForce_MetaData[] = {
+		{ "Category", "Mini Golf Physics" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Minimum speed before ball stops\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Minimum speed before ball stops" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bShowDebugInfo_MetaData[] = {
+		{ "Category", "Debug" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Debug Display Properties\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug Display Properties" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bShowVelocityVector_MetaData[] = {
+		{ "Category", "Debug" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Always show debug info\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Always show debug info" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bShowGroundTrace_MetaData[] = {
+		{ "Category", "Debug" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Show velocity direction\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Show velocity direction" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NetworkUpdateFrequency_MetaData[] = {
+		{ "Category", "Multiplayer" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Multiplayer Properties\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Multiplayer Properties" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MovementThresholdForUpdate_MetaData[] = {
+		{ "Category", "Multiplayer" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// How often to update clients (Hz)\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "How often to update clients (Hz)" },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentState_MetaData[] = {
 		{ "Category", "Golf Ball State" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Current State\n" },
+		{ "Comment", "// Current State - Replicated\n" },
 #endif
 		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Current State" },
+		{ "ToolTip", "Current State - Replicated" },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LastStationaryPosition_MetaData[] = {
@@ -874,23 +1779,68 @@ struct Z_Construct_UClass_ASGGolfBall_Statics
 		{ "Category", "Golf Ball State" },
 		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentBallOwner_MetaData[] = {
+		{ "Category", "Multiplayer" },
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HittingDistance_MetaData[] = {
+		{ "Category", "Golf Ball" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Hitting proximity system\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Hitting proximity system" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NearbyPlayer_MetaData[] = {
+		{ "Category", "Golf Ball State" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Distance within which you can hit the ball\n" },
+#endif
+		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Distance within which you can hit the ball" },
+#endif
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BallMesh;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_BallMass;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_BallRadius;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_AirResistance;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_RollingFriction;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_BounceDamping;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_StopVelocityThreshold;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_PhysicalMaterialFriction;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_PhysicalMaterialRestitution;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_LinearDamping;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_AngularDamping;
+	static void NewProp_bMiniGolfMode_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bMiniGolfMode;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_GroundTraceDistance;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_RollingForce;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MinimumRollingSpeed;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_GroundStickForce;
+	static void NewProp_bShowDebugInfo_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bShowDebugInfo;
+	static void NewProp_bShowVelocityVector_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bShowVelocityVector;
+	static void NewProp_bShowGroundTrace_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bShowGroundTrace;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_NetworkUpdateFrequency;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MovementThresholdForUpdate;
 	static const UECodeGen_Private::FBytePropertyParams NewProp_CurrentState_Underlying;
 	static const UECodeGen_Private::FEnumPropertyParams NewProp_CurrentState;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_LastStationaryPosition;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DistanceTraveled;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_StrokeCount;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentBallOwner;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_HittingDistance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NearbyPlayer;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASGGolfBall_CanHitBall, "CanHitBall" }, // 2173208268
+		{ &Z_Construct_UFunction_ASGGolfBall_CanPlayerHitBall, "CanPlayerHitBall" }, // 1111637203
+		{ &Z_Construct_UFunction_ASGGolfBall_GetBallOwner, "GetBallOwner" }, // 1431789802
 		{ &Z_Construct_UFunction_ASGGolfBall_GetBallRadius, "GetBallRadius" }, // 1396222432
 		{ &Z_Construct_UFunction_ASGGolfBall_GetBallState, "GetBallState" }, // 1726718309
 		{ &Z_Construct_UFunction_ASGGolfBall_GetBallVelocity, "GetBallVelocity" }, // 3068162341
@@ -898,12 +1848,23 @@ struct Z_Construct_UClass_ASGGolfBall_Statics
 		{ &Z_Construct_UFunction_ASGGolfBall_GetDistanceTraveled, "GetDistanceTraveled" }, // 3485210789
 		{ &Z_Construct_UFunction_ASGGolfBall_GetStrokeCount, "GetStrokeCount" }, // 490457035
 		{ &Z_Construct_UFunction_ASGGolfBall_HitBall, "HitBall" }, // 2253775113
+		{ &Z_Construct_UFunction_ASGGolfBall_HitBallMiniGolf, "HitBallMiniGolf" }, // 3039341438
 		{ &Z_Construct_UFunction_ASGGolfBall_HitBallWithClub, "HitBallWithClub" }, // 3137441131
 		{ &Z_Construct_UFunction_ASGGolfBall_IsBallStationary, "IsBallStationary" }, // 855139300
+		{ &Z_Construct_UFunction_ASGGolfBall_MulticastBallHit, "MulticastBallHit" }, // 1625589953
 		{ &Z_Construct_UFunction_ASGGolfBall_OnHit, "OnHit" }, // 1319239891
+		{ &Z_Construct_UFunction_ASGGolfBall_OnRep_BallOwner, "OnRep_BallOwner" }, // 4068811205
+		{ &Z_Construct_UFunction_ASGGolfBall_OnRep_BallState, "OnRep_BallState" }, // 2746711984
 		{ &Z_Construct_UFunction_ASGGolfBall_PlaceBall, "PlaceBall" }, // 876803763
 		{ &Z_Construct_UFunction_ASGGolfBall_ResetBall, "ResetBall" }, // 1574033983
+		{ &Z_Construct_UFunction_ASGGolfBall_ServerHitBall, "ServerHitBall" }, // 2308146495
+		{ &Z_Construct_UFunction_ASGGolfBall_ServerHitBallMiniGolf, "ServerHitBallMiniGolf" }, // 3984535691
+		{ &Z_Construct_UFunction_ASGGolfBall_ServerHitBallWithClub, "ServerHitBallWithClub" }, // 3104330415
+		{ &Z_Construct_UFunction_ASGGolfBall_ServerPlaceBall, "ServerPlaceBall" }, // 2963697095
+		{ &Z_Construct_UFunction_ASGGolfBall_ServerResetBall, "ServerResetBall" }, // 2220937856
+		{ &Z_Construct_UFunction_ASGGolfBall_SetBallOwner, "SetBallOwner" }, // 1570851658
 		{ &Z_Construct_UFunction_ASGGolfBall_SetBallSize, "SetBallSize" }, // 1046256290
+		{ &Z_Construct_UFunction_ASGGolfBall_TryHitBallFromPlayer, "TryHitBallFromPlayer" }, // 1099162643
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -915,29 +1876,73 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGGolfBall_St
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallMesh = { "BallMesh", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, BallMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BallMesh_MetaData), NewProp_BallMesh_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallMass = { "BallMass", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, BallMass), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BallMass_MetaData), NewProp_BallMass_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallRadius = { "BallRadius", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, BallRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BallRadius_MetaData), NewProp_BallRadius_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_AirResistance = { "AirResistance", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, AirResistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AirResistance_MetaData), NewProp_AirResistance_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_RollingFriction = { "RollingFriction", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, RollingFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RollingFriction_MetaData), NewProp_RollingFriction_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BounceDamping = { "BounceDamping", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, BounceDamping), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BounceDamping_MetaData), NewProp_BounceDamping_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_StopVelocityThreshold = { "StopVelocityThreshold", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, StopVelocityThreshold), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StopVelocityThreshold_MetaData), NewProp_StopVelocityThreshold_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_PhysicalMaterialFriction = { "PhysicalMaterialFriction", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, PhysicalMaterialFriction), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PhysicalMaterialFriction_MetaData), NewProp_PhysicalMaterialFriction_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_PhysicalMaterialRestitution = { "PhysicalMaterialRestitution", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, PhysicalMaterialRestitution), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PhysicalMaterialRestitution_MetaData), NewProp_PhysicalMaterialRestitution_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_LinearDamping = { "LinearDamping", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, LinearDamping), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LinearDamping_MetaData), NewProp_LinearDamping_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_AngularDamping = { "AngularDamping", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, AngularDamping), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AngularDamping_MetaData), NewProp_AngularDamping_MetaData) };
+void Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bMiniGolfMode_SetBit(void* Obj)
+{
+	((ASGGolfBall*)Obj)->bMiniGolfMode = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bMiniGolfMode = { "bMiniGolfMode", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASGGolfBall), &Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bMiniGolfMode_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bMiniGolfMode_MetaData), NewProp_bMiniGolfMode_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_GroundTraceDistance = { "GroundTraceDistance", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, GroundTraceDistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GroundTraceDistance_MetaData), NewProp_GroundTraceDistance_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_RollingForce = { "RollingForce", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, RollingForce), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RollingForce_MetaData), NewProp_RollingForce_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_MinimumRollingSpeed = { "MinimumRollingSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, MinimumRollingSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MinimumRollingSpeed_MetaData), NewProp_MinimumRollingSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_GroundStickForce = { "GroundStickForce", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, GroundStickForce), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GroundStickForce_MetaData), NewProp_GroundStickForce_MetaData) };
+void Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowDebugInfo_SetBit(void* Obj)
+{
+	((ASGGolfBall*)Obj)->bShowDebugInfo = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowDebugInfo = { "bShowDebugInfo", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASGGolfBall), &Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowDebugInfo_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bShowDebugInfo_MetaData), NewProp_bShowDebugInfo_MetaData) };
+void Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowVelocityVector_SetBit(void* Obj)
+{
+	((ASGGolfBall*)Obj)->bShowVelocityVector = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowVelocityVector = { "bShowVelocityVector", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASGGolfBall), &Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowVelocityVector_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bShowVelocityVector_MetaData), NewProp_bShowVelocityVector_MetaData) };
+void Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowGroundTrace_SetBit(void* Obj)
+{
+	((ASGGolfBall*)Obj)->bShowGroundTrace = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowGroundTrace = { "bShowGroundTrace", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASGGolfBall), &Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowGroundTrace_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bShowGroundTrace_MetaData), NewProp_bShowGroundTrace_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_NetworkUpdateFrequency = { "NetworkUpdateFrequency", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, NetworkUpdateFrequency), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NetworkUpdateFrequency_MetaData), NewProp_NetworkUpdateFrequency_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_MovementThresholdForUpdate = { "MovementThresholdForUpdate", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, MovementThresholdForUpdate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MovementThresholdForUpdate_MetaData), NewProp_MovementThresholdForUpdate_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentState = { "CurrentState", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, CurrentState), Z_Construct_UEnum_SocialGolf_EGolfBallState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentState_MetaData), NewProp_CurrentState_MetaData) }; // 3117357474
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_LastStationaryPosition = { "LastStationaryPosition", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, LastStationaryPosition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LastStationaryPosition_MetaData), NewProp_LastStationaryPosition_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_DistanceTraveled = { "DistanceTraveled", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, DistanceTraveled), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DistanceTraveled_MetaData), NewProp_DistanceTraveled_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_StrokeCount = { "StrokeCount", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, StrokeCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StrokeCount_MetaData), NewProp_StrokeCount_MetaData) };
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentState = { "CurrentState", "OnRep_BallState", (EPropertyFlags)0x0020080100020035, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, CurrentState), Z_Construct_UEnum_SocialGolf_EGolfBallState, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentState_MetaData), NewProp_CurrentState_MetaData) }; // 3117357474
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_LastStationaryPosition = { "LastStationaryPosition", nullptr, (EPropertyFlags)0x0020080000020035, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, LastStationaryPosition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LastStationaryPosition_MetaData), NewProp_LastStationaryPosition_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_DistanceTraveled = { "DistanceTraveled", nullptr, (EPropertyFlags)0x0020080000020035, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, DistanceTraveled), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DistanceTraveled_MetaData), NewProp_DistanceTraveled_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_StrokeCount = { "StrokeCount", nullptr, (EPropertyFlags)0x0020080000020035, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, StrokeCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StrokeCount_MetaData), NewProp_StrokeCount_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentBallOwner = { "CurrentBallOwner", "OnRep_BallOwner", (EPropertyFlags)0x0020080100000034, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, CurrentBallOwner), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentBallOwner_MetaData), NewProp_CurrentBallOwner_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_HittingDistance = { "HittingDistance", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, HittingDistance), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HittingDistance_MetaData), NewProp_HittingDistance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGGolfBall_Statics::NewProp_NearbyPlayer = { "NearbyPlayer", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGGolfBall, NearbyPlayer), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NearbyPlayer_MetaData), NewProp_NearbyPlayer_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGGolfBall_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CollisionComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallMass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BallRadius,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_AirResistance,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_RollingFriction,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_BounceDamping,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_StopVelocityThreshold,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_PhysicalMaterialFriction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_PhysicalMaterialRestitution,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_LinearDamping,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_AngularDamping,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bMiniGolfMode,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_GroundTraceDistance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_RollingForce,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_MinimumRollingSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_GroundStickForce,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowDebugInfo,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowVelocityVector,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_bShowGroundTrace,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_NetworkUpdateFrequency,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_MovementThresholdForUpdate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentState_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_LastStationaryPosition,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_DistanceTraveled,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_StrokeCount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_CurrentBallOwner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_HittingDistance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGGolfBall_Statics::NewProp_NearbyPlayer,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ASGGolfBall_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ASGGolfBall_Statics::DependentSingletons[])() = {
@@ -968,6 +1973,23 @@ UClass* Z_Construct_UClass_ASGGolfBall()
 	}
 	return Z_Registration_Info_UClass_ASGGolfBall.OuterSingleton;
 }
+#if VALIDATE_CLASS_REPS
+void ASGGolfBall::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
+{
+	static FName Name_CurrentState(TEXT("CurrentState"));
+	static FName Name_LastStationaryPosition(TEXT("LastStationaryPosition"));
+	static FName Name_DistanceTraveled(TEXT("DistanceTraveled"));
+	static FName Name_StrokeCount(TEXT("StrokeCount"));
+	static FName Name_CurrentBallOwner(TEXT("CurrentBallOwner"));
+	const bool bIsValid = true
+		&& Name_CurrentState == ClassReps[(int32)ENetFields_Private::CurrentState].Property->GetFName()
+		&& Name_LastStationaryPosition == ClassReps[(int32)ENetFields_Private::LastStationaryPosition].Property->GetFName()
+		&& Name_DistanceTraveled == ClassReps[(int32)ENetFields_Private::DistanceTraveled].Property->GetFName()
+		&& Name_StrokeCount == ClassReps[(int32)ENetFields_Private::StrokeCount].Property->GetFName()
+		&& Name_CurrentBallOwner == ClassReps[(int32)ENetFields_Private::CurrentBallOwner].Property->GetFName();
+	checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in ASGGolfBall"));
+}
+#endif
 DEFINE_VTABLE_PTR_HELPER_CTOR(ASGGolfBall);
 ASGGolfBall::~ASGGolfBall() {}
 // ********** End Class ASGGolfBall ****************************************************************
@@ -979,10 +2001,10 @@ struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_So
 		{ EGolfBallState_StaticEnum, TEXT("EGolfBallState"), &Z_Registration_Info_UEnum_EGolfBallState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3117357474U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGGolfBall, ASGGolfBall::StaticClass, TEXT("ASGGolfBall"), &Z_Registration_Info_UClass_ASGGolfBall, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGGolfBall), 3112891570U) },
+		{ Z_Construct_UClass_ASGGolfBall, ASGGolfBall::StaticClass, TEXT("ASGGolfBall"), &Z_Registration_Info_UClass_ASGGolfBall, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGGolfBall), 82317586U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_3412486593(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_1327527673(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::EnumInfo));

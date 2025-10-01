@@ -141,6 +141,32 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
     void SpawnGolfTee();
 
+    // Golf Ball Physics debug function
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ToggleGolfBallPhysics();
+
+    // Mini Golf Mode debug function
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ToggleMiniGolfMode();
+
+    // Debug function to check ball status
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void CheckGolfBallStatus();
+
+    // Debug function to toggle Chaos physics
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ToggleChaosPhysics();
+
+    // Debug functions for testing different power levels
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitBallLightPower(); // 25% power
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitBallMediumPower(); // 50% power
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitBallHardPower(); // 75% power
+
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
     bool bShowFPS;

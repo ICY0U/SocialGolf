@@ -19,6 +19,42 @@ SOCIALGOLF_API UClass* Z_Construct_UClass_ASGPlayerController_NoRegister();
 UPackage* Z_Construct_UPackage__Script_SocialGolf();
 // ********** End Cross Module References **********************************************************
 
+// ********** Begin Class ASGPlayerController Function CheckGolfBallStatus *************************
+struct Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Debug function to check ball status\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug function to check ball status" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "CheckGolfBallStatus", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execCheckGolfBallStatus)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CheckGolfBallStatus();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function CheckGolfBallStatus ***************************
+
 // ********** Begin Class ASGPlayerController Function DebugInteractionTrace ***********************
 struct Z_Construct_UFunction_ASGPlayerController_DebugInteractionTrace_Statics
 {
@@ -408,6 +444,114 @@ DEFINE_FUNCTION(ASGPlayerController::execForceTestCandleToggle)
 	P_NATIVE_END;
 }
 // ********** End Class ASGPlayerController Function ForceTestCandleToggle *************************
+
+// ********** Begin Class ASGPlayerController Function HitBallHardPower ****************************
+struct Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// 50% power\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "50% power" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "HitBallHardPower", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_HitBallHardPower()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execHitBallHardPower)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HitBallHardPower();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function HitBallHardPower ******************************
+
+// ********** Begin Class ASGPlayerController Function HitBallLightPower ***************************
+struct Z_Construct_UFunction_ASGPlayerController_HitBallLightPower_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Debug functions for testing different power levels\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug functions for testing different power levels" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_HitBallLightPower_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "HitBallLightPower", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_HitBallLightPower_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_HitBallLightPower_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_HitBallLightPower()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_HitBallLightPower_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execHitBallLightPower)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HitBallLightPower();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function HitBallLightPower *****************************
+
+// ********** Begin Class ASGPlayerController Function HitBallMediumPower **************************
+struct Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// 25% power\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "25% power" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "HitBallMediumPower", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execHitBallMediumPower)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HitBallMediumPower();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function HitBallMediumPower ****************************
 
 // ********** Begin Class ASGPlayerController Function HitGolfBallAt *******************************
 struct Z_Construct_UFunction_ASGPlayerController_HitGolfBallAt_Statics
@@ -1169,6 +1313,42 @@ DEFINE_FUNCTION(ASGPlayerController::execToggleAllCandles)
 }
 // ********** End Class ASGPlayerController Function ToggleAllCandles ******************************
 
+// ********** Begin Class ASGPlayerController Function ToggleChaosPhysics **************************
+struct Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Debug function to toggle Chaos physics\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug function to toggle Chaos physics" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "ToggleChaosPhysics", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execToggleChaosPhysics)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ToggleChaosPhysics();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function ToggleChaosPhysics ****************************
+
 // ********** Begin Class ASGPlayerController Function ToggleFPSDisplay ****************************
 struct Z_Construct_UFunction_ASGPlayerController_ToggleFPSDisplay_Statics
 {
@@ -1198,6 +1378,78 @@ DEFINE_FUNCTION(ASGPlayerController::execToggleFPSDisplay)
 	P_NATIVE_END;
 }
 // ********** End Class ASGPlayerController Function ToggleFPSDisplay ******************************
+
+// ********** Begin Class ASGPlayerController Function ToggleGolfBallPhysics ***********************
+struct Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Golf Ball Physics debug function\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Golf Ball Physics debug function" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "ToggleGolfBallPhysics", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execToggleGolfBallPhysics)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ToggleGolfBallPhysics();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function ToggleGolfBallPhysics *************************
+
+// ********** Begin Class ASGPlayerController Function ToggleMiniGolfMode **************************
+struct Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Debug|Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Mini Golf Mode debug function\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Mini Golf Mode debug function" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "ToggleMiniGolfMode", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execToggleMiniGolfMode)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ToggleMiniGolfMode();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function ToggleMiniGolfMode ****************************
 
 // ********** Begin Class ASGPlayerController Function ToggleNetworkStats **************************
 struct Z_Construct_UFunction_ASGPlayerController_ToggleNetworkStats_Statics
@@ -1240,6 +1492,7 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 {
 	UClass* Class = ASGPlayerController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "CheckGolfBallStatus", &ASGPlayerController::execCheckGolfBallStatus },
 		{ "DebugInteractionTrace", &ASGPlayerController::execDebugInteractionTrace },
 		{ "DisableGameInput", &ASGPlayerController::execDisableGameInput },
 		{ "DropAllPickupCandles", &ASGPlayerController::execDropAllPickupCandles },
@@ -1252,6 +1505,9 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "ForcePickupNearestCandle", &ASGPlayerController::execForcePickupNearestCandle },
 		{ "ForceStandUpFromBench", &ASGPlayerController::execForceStandUpFromBench },
 		{ "ForceTestCandleToggle", &ASGPlayerController::execForceTestCandleToggle },
+		{ "HitBallHardPower", &ASGPlayerController::execHitBallHardPower },
+		{ "HitBallLightPower", &ASGPlayerController::execHitBallLightPower },
+		{ "HitBallMediumPower", &ASGPlayerController::execHitBallMediumPower },
 		{ "HitGolfBallAt", &ASGPlayerController::execHitGolfBallAt },
 		{ "HitGolfBallForward", &ASGPlayerController::execHitGolfBallForward },
 		{ "HitGolfBallForwardInput", &ASGPlayerController::execHitGolfBallForwardInput },
@@ -1274,7 +1530,10 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "TestInputMappings", &ASGPlayerController::execTestInputMappings },
 		{ "TestPickupSystem", &ASGPlayerController::execTestPickupSystem },
 		{ "ToggleAllCandles", &ASGPlayerController::execToggleAllCandles },
+		{ "ToggleChaosPhysics", &ASGPlayerController::execToggleChaosPhysics },
 		{ "ToggleFPSDisplay", &ASGPlayerController::execToggleFPSDisplay },
+		{ "ToggleGolfBallPhysics", &ASGPlayerController::execToggleGolfBallPhysics },
+		{ "ToggleMiniGolfMode", &ASGPlayerController::execToggleMiniGolfMode },
 		{ "ToggleNetworkStats", &ASGPlayerController::execToggleNetworkStats },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -1376,6 +1635,7 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_ASGPlayerController_CheckGolfBallStatus, "CheckGolfBallStatus" }, // 3615785010
 		{ &Z_Construct_UFunction_ASGPlayerController_DebugInteractionTrace, "DebugInteractionTrace" }, // 1086033367
 		{ &Z_Construct_UFunction_ASGPlayerController_DisableGameInput, "DisableGameInput" }, // 3653181052
 		{ &Z_Construct_UFunction_ASGPlayerController_DropAllPickupCandles, "DropAllPickupCandles" }, // 4133821981
@@ -1388,6 +1648,9 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_ForcePickupNearestCandle, "ForcePickupNearestCandle" }, // 1282517558
 		{ &Z_Construct_UFunction_ASGPlayerController_ForceStandUpFromBench, "ForceStandUpFromBench" }, // 3864635853
 		{ &Z_Construct_UFunction_ASGPlayerController_ForceTestCandleToggle, "ForceTestCandleToggle" }, // 1757903218
+		{ &Z_Construct_UFunction_ASGPlayerController_HitBallHardPower, "HitBallHardPower" }, // 2356300503
+		{ &Z_Construct_UFunction_ASGPlayerController_HitBallLightPower, "HitBallLightPower" }, // 439971622
+		{ &Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower, "HitBallMediumPower" }, // 1293597241
 		{ &Z_Construct_UFunction_ASGPlayerController_HitGolfBallAt, "HitGolfBallAt" }, // 443513515
 		{ &Z_Construct_UFunction_ASGPlayerController_HitGolfBallForward, "HitGolfBallForward" }, // 2683660243
 		{ &Z_Construct_UFunction_ASGPlayerController_HitGolfBallForwardInput, "HitGolfBallForwardInput" }, // 4011933108
@@ -1410,7 +1673,10 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_TestInputMappings, "TestInputMappings" }, // 3383149497
 		{ &Z_Construct_UFunction_ASGPlayerController_TestPickupSystem, "TestPickupSystem" }, // 2568701454
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleAllCandles, "ToggleAllCandles" }, // 2634106762
+		{ &Z_Construct_UFunction_ASGPlayerController_ToggleChaosPhysics, "ToggleChaosPhysics" }, // 2860088666
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleFPSDisplay, "ToggleFPSDisplay" }, // 2600049387
+		{ &Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics, "ToggleGolfBallPhysics" }, // 2312808091
+		{ &Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode, "ToggleMiniGolfMode" }, // 794666220
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleNetworkStats, "ToggleNetworkStats" }, // 2982250596
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -1484,10 +1750,10 @@ ASGPlayerController::~ASGPlayerController() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGPlayerController, ASGPlayerController::StaticClass, TEXT("ASGPlayerController"), &Z_Registration_Info_UClass_ASGPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGPlayerController), 3936686937U) },
+		{ Z_Construct_UClass_ASGPlayerController, ASGPlayerController::StaticClass, TEXT("ASGPlayerController"), &Z_Registration_Info_UClass_ASGPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGPlayerController), 4127753737U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_1355271827(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_2954076200(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

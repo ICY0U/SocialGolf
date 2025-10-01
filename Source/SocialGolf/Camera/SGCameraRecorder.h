@@ -169,6 +169,19 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "File Management")
     void SaveRecordingsToSave();
+    
+    // Test and Debug Functions
+    UFUNCTION(BlueprintCallable, Category = "File Management")
+    void TestDesktopExport();
+    
+    UFUNCTION(BlueprintCallable, Category = "File Management") 
+    FString GetDesktopPathForTesting();
+    
+    UFUNCTION(BlueprintCallable, Category = "File Management")
+    void ExportAllRecordingsToDesktop();
+
+    UFUNCTION(BlueprintCallable, Category = "File Management")
+    void CreateTestRecordingAndExport();
 
     // Utility Functions
     UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Utility")
@@ -227,4 +240,8 @@ protected:
     FString GetRecordingDirectory() const;
     FString GetDesktopDirectory() const;
     void CreateVideoFromFrames(const TArray<TArray<FColor>>& Frames, const FString& OutputPath);
+    
+    // Export helper functions
+    void ExportFrameSequence(int32 RecordingIndex, const FString& OutputPath);
+    bool SaveFrameAsImage(const TArray<FColor>& FrameData, const FString& FilePath);
 };

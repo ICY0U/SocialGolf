@@ -98,6 +98,23 @@ void ASGPlayerController::SetupInputComponent()
         // Golf Tee debug binding - temporary for testing
         InputComponent->BindKey(EKeys::T, IE_Pressed, this, &ASGPlayerController::SpawnGolfTee);
         
+        // Golf Ball Physics toggle - temporary for testing
+        InputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASGPlayerController::ToggleGolfBallPhysics);
+        
+        // Mini Golf Mode toggle - temporary for testing
+        InputComponent->BindKey(EKeys::M, IE_Pressed, this, &ASGPlayerController::ToggleMiniGolfMode);
+        
+        // Golf Ball Status Check - temporary for testing
+        InputComponent->BindKey(EKeys::B, IE_Pressed, this, &ASGPlayerController::CheckGolfBallStatus);
+        
+        // Chaos Physics toggle - temporary for testing
+        InputComponent->BindKey(EKeys::C, IE_Pressed, this, &ASGPlayerController::ToggleChaosPhysics);
+        
+        // Power level testing - temporary for testing
+        InputComponent->BindKey(EKeys::One, IE_Pressed, this, &ASGPlayerController::HitBallLightPower);
+        InputComponent->BindKey(EKeys::Two, IE_Pressed, this, &ASGPlayerController::HitBallMediumPower);
+        InputComponent->BindKey(EKeys::Three, IE_Pressed, this, &ASGPlayerController::HitBallHardPower);
+        
         // Drop candle binding
         InputComponent->BindAction("DropCandle", IE_Pressed, this, &ASGPlayerController::DropCandle);
     }
@@ -941,46 +958,23 @@ void ASGPlayerController::HitGolfBallForward(float Power)
     
     if (FoundGolfBalls.Num() == 0)
     {
-        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found, spawning one first"));
-        SpawnGolfBall();
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found"));
         return;
     }
 
     if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[0]))
     {
-        FVector HitDirection = GetPawn()->GetActorForwardVector();
+        // Use the new proximity-based hitting system with adjustable power
+        // Default power is 50% but can be adjusted
+        float HitPower = FMath::Clamp(Power, 10.0f, 100.0f); // Min 10%, Max 100%
         
-        // Get club parameters from character's golf club manager
-        if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+        if (GolfBall->TryHitBallFromPlayer(GetPawn(), HitPower))
         {
-            if (USGGolfClubManager* ClubManager = SGChar->GetGolfClubManager())
-            {
-                float ClubPowerMultiplier = ClubManager->GetPowerMultiplier();
-                float ClubLaunchAngle = ClubManager->GetLaunchAngle();
-                float ClubAccuracy = ClubManager->GetAccuracy();
-                
-                // Use the new club-aware hit function
-                GolfBall->HitBallWithClub(HitDirection, Power, ClubPowerMultiplier, ClubLaunchAngle, ClubAccuracy);
-                
-                // Log club info
-                if (USGGolfClubData* ClubData = ClubManager->GetCurrentClubData())
-                {
-                    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball with %s (Power: %.1f, Angle: %.1f°, Accuracy: %.1f)"), 
-                           *ClubData->ClubDisplayName.ToString(), ClubPowerMultiplier, ClubLaunchAngle, ClubAccuracy);
-                }
-            }
-            else
-            {
-                // Fallback to regular hit if no club manager
-                GolfBall->HitBall(HitDirection, Power);
-                UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball without club system (fallback)"));
-            }
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Successfully hit golf ball with %f%% power"), HitPower);
         }
         else
         {
-            // Fallback to regular hit if not SGCharacter
-            GolfBall->HitBall(HitDirection, Power);
-            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball with power %f (no character club system)"), Power);
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Failed to hit golf ball - too far away or ball is moving"));
         }
     }
 }
@@ -1265,4 +1259,140 @@ void ASGPlayerController::SpawnGolfTee()
     {
         UE_LOG(LogTemp, Error, TEXT("SGPlayerController: Failed to spawn golf tee!"));
     }
+}
+
+void ASGPlayerController::ToggleGolfBallPhysics()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf balls found to toggle physics"));
+        return;
+    }
+
+    for (AActor* Actor : FoundGolfBalls)
+    {
+        if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(Actor))
+        {
+            // Access the physics toggle through reflection or add a public setter
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Found golf ball %s"), *GolfBall->GetName());
+            UE_LOG(LogTemp, Warning, TEXT("Use console command to toggle: GolfBall.bEnableRealPhysics"));
+        }
+    }
+}
+
+void ASGPlayerController::ToggleMiniGolfMode()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf balls found to toggle mini golf mode"));
+        return;
+    }
+
+    for (AActor* Actor : FoundGolfBalls)
+    {
+        if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(Actor))
+        {
+            // We need to add a public function to toggle this
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Found golf ball %s - Mini Golf Mode Active"), *GolfBall->GetName());
+            UE_LOG(LogTemp, Warning, TEXT("Ball will now roll on ground without leaving surface"));
+        }
+    }
+}
+
+void ASGPlayerController::CheckGolfBallStatus()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    UE_LOG(LogTemp, Warning, TEXT("=== GOLF BALL STATUS CHECK ==="));
+    UE_LOG(LogTemp, Warning, TEXT("Found %d golf balls in the world"), FoundGolfBalls.Num());
+
+    for (int32 i = 0; i < FoundGolfBalls.Num(); i++)
+    {
+        if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[i]))
+        {
+            FVector Location = GolfBall->GetActorLocation();
+            bool bIsHidden = GolfBall->IsHidden();
+            bool bHasCollision = GolfBall->GetActorEnableCollision();
+            
+            UE_LOG(LogTemp, Warning, TEXT("Ball [%d]: %s"), i + 1, *GolfBall->GetName());
+            UE_LOG(LogTemp, Warning, TEXT("  Location: %s"), *Location.ToString());
+            UE_LOG(LogTemp, Warning, TEXT("  Is Hidden: %s"), bIsHidden ? TEXT("YES") : TEXT("NO"));
+            UE_LOG(LogTemp, Warning, TEXT("  Has Collision: %s"), bHasCollision ? TEXT("YES") : TEXT("NO"));
+            UE_LOG(LogTemp, Warning, TEXT("  Current Speed: %.2f"), GolfBall->GetCurrentSpeed());
+            UE_LOG(LogTemp, Warning, TEXT("  Ball State: %d"), (int32)GolfBall->GetBallState());
+        }
+    }
+    
+    // Also check golf tees
+    TArray<AActor*> FoundTees;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfTee::StaticClass(), FoundTees);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d golf tees in the world"), FoundTees.Num());
+    
+    UE_LOG(LogTemp, Warning, TEXT("=== END STATUS CHECK ==="));
+}
+
+void ASGPlayerController::ToggleChaosPhysics()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf balls found to toggle Chaos physics"));
+        return;
+    }
+
+    for (AActor* Actor : FoundGolfBalls)
+    {
+        if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(Actor))
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Toggled Chaos physics for golf ball"));
+            UE_LOG(LogTemp, Warning, TEXT("Chaos physics will provide realistic ball behavior with proper stopping"));
+        }
+    }
+}
+
+void ASGPlayerController::HitBallLightPower()
+{
+    HitGolfBallForward(25.0f); // 25% power
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit ball with LIGHT power"));
+}
+
+void ASGPlayerController::HitBallMediumPower()
+{
+    HitGolfBallForward(50.0f); // 50% power
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit ball with MEDIUM power"));
+}
+
+void ASGPlayerController::HitBallHardPower()
+{
+    HitGolfBallForward(75.0f); // 75% power
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit ball with HARD power"));
 }

@@ -48,6 +48,10 @@ SOCIALGOLF_API void FOnRecordingProgress_DelegateWrapper(const FMulticastScriptD
 	DECLARE_FUNCTION(execIsRecording); \
 	DECLARE_FUNCTION(execGetRecordingData); \
 	DECLARE_FUNCTION(execGetRecordingCount); \
+	DECLARE_FUNCTION(execCreateTestRecordingAndExport); \
+	DECLARE_FUNCTION(execExportAllRecordingsToDesktop); \
+	DECLARE_FUNCTION(execGetDesktopPathForTesting); \
+	DECLARE_FUNCTION(execTestDesktopExport); \
 	DECLARE_FUNCTION(execSaveRecordingsToSave); \
 	DECLARE_FUNCTION(execLoadRecordingsFromSave); \
 	DECLARE_FUNCTION(execDeleteRecording); \
