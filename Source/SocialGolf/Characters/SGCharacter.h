@@ -9,6 +9,7 @@ class USpringArmComponent;
 class USGInteractionComponent;
 class UStaticMeshComponent;
 class USceneComponent;
+class USGGolfClubManager;
 struct FSGSaveData;
 
 UCLASS()
@@ -41,6 +42,9 @@ protected:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Interaction")
     USGInteractionComponent* InteractionComp;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Golf")
+    USGGolfClubManager* GolfClubManager;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Visual")
     USceneComponent* PlaceholderRoot;
@@ -81,6 +85,10 @@ protected:
     // Pickup candle input functions
     void ToggleHeldCandlePressed();
 
+    // Golf club input functions
+    void NextClubPressed();
+    void PreviousClubPressed();
+
     // Direct key binding functions (backup for input action issues)
     void DirectToggleCandlePressed();
     void DirectDropCandlePressed();
@@ -112,6 +120,10 @@ public:
 
     UFUNCTION(BlueprintCallable, Category="Pickup Candle")
     bool IsHoldingCandle() const { return HeldCandle != nullptr; }
+
+    // Golf club system
+    UFUNCTION(BlueprintCallable, Category="Golf")
+    USGGolfClubManager* GetGolfClubManager() const { return GolfClubManager; }
 
     UFUNCTION(BlueprintCallable, Category="Input")
     void SetMouseSensitivity(float NewSensitivity);

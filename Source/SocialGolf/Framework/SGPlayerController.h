@@ -16,6 +16,7 @@ public:
 
     virtual void BeginPlay() override;
     virtual void SetupInputComponent() override;
+    virtual void Tick(float DeltaTime) override;
 
     // Debug functions
     UFUNCTION(BlueprintCallable, Category = "Debug")
@@ -97,10 +98,69 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Debug|Interaction")
     void ForcePickupNearestCandle();
 
+    // Golf Ball debug functions
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void SpawnGolfBall();
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitGolfBallForward(float Power = 50.0f);
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitGolfBallAt(FVector Direction, float Power = 50.0f);
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ResetGolfBall();
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ListGolfBallStatus();
+
+    // Golf Ball input wrapper functions (no parameters for input binding)
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void HitGolfBallForwardInput();
+
+    // Golf charging system
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void StartChargingGolfShot();
+
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ReleaseGolfShot();
+
+    // Candle input function
+    UFUNCTION(BlueprintCallable, Category = "Input|Candles")
+    void DropCandle();
+
+    // Golf club debug function
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void ShowCurrentClubInfo();
+
+    // Character debug function
+    UFUNCTION(BlueprintCallable, Category = "Debug|Character")
+    void ShowCharacterStatus();
+
+    // Golf Tee debug function
+    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    void SpawnGolfTee();
+
 protected:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
     bool bShowFPS;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
     bool bGameInputEnabled = true;
+
+    // Golf charging variables
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Golf")
+    bool bIsChargingShot = false;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Golf")
+    float ShotChargeTime = 0.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Golf")
+    float MaxChargeTime = 3.0f; // Maximum charge time in seconds
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Golf")
+    float MinPower = 10.0f; // Minimum power percentage
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Golf")
+    float MaxPower = 100.0f; // Maximum power percentage
 };

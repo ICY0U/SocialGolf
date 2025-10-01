@@ -14,6 +14,7 @@
 #include "../Core/SGFocusableComponent.h"
 #include "../Lighting/SGPickupCandle.h"
 #include "../SaveSystem/SGSaveData.h"
+#include "../Golf/SGGolfClubManager.h"
 
 ASGCharacter::ASGCharacter()
 {
@@ -84,6 +85,9 @@ ASGCharacter::ASGCharacter()
     // Create interaction component
     InteractionComp = CreateDefaultSubobject<USGInteractionComponent>(TEXT("InteractionComp"));
 
+    // Create golf club manager
+    GolfClubManager = CreateDefaultSubobject<USGGolfClubManager>(TEXT("GolfClubManager"));
+
     // Debug collision visualization
     DebugCollisionCapsule = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DebugCollisionCapsule"));
     DebugCollisionCapsule->SetupAttachment(RootComponent);
@@ -126,6 +130,12 @@ void ASGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     Super::SetupPlayerInputComponent(PlayerInputComponent);
     check(PlayerInputComponent);
 
+    // Set up axis bindings for movement and camera
+    PlayerInputComponent->BindAxis("MoveForward", this, &ASGCharacter::MoveForward);
+    PlayerInputComponent->BindAxis("MoveRight", this, &ASGCharacter::MoveRight);
+    PlayerInputComponent->BindAxis("Turn", this, &ASGCharacter::Turn);
+    PlayerInputComponent->BindAxis("LookUp", this, &ASGCharacter::LookUp);
+
     // Set up gameplay key bindings
     PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASGCharacter::DoJump);
     PlayerInputComponent->BindAction("Jump", IE_Released, this, &ASGCharacter::StopJumpingLocal);
@@ -141,17 +151,14 @@ void ASGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
     PlayerInputComponent->BindKey(EKeys::G, IE_Pressed, this, &ASGCharacter::DirectDropCandlePressed);
     PlayerInputComponent->BindKey(EKeys::T, IE_Pressed, this, &ASGCharacter::DirectTestCandleSystem);
     
+    // Golf club key bindings
+    PlayerInputComponent->BindKey(EKeys::Q, IE_Pressed, this, &ASGCharacter::PreviousClubPressed);
+    PlayerInputComponent->BindKey(EKeys::Z, IE_Pressed, this, &ASGCharacter::NextClubPressed); // Changed from E to Z to avoid conflict
+    
     // Debug key bindings
     PlayerInputComponent->BindKey(EKeys::U, IE_Pressed, this, &ASGCharacter::ToggleInteractionDebug);
 
-    PlayerInputComponent->BindAxis("MoveForward", this, &ASGCharacter::MoveForward);
-    PlayerInputComponent->BindAxis("MoveRight", this, &ASGCharacter::MoveRight);
-
-    // Mouse input bindings using our custom sensitivity functions
-    PlayerInputComponent->BindAxis("Turn", this, &ASGCharacter::AddControllerYawInputWithSensitivity);
-    PlayerInputComponent->BindAxis("LookUp", this, &ASGCharacter::AddControllerPitchInputWithSensitivity);
-
-    UE_LOG(LogTemp, Log, TEXT("SGCharacter: Input component setup complete for %s - Direct keys: F=Toggle, G=Drop, T=Test/Debug, U=Debug"), *GetName());
+    UE_LOG(LogTemp, Log, TEXT("SGCharacter: Input component setup complete for %s - Golf: Q=Previous Club, Z=Next Club"), *GetName());
 }
 
 void ASGCharacter::MoveForward(float Value)
@@ -311,6 +318,22 @@ void ASGCharacter::DirectTestCandleSystem()
         UE_LOG(LogTemp, Warning, TEXT("No candle held - Use console command 'SpawnPickupCandle' to spawn one"));
         UE_LOG(LogTemp, Warning, TEXT("=== Controls: E=Pickup/Drop, F=Toggle Light, G=Force Drop, T=Test/Debug ==="));
         UE_LOG(LogTemp, Warning, TEXT("=== Debug enabled - press E near objects to see interaction traces ==="));
+    }
+}
+
+void ASGCharacter::NextClubPressed()
+{
+    if (GolfClubManager)
+    {
+        GolfClubManager->NextClub();
+    }
+}
+
+void ASGCharacter::PreviousClubPressed()
+{
+    if (GolfClubManager)
+    {
+        GolfClubManager->PreviousClub();
     }
 }
 

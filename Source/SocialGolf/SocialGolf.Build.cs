@@ -22,7 +22,8 @@ public class SocialGolf : ModuleRules
             "SocialGolf/Core",
             "SocialGolf/Camera",
             "SocialGolf/Save",
-            "SocialGolf/Materials"
+            "SocialGolf/Materials",
+            "SocialGolf/Golf"
         });
         
         // Enable C++20 features if needed

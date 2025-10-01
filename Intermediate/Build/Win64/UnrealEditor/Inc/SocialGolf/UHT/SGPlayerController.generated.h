@@ -18,6 +18,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 // ********** Begin Class ASGPlayerController ******************************************************
 #define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execSpawnGolfTee); \
+	DECLARE_FUNCTION(execShowCharacterStatus); \
+	DECLARE_FUNCTION(execShowCurrentClubInfo); \
+	DECLARE_FUNCTION(execDropCandle); \
+	DECLARE_FUNCTION(execReleaseGolfShot); \
+	DECLARE_FUNCTION(execStartChargingGolfShot); \
+	DECLARE_FUNCTION(execHitGolfBallForwardInput); \
+	DECLARE_FUNCTION(execListGolfBallStatus); \
+	DECLARE_FUNCTION(execResetGolfBall); \
+	DECLARE_FUNCTION(execHitGolfBallAt); \
+	DECLARE_FUNCTION(execHitGolfBallForward); \
+	DECLARE_FUNCTION(execSpawnGolfBall); \
 	DECLARE_FUNCTION(execForcePickupNearestCandle); \
 	DECLARE_FUNCTION(execDebugInteractionTrace); \
 	DECLARE_FUNCTION(execResetCharacterRotation); \

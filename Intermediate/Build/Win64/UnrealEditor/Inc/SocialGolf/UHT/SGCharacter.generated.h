@@ -17,12 +17,14 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 class ASGPickupCandle;
+class USGGolfClubManager;
 
 // ********** Begin Class ASGCharacter *************************************************************
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnRep_HeldCandle); \
 	DECLARE_FUNCTION(execOnRep_IsSitting); \
 	DECLARE_FUNCTION(execSetMouseSensitivity); \
+	DECLARE_FUNCTION(execGetGolfClubManager); \
 	DECLARE_FUNCTION(execIsHoldingCandle); \
 	DECLARE_FUNCTION(execGetHeldCandle); \
 	DECLARE_FUNCTION(execSetHeldCandle); \
@@ -34,7 +36,7 @@ class ASGPickupCandle;
 
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGCharacter_NoRegister();
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_INCLASS_NO_PURE_DECLS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASGCharacter(); \
 	friend struct Z_Construct_UClass_ASGCharacter_Statics; \
@@ -53,7 +55,7 @@ public: \
 	DECLARE_VALIDATE_GENERATED_REP_ENUMS(NO_API)
 
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_ENHANCED_CONSTRUCTORS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	ASGCharacter(ASGCharacter&&) = delete; \
 	ASGCharacter(const ASGCharacter&) = delete; \
@@ -63,13 +65,13 @@ public: \
 	NO_API virtual ~ASGCharacter();
 
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_14_PROLOG
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_GENERATED_BODY \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_15_PROLOG
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_INCLASS_NO_PURE_DECLS \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_17_ENHANCED_CONSTRUCTORS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_INCLASS_NO_PURE_DECLS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

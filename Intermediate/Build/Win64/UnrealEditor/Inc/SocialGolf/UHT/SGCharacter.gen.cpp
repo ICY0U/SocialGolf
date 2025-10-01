@@ -20,6 +20,7 @@ ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGCharacter();
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGCharacter_NoRegister();
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGPickupCandle_NoRegister();
+SOCIALGOLF_API UClass* Z_Construct_UClass_USGGolfClubManager_NoRegister();
 SOCIALGOLF_API UClass* Z_Construct_UClass_USGInteractionComponent_NoRegister();
 SOCIALGOLF_API UClass* Z_Construct_UClass_USGSaveableInterface_NoRegister();
 UPackage* Z_Construct_UPackage__Script_SocialGolf();
@@ -54,6 +55,57 @@ DEFINE_FUNCTION(ASGCharacter::execForceStandUp)
 	P_NATIVE_END;
 }
 // ********** End Class ASGCharacter Function ForceStandUp *****************************************
+
+// ********** Begin Class ASGCharacter Function GetGolfClubManager *********************************
+struct Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics
+{
+	struct SGCharacter_eventGetGolfClubManager_Parms
+	{
+		USGGolfClubManager* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Golf" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Golf club system\n" },
+#endif
+		{ "ModuleRelativePath", "Characters/SGCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Golf club system" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCharacter_eventGetGolfClubManager_Parms, ReturnValue), Z_Construct_UClass_USGGolfClubManager_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReturnValue_MetaData), NewProp_ReturnValue_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGCharacter, nullptr, "GetGolfClubManager", Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::SGCharacter_eventGetGolfClubManager_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::SGCharacter_eventGetGolfClubManager_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGCharacter_GetGolfClubManager()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGCharacter_GetGolfClubManager_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGCharacter::execGetGolfClubManager)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(USGGolfClubManager**)Z_Param__Result=P_THIS->GetGolfClubManager();
+	P_NATIVE_END;
+}
+// ********** End Class ASGCharacter Function GetGolfClubManager ***********************************
 
 // ********** Begin Class ASGCharacter Function GetHeldCandle **************************************
 struct Z_Construct_UFunction_ASGCharacter_GetHeldCandle_Statics
@@ -431,6 +483,7 @@ void ASGCharacter::StaticRegisterNativesASGCharacter()
 	UClass* Class = ASGCharacter::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "ForceStandUp", &ASGCharacter::execForceStandUp },
+		{ "GetGolfClubManager", &ASGCharacter::execGetGolfClubManager },
 		{ "GetHeldCandle", &ASGCharacter::execGetHeldCandle },
 		{ "IsHoldingCandle", &ASGCharacter::execIsHoldingCandle },
 		{ "IsSitting", &ASGCharacter::execIsSitting },
@@ -509,6 +562,11 @@ struct Z_Construct_UClass_ASGCharacter_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Characters/SGCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GolfClubManager_MetaData[] = {
+		{ "Category", "Golf" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Characters/SGCharacter.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlaceholderRoot_MetaData[] = {
 		{ "Category", "Visual" },
 		{ "EditInline", "true" },
@@ -572,6 +630,7 @@ struct Z_Construct_UClass_ASGCharacter_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FollowCamera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_GolfClubManager;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlaceholderRoot;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlaceholderTorso;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlaceholderHead;
@@ -585,6 +644,7 @@ struct Z_Construct_UClass_ASGCharacter_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ASGCharacter_ForceStandUp, "ForceStandUp" }, // 2910955906
+		{ &Z_Construct_UFunction_ASGCharacter_GetGolfClubManager, "GetGolfClubManager" }, // 387617003
 		{ &Z_Construct_UFunction_ASGCharacter_GetHeldCandle, "GetHeldCandle" }, // 2886883673
 		{ &Z_Construct_UFunction_ASGCharacter_IsHoldingCandle, "IsHoldingCandle" }, // 1031534720
 		{ &Z_Construct_UFunction_ASGCharacter_IsSitting, "IsSitting" }, // 2085313915
@@ -611,6 +671,7 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGCharacter_Sta
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_CameraBoom = { "CameraBoom", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraBoom_MetaData), NewProp_CameraBoom_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_FollowCamera = { "FollowCamera", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, FollowCamera), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FollowCamera_MetaData), NewProp_FollowCamera_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_InteractionComp = { "InteractionComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, InteractionComp), Z_Construct_UClass_USGInteractionComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionComp_MetaData), NewProp_InteractionComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_GolfClubManager = { "GolfClubManager", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, GolfClubManager), Z_Construct_UClass_USGGolfClubManager_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GolfClubManager_MetaData), NewProp_GolfClubManager_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderRoot = { "PlaceholderRoot", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, PlaceholderRoot), Z_Construct_UClass_USceneComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlaceholderRoot_MetaData), NewProp_PlaceholderRoot_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderTorso = { "PlaceholderTorso", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, PlaceholderTorso), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlaceholderTorso_MetaData), NewProp_PlaceholderTorso_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderHead = { "PlaceholderHead", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGCharacter, PlaceholderHead), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlaceholderHead_MetaData), NewProp_PlaceholderHead_MetaData) };
@@ -632,6 +693,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGCharac
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_CameraBoom,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_FollowCamera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_InteractionComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_GolfClubManager,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderRoot,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderTorso,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGCharacter_Statics::NewProp_PlaceholderHead,
@@ -691,10 +753,10 @@ ASGCharacter::~ASGCharacter() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGCharacter, ASGCharacter::StaticClass, TEXT("ASGCharacter"), &Z_Registration_Info_UClass_ASGCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGCharacter), 4042921598U) },
+		{ Z_Construct_UClass_ASGCharacter, ASGCharacter::StaticClass, TEXT("ASGCharacter"), &Z_Registration_Info_UClass_ASGCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGCharacter), 817883736U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h__Script_SocialGolf_4175273037(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h__Script_SocialGolf_39186459(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Characters_SGCharacter_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

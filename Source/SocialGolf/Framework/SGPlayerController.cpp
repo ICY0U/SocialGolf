@@ -12,6 +12,9 @@
 #include "../Lighting/SGPickupCandle.h"
 #include "../Interaction/SGInteractionComponent.h"
 #include "../Core/SGFocusableComponent.h"
+#include "../Golf/SGGolfBall.h"
+#include "../Golf/SGGolfClubManager.h"
+#include "../Golf/SGGolfTee.h"
 #include "SGGameMode.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
@@ -84,6 +87,44 @@ void ASGPlayerController::SetupInputComponent()
         // Emergency recovery bindings
         InputComponent->BindAction("EmergencyTeleport", IE_Pressed, this, &ASGPlayerController::EmergencyTeleportToSafeLocation);
         InputComponent->BindAction("ForceStandUp", IE_Pressed, this, &ASGPlayerController::ForceStandUpFromBench);
+        
+        // Golf ball debug bindings
+        InputComponent->BindAction("SpawnGolfBall", IE_Pressed, this, &ASGPlayerController::SpawnGolfBall);
+        InputComponent->BindAction("HitGolfBall", IE_Pressed, this, &ASGPlayerController::HitGolfBallForwardInput);
+        InputComponent->BindAction("ResetGolfBall", IE_Pressed, this, &ASGPlayerController::ResetGolfBall);
+        InputComponent->BindAction("ChargeGolfShot", IE_Pressed, this, &ASGPlayerController::StartChargingGolfShot);
+        InputComponent->BindAction("ChargeGolfShot", IE_Released, this, &ASGPlayerController::ReleaseGolfShot);
+        
+        // Golf Tee debug binding - temporary for testing
+        InputComponent->BindKey(EKeys::T, IE_Pressed, this, &ASGPlayerController::SpawnGolfTee);
+        
+        // Drop candle binding
+        InputComponent->BindAction("DropCandle", IE_Pressed, this, &ASGPlayerController::DropCandle);
+    }
+}
+
+void ASGPlayerController::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+    
+    // Update golf shot charging
+    if (bIsChargingShot)
+    {
+        ShotChargeTime += DeltaTime;
+        
+        // Optional: Cap the charge time
+        if (ShotChargeTime >= MaxChargeTime)
+        {
+            ShotChargeTime = MaxChargeTime;
+        }
+        
+        // Optional: Show current power in log (can be removed for less spam)
+        if (FMath::Fmod(ShotChargeTime, 0.5f) < DeltaTime) // Log every 0.5 seconds
+        {
+            float ChargeRatio = FMath::Clamp(ShotChargeTime / MaxChargeTime, 0.0f, 1.0f);
+            float CurrentPower = FMath::Lerp(MinPower, MaxPower, ChargeRatio);
+            UE_LOG(LogTemp, Log, TEXT("Charging... Power: %.1f%%"), CurrentPower);
+        }
     }
 }
 
@@ -821,4 +862,407 @@ void ASGPlayerController::ForceTestCandleToggle()
     }
 
     UE_LOG(LogTemp, Warning, TEXT("=== FORCE CANDLE TOGGLE TEST COMPLETED ==="));
+}
+
+void ASGPlayerController::SpawnGolfBall()
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        return;
+    }
+
+    FVector PlayerLocation = GetPawn()->GetActorLocation();
+    FVector ForwardDirection = GetPawn()->GetActorForwardVector();
+    FVector BallSpawnLocation = PlayerLocation + (ForwardDirection * 200.0f);
+    
+    // Trace down to find the ground
+    FVector TraceStart = BallSpawnLocation + FVector(0, 0, 500.0f); // Start high above
+    FVector TraceEnd = BallSpawnLocation - FVector(0, 0, 1000.0f); // Trace far down
+    
+    FHitResult HitResult;
+    FCollisionQueryParams QueryParams;
+    QueryParams.AddIgnoredActor(GetPawn()); // Ignore the player
+    
+    bool bHitGround = GetWorld()->LineTraceSingleByChannel(
+        HitResult,
+        TraceStart,
+        TraceEnd,
+        ECC_WorldStatic,
+        QueryParams
+    );
+    
+    if (bHitGround)
+    {
+        // Place ball on the ground with a small offset above
+        BallSpawnLocation = HitResult.Location + FVector(0, 0, 25.0f); // 25cm above ground
+    }
+    else
+    {
+        // Fallback to player location if no ground found
+        BallSpawnLocation.Z = PlayerLocation.Z;
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No ground found, using player Z level"));
+    }
+    
+    // Check if a golf ball already exists
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() > 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Golf ball already exists, moving it to spawn location"));
+        if (ASGGolfBall* ExistingBall = Cast<ASGGolfBall>(FoundGolfBalls[0]))
+        {
+            ExistingBall->PlaceBall(BallSpawnLocation);
+        }
+    }
+    else
+    {
+        // Spawn a new golf ball
+        if (ASGGolfBall* NewGolfBall = GetWorld()->SpawnActor<ASGGolfBall>(ASGGolfBall::StaticClass(), BallSpawnLocation, FRotator::ZeroRotator))
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Spawned golf ball at %s"), *BallSpawnLocation.ToString());
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("SGPlayerController: Failed to spawn golf ball!"));
+        }
+    }
+}
+
+void ASGPlayerController::HitGolfBallForward(float Power)
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found, spawning one first"));
+        SpawnGolfBall();
+        return;
+    }
+
+    if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[0]))
+    {
+        FVector HitDirection = GetPawn()->GetActorForwardVector();
+        
+        // Get club parameters from character's golf club manager
+        if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+        {
+            if (USGGolfClubManager* ClubManager = SGChar->GetGolfClubManager())
+            {
+                float ClubPowerMultiplier = ClubManager->GetPowerMultiplier();
+                float ClubLaunchAngle = ClubManager->GetLaunchAngle();
+                float ClubAccuracy = ClubManager->GetAccuracy();
+                
+                // Use the new club-aware hit function
+                GolfBall->HitBallWithClub(HitDirection, Power, ClubPowerMultiplier, ClubLaunchAngle, ClubAccuracy);
+                
+                // Log club info
+                if (USGGolfClubData* ClubData = ClubManager->GetCurrentClubData())
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball with %s (Power: %.1f, Angle: %.1f°, Accuracy: %.1f)"), 
+                           *ClubData->ClubDisplayName.ToString(), ClubPowerMultiplier, ClubLaunchAngle, ClubAccuracy);
+                }
+            }
+            else
+            {
+                // Fallback to regular hit if no club manager
+                GolfBall->HitBall(HitDirection, Power);
+                UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball without club system (fallback)"));
+            }
+        }
+        else
+        {
+            // Fallback to regular hit if not SGCharacter
+            GolfBall->HitBall(HitDirection, Power);
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball with power %f (no character club system)"), Power);
+        }
+    }
+}
+
+void ASGPlayerController::HitGolfBallAt(FVector Direction, float Power)
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found, spawning one first"));
+        SpawnGolfBall();
+        return;
+    }
+
+    if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[0]))
+    {
+        GolfBall->HitBall(Direction, Power);
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit golf ball in direction %s with power %f"), *Direction.ToString(), Power);
+    }
+}
+
+void ASGPlayerController::ResetGolfBall()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found to reset"));
+        return;
+    }
+
+    if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[0]))
+    {
+        GolfBall->ResetBall();
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Golf ball reset"));
+    }
+}
+
+void ASGPlayerController::ListGolfBallStatus()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf balls found in the world"));
+        return;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("=== GOLF BALL STATUS ==="));
+    
+    for (int32 i = 0; i < FoundGolfBalls.Num(); i++)
+    {
+        if (ASGGolfBall* GolfBall = Cast<ASGGolfBall>(FoundGolfBalls[i]))
+        {
+            FVector Location = GolfBall->GetActorLocation();
+            FVector Velocity = GolfBall->GetBallVelocity();
+            float Speed = GolfBall->GetCurrentSpeed();
+            
+            UE_LOG(LogTemp, Warning, TEXT("Golf Ball [%d]:"), i + 1);
+            UE_LOG(LogTemp, Warning, TEXT("  Location: %s"), *Location.ToString());
+            UE_LOG(LogTemp, Warning, TEXT("  Velocity: %s"), *Velocity.ToString());
+            UE_LOG(LogTemp, Warning, TEXT("  Speed: %.2f cm/s"), Speed);
+            UE_LOG(LogTemp, Warning, TEXT("  State: %d"), (int32)GolfBall->GetBallState());
+            UE_LOG(LogTemp, Warning, TEXT("  Distance Traveled: %.2f cm"), GolfBall->GetDistanceTraveled());
+            UE_LOG(LogTemp, Warning, TEXT("  Stroke Count: %d"), GolfBall->GetStrokeCount());
+            UE_LOG(LogTemp, Warning, TEXT("  Is Stationary: %s"), GolfBall->IsBallStationary() ? TEXT("Yes") : TEXT("No"));
+        }
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("=== END GOLF BALL STATUS ==="));
+}
+
+void ASGPlayerController::HitGolfBallForwardInput()
+{
+    HitGolfBallForward(50.0f); // Default power
+}
+
+void ASGPlayerController::StartChargingGolfShot()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+
+    // Check if we have a golf ball to hit
+    TArray<AActor*> FoundGolfBalls;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASGGolfBall::StaticClass(), FoundGolfBalls);
+    
+    if (FoundGolfBalls.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf ball found, spawning one first"));
+        SpawnGolfBall();
+        return;
+    }
+
+    bIsChargingShot = true;
+    ShotChargeTime = 0.0f;
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Started charging golf shot..."));
+}
+
+void ASGPlayerController::ReleaseGolfShot()
+{
+    if (!IsLocalPlayerController() || !bIsChargingShot)
+    {
+        return;
+    }
+
+    bIsChargingShot = false;
+    
+    // Calculate power based on charge time
+    float ChargeRatio = FMath::Clamp(ShotChargeTime / MaxChargeTime, 0.0f, 1.0f);
+    float Power = FMath::Lerp(MinPower, MaxPower, ChargeRatio);
+    
+    // Hit the ball with calculated power using club system
+    HitGolfBallForward(Power);
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Released golf shot! Charge time: %.2fs, Power: %.1f%%"), ShotChargeTime, Power);
+    
+    ShotChargeTime = 0.0f;
+}
+
+void ASGPlayerController::DropCandle()
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        return;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: DropCandle action triggered"));
+
+    if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+    {
+        if (ASGPickupCandle* HeldCandle = SGChar->GetHeldCandle())
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Dropping held candle: %s"), *HeldCandle->GetName());
+            HeldCandle->DropCandle();
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No candle to drop"));
+        }
+    }
+}
+
+void ASGPlayerController::ShowCurrentClubInfo()
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        return;
+    }
+
+    if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+    {
+        if (USGGolfClubManager* ClubManager = SGChar->GetGolfClubManager())
+        {
+            if (USGGolfClubData* ClubData = ClubManager->GetCurrentClubData())
+            {
+                UE_LOG(LogTemp, Warning, TEXT("=== CURRENT GOLF CLUB INFO ==="));
+                UE_LOG(LogTemp, Warning, TEXT("Club: %s"), *ClubData->ClubDisplayName.ToString());
+                UE_LOG(LogTemp, Warning, TEXT("Power Multiplier: %.1fx"), ClubData->PowerMultiplier);
+                UE_LOG(LogTemp, Warning, TEXT("Launch Angle: %.1f°"), ClubData->LaunchAngle);
+                UE_LOG(LogTemp, Warning, TEXT("Max Distance: %.0fm"), ClubData->MaxDistance);
+                UE_LOG(LogTemp, Warning, TEXT("Accuracy: %.0f%%"), ClubData->Accuracy * 100);
+                UE_LOG(LogTemp, Warning, TEXT("Spin Effect: %.0f%%"), ClubData->SpinEffect * 100);
+                UE_LOG(LogTemp, Warning, TEXT("=== Controls: Q=Previous Club, Z=Next Club ==="));
+            }
+            else
+            {
+                UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No club data available"));
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No golf club manager available"));
+        }
+    }
+}
+
+void ASGPlayerController::ShowCharacterStatus()
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No local player controller or pawn"));
+        return;
+    }
+
+    if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("=== CHARACTER STATUS ==="));
+        UE_LOG(LogTemp, Warning, TEXT("Character: %s"), *SGChar->GetName());
+        UE_LOG(LogTemp, Warning, TEXT("Location: %s"), *SGChar->GetActorLocation().ToString());
+        UE_LOG(LogTemp, Warning, TEXT("Is Sitting: %s"), SGChar->IsSitting() ? TEXT("Yes") : TEXT("No"));
+        UE_LOG(LogTemp, Warning, TEXT("Is Holding Candle: %s"), SGChar->IsHoldingCandle() ? TEXT("Yes") : TEXT("No"));
+        
+        if (SGChar->GetHeldCandle())
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Held Candle: %s"), *SGChar->GetHeldCandle()->GetName());
+            UE_LOG(LogTemp, Warning, TEXT("Candle Lit: %s"), SGChar->GetHeldCandle()->IsLit() ? TEXT("Yes") : TEXT("No"));
+        }
+        
+        if (USGGolfClubManager* ClubManager = SGChar->GetGolfClubManager())
+        {
+            if (USGGolfClubData* ClubData = ClubManager->GetCurrentClubData())
+            {
+                UE_LOG(LogTemp, Warning, TEXT("Current Golf Club: %s"), *ClubData->ClubDisplayName.ToString());
+            }
+        }
+        
+        UE_LOG(LogTemp, Warning, TEXT("Mouse Sensitivity: %.2f"), SGChar->MouseSensitivity);
+        UE_LOG(LogTemp, Warning, TEXT("Mouse Y Inverted: %s"), SGChar->bInvertMouseY ? TEXT("Yes") : TEXT("No"));
+        UE_LOG(LogTemp, Warning, TEXT("=== END CHARACTER STATUS ==="));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Pawn is not an SGCharacter"));
+    }
+}
+
+void ASGPlayerController::SpawnGolfTee()
+{
+    if (!IsLocalPlayerController() || !GetPawn())
+    {
+        return;
+    }
+
+    FVector PlayerLocation = GetPawn()->GetActorLocation();
+    FVector ForwardDirection = GetPawn()->GetActorForwardVector();
+    FVector TeeSpawnLocation = PlayerLocation + (ForwardDirection * 200.0f);
+    
+    // Trace down to find the ground
+    FVector TraceStart = TeeSpawnLocation + FVector(0, 0, 500.0f);
+    FVector TraceEnd = TeeSpawnLocation - FVector(0, 0, 1000.0f);
+    
+    FHitResult HitResult;
+    FCollisionQueryParams QueryParams;
+    QueryParams.AddIgnoredActor(GetPawn());
+    
+    bool bHitGround = GetWorld()->LineTraceSingleByChannel(
+        HitResult,
+        TraceStart,
+        TraceEnd,
+        ECC_WorldStatic,
+        QueryParams
+    );
+    
+    if (bHitGround)
+    {
+        TeeSpawnLocation = HitResult.Location;
+    }
+    else
+    {
+        TeeSpawnLocation.Z = PlayerLocation.Z - 50.0f; // Place below player if no ground found
+    }
+    
+    // Spawn the golf tee
+    if (ASGGolfTee* NewGolfTee = GetWorld()->SpawnActor<ASGGolfTee>(ASGGolfTee::StaticClass(), TeeSpawnLocation, FRotator::ZeroRotator))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Spawned golf tee at %s"), *TeeSpawnLocation.ToString());
+        UE_LOG(LogTemp, Warning, TEXT("Walk up to the tee and press E to start golf!"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("SGPlayerController: Failed to spawn golf tee!"));
+    }
 }
