@@ -112,7 +112,7 @@ protected:
 
     // Hitting proximity system
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Golf Ball")
-    float HittingDistance = 100.0f; // Distance within which you can hit the ball
+    float HittingDistance = 150.0f; // Distance within which you can hit the ball - increased for better usability
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Golf Ball State")
     AActor* NearbyPlayer = nullptr;

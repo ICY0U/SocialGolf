@@ -1796,11 +1796,11 @@ struct Z_Construct_UClass_ASGGolfBall_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NearbyPlayer_MetaData[] = {
 		{ "Category", "Golf Ball State" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Distance within which you can hit the ball\n" },
+		{ "Comment", "// Distance within which you can hit the ball - increased for better usability\n" },
 #endif
 		{ "ModuleRelativePath", "Golf/SGGolfBall.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Distance within which you can hit the ball" },
+		{ "ToolTip", "Distance within which you can hit the ball - increased for better usability" },
 #endif
 	};
 #endif // WITH_METADATA
@@ -2001,10 +2001,10 @@ struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_So
 		{ EGolfBallState_StaticEnum, TEXT("EGolfBallState"), &Z_Registration_Info_UEnum_EGolfBallState, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3117357474U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGGolfBall, ASGGolfBall::StaticClass, TEXT("ASGGolfBall"), &Z_Registration_Info_UClass_ASGGolfBall, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGGolfBall), 82317586U) },
+		{ Z_Construct_UClass_ASGGolfBall, ASGGolfBall::StaticClass, TEXT("ASGGolfBall"), &Z_Registration_Info_UClass_ASGGolfBall, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGGolfBall), 3698390331U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_1327527673(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_210238515(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Golf_SGGolfBall_h__Script_SocialGolf_Statics::EnumInfo));

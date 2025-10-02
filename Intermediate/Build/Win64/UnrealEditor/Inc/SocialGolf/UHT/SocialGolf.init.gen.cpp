@@ -14,7 +14,6 @@ void EmptyLinkFunctionForGeneratedCodeSocialGolf_init() {}
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnClubChanged__DelegateSignature();
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnFocusChanged__DelegateSignature();
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnLoadComplete__DelegateSignature();
-	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnMaterialChanged__DelegateSignature();
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnObjectRenderingLevelChanged__DelegateSignature();
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnPickupCandleStateChanged__DelegateSignature();
 	SOCIALGOLF_API UFunction* Z_Construct_UDelegateFunction_SocialGolf_OnRecordingProgress__DelegateSignature();
@@ -43,7 +42,6 @@ void EmptyLinkFunctionForGeneratedCodeSocialGolf_init() {}
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnClubChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnFocusChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnLoadComplete__DelegateSignature,
-				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnMaterialChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnObjectRenderingLevelChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnPickupCandleStateChanged__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_SocialGolf_OnRecordingProgress__DelegateSignature,
@@ -65,13 +63,13 @@ void EmptyLinkFunctionForGeneratedCodeSocialGolf_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x1FBD385F,
-				0x9FF793BF,
+				0x35602E52,
+				0x95E3DB0D,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_SocialGolf.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_SocialGolf.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SocialGolf(Z_Construct_UPackage__Script_SocialGolf, TEXT("/Script/SocialGolf"), Z_Registration_Info_UPackage__Script_SocialGolf, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x1FBD385F, 0x9FF793BF));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SocialGolf(Z_Construct_UPackage__Script_SocialGolf, TEXT("/Script/SocialGolf"), Z_Registration_Info_UPackage__Script_SocialGolf, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x35602E52, 0x95E3DB0D));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

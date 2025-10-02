@@ -31,16 +31,7 @@ class USGReplayManager;
 	DECLARE_FUNCTION(execPlayCameraRecording); \
 	DECLARE_FUNCTION(execStopCameraRecording); \
 	DECLARE_FUNCTION(execStartCameraRecording); \
-	DECLARE_FUNCTION(execHitBallHardPower); \
-	DECLARE_FUNCTION(execHitBallMediumPower); \
-	DECLARE_FUNCTION(execHitBallLightPower); \
-	DECLARE_FUNCTION(execToggleChaosPhysics); \
-	DECLARE_FUNCTION(execCheckGolfBallStatus); \
-	DECLARE_FUNCTION(execToggleMiniGolfMode); \
-	DECLARE_FUNCTION(execToggleGolfBallPhysics); \
 	DECLARE_FUNCTION(execSpawnGolfTee); \
-	DECLARE_FUNCTION(execShowCharacterStatus); \
-	DECLARE_FUNCTION(execShowCurrentClubInfo); \
 	DECLARE_FUNCTION(execDropCandle); \
 	DECLARE_FUNCTION(execReleaseGolfShot); \
 	DECLARE_FUNCTION(execStartChargingGolfShot); \
@@ -56,8 +47,11 @@ class USGReplayManager;
 	DECLARE_FUNCTION(execRotateCharacterModel); \
 	DECLARE_FUNCTION(execForceTestCandleToggle); \
 	DECLARE_FUNCTION(execFixPickupCandleIssues); \
-	DECLARE_FUNCTION(execTestInputMappings); \
-	DECLARE_FUNCTION(execTestPickupSystem); \
+	DECLARE_FUNCTION(execSetCharacterToRandomBrightColors); \
+	DECLARE_FUNCTION(execSetCharacterToRedBlue); \
+	DECLARE_FUNCTION(execCycleCharacterHeadMaterial); \
+	DECLARE_FUNCTION(execCycleCharacterTorsoMaterial); \
+	DECLARE_FUNCTION(execRandomizeCharacterAppearance); \
 	DECLARE_FUNCTION(execListAllPickupCandles); \
 	DECLARE_FUNCTION(execDropAllPickupCandles); \
 	DECLARE_FUNCTION(execSpawnPickupCandle); \
@@ -72,8 +66,6 @@ class USGReplayManager;
 	DECLARE_FUNCTION(execEnableGameInput); \
 	DECLARE_FUNCTION(execQuickLoad); \
 	DECLARE_FUNCTION(execQuickSave); \
-	DECLARE_FUNCTION(execToggleFPSDisplay); \
-	DECLARE_FUNCTION(execToggleNetworkStats); \
 	DECLARE_FUNCTION(execGetReplayManager); \
 	DECLARE_FUNCTION(execPlayLastReplay); \
 	DECLARE_FUNCTION(execQuickSaveReplay); \

@@ -41,13 +41,6 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Replay")
     USGReplayManager* GetReplayManager() const { return ReplayManager; }
 
-    // Debug functions
-    UFUNCTION(BlueprintCallable, Category = "Debug")
-    void ToggleNetworkStats();
-
-    UFUNCTION(BlueprintCallable, Category = "Debug")
-    void ToggleFPSDisplay();
-
     // Save System functions
     UFUNCTION(BlueprintCallable, Category = "Save System")
     void QuickSave();
@@ -73,122 +66,98 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Debug")
     void ForceStandUpFromBench();
 
-    // Candle system debug functions
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    // Candle system functions
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void SpawnTestCandle();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void LightAllCandles();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void ExtinguishAllCandles();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void ToggleAllCandles();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void SpawnPickupCandle();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void DropAllPickupCandles();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void ListAllPickupCandles();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
-    void TestPickupSystem();
+    // Character Customization functions
+    UFUNCTION(BlueprintCallable, Category = "Customization", CallInEditor)
+    void RandomizeCharacterAppearance();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Input")
-    void TestInputMappings();
+    UFUNCTION(BlueprintCallable, Category = "Customization", CallInEditor)
+    void CycleCharacterTorsoMaterial();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Customization", CallInEditor)
+    void CycleCharacterHeadMaterial();
+
+    UFUNCTION(BlueprintCallable, Category = "Customization", CallInEditor)
+    void SetCharacterToRedBlue();
+
+    UFUNCTION(BlueprintCallable, Category = "Customization", CallInEditor)
+    void SetCharacterToRandomBrightColors();
+
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void FixPickupCandleIssues();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void ForceTestCandleToggle();
 
-    // Character debug functions
-    UFUNCTION(BlueprintCallable, Category = "Debug|Character")
+    // Character functions
+    UFUNCTION(BlueprintCallable, Category = "Character")
     void RotateCharacterModel(float YawOffset);
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Character")
+    UFUNCTION(BlueprintCallable, Category = "Character")
     void ResetCharacterRotation();
 
-    // Interaction debugging
-    UFUNCTION(BlueprintCallable, Category = "Debug|Interaction")
+    // Interaction functions
+    UFUNCTION(BlueprintCallable, Category = "Interaction")
     void DebugInteractionTrace();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Interaction")
+    UFUNCTION(BlueprintCallable, Category = "Interaction")
     void ForcePickupNearestCandle();
 
-    // Golf Ball debug functions
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    // Golf Ball functions (Core only)
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void SpawnGolfBall();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void HitGolfBallForward(float Power = 50.0f);
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void HitGolfBallAt(FVector Direction, float Power = 50.0f);
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void ResetGolfBall();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void ListGolfBallStatus();
 
     // Golf Ball input wrapper functions (no parameters for input binding)
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void HitGolfBallForwardInput();
 
     // Golf charging system
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void StartChargingGolfShot();
 
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void ReleaseGolfShot();
 
     // Candle input function
-    UFUNCTION(BlueprintCallable, Category = "Input|Candles")
+    UFUNCTION(BlueprintCallable, Category = "Candles")
     void DropCandle();
 
-    // Golf club debug function
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void ShowCurrentClubInfo();
-
-    // Character debug function
-    UFUNCTION(BlueprintCallable, Category = "Debug|Character")
-    void ShowCharacterStatus();
-
-    // Golf Tee debug function
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
+    // Golf Tee function
+    UFUNCTION(BlueprintCallable, Category = "Golf")
     void SpawnGolfTee();
-
-    // Golf Ball Physics debug function
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void ToggleGolfBallPhysics();
-
-    // Mini Golf Mode debug function
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void ToggleMiniGolfMode();
-
-    // Debug function to check ball status
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void CheckGolfBallStatus();
-
-    // Debug function to toggle Chaos physics
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void ToggleChaosPhysics();
-
-    // Debug functions for testing different power levels
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void HitBallLightPower(); // 25% power
-
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void HitBallMediumPower(); // 50% power
-
-    UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
-    void HitBallHardPower(); // 75% power
     
     // === CAMERA SYSTEM FUNCTIONS ===
     UFUNCTION(BlueprintCallable, Category = "Camera|Recording")

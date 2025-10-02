@@ -1,4 +1,5 @@
 using UnrealBuildTool;
+
 public class SocialGolf : ModuleRules
 {
     public SocialGolf(ReadOnlyTargetRules Target) : base(Target)
@@ -19,19 +20,24 @@ public class SocialGolf : ModuleRules
         PrivateDependencyModuleNames.AddRange(new string[] {
             // Additional private dependencies for camera recording
             "EngineSettings", "ImageCore",
-            // Media framework modules
-            "MediaPlayerEditor",
             // HTTP for potential cloud replay sharing
             "HTTP"
         });
         
-        // Include our project directories
+        // Editor-only dependencies
+        if (Target.Type == TargetType.Editor)
+        {
+            PrivateDependencyModuleNames.AddRange(new string[] {
+                "MediaPlayerEditor"
+            });
+        }
+        
+        // Include our project directories (Materials directory removed)
         PublicIncludePaths.AddRange(new string[] {
             "SocialGolf/SaveSystem",
             "SocialGolf/Core",
             "SocialGolf/Camera",
             "SocialGolf/Save",
-            "SocialGolf/Materials",
             "SocialGolf/Golf",
             "SocialGolf/Replay",
             "SocialGolf/Rendering"
