@@ -16,8 +16,21 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
+class USGReplayManager;
+
 // ********** Begin Class ASGPlayerController ******************************************************
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execSwitchToCameraView); \
+	DECLARE_FUNCTION(execPreviousCameraView); \
+	DECLARE_FUNCTION(execNextCameraView); \
+	DECLARE_FUNCTION(execSwitchToCameraView4); \
+	DECLARE_FUNCTION(execSwitchToCameraView3); \
+	DECLARE_FUNCTION(execSwitchToCameraView2); \
+	DECLARE_FUNCTION(execSwitchToCameraView1); \
+	DECLARE_FUNCTION(execExportCameraRecording); \
+	DECLARE_FUNCTION(execPlayCameraRecording); \
+	DECLARE_FUNCTION(execStopCameraRecording); \
+	DECLARE_FUNCTION(execStartCameraRecording); \
 	DECLARE_FUNCTION(execHitBallHardPower); \
 	DECLARE_FUNCTION(execHitBallMediumPower); \
 	DECLARE_FUNCTION(execHitBallLightPower); \
@@ -60,12 +73,19 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	DECLARE_FUNCTION(execQuickLoad); \
 	DECLARE_FUNCTION(execQuickSave); \
 	DECLARE_FUNCTION(execToggleFPSDisplay); \
-	DECLARE_FUNCTION(execToggleNetworkStats);
+	DECLARE_FUNCTION(execToggleNetworkStats); \
+	DECLARE_FUNCTION(execGetReplayManager); \
+	DECLARE_FUNCTION(execPlayLastReplay); \
+	DECLARE_FUNCTION(execQuickSaveReplay); \
+	DECLARE_FUNCTION(execOpenReplayUI); \
+	DECLARE_FUNCTION(execStopReplayRecording); \
+	DECLARE_FUNCTION(execStartReplayRecording); \
+	DECLARE_FUNCTION(execToggleReplayRecording);
 
 
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGPlayerController_NoRegister();
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASGPlayerController(); \
 	friend struct Z_Construct_UClass_ASGPlayerController_Statics; \
@@ -76,7 +96,7 @@ public: \
 	DECLARE_SERIALIZER(ASGPlayerController)
 
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_ENHANCED_CONSTRUCTORS \
 	/** Deleted move- and copy-constructors, should never be used */ \
 	ASGPlayerController(ASGPlayerController&&) = delete; \
 	ASGPlayerController(const ASGPlayerController&) = delete; \
@@ -86,13 +106,13 @@ public: \
 	NO_API virtual ~ASGPlayerController();
 
 
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_9_PROLOG
-#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_GENERATED_BODY \
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_10_PROLOG
+#define FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_INCLASS_NO_PURE_DECLS \
-	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_12_ENHANCED_CONSTRUCTORS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_INCLASS_NO_PURE_DECLS \
+	FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

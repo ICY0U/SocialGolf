@@ -1,0 +1,35 @@
+// Simple test to create desktop folder manually
+#include "HAL/PlatformFilemanager.h"
+#include "Misc/Paths.h"
+
+void TestCreateDesktopFolder()
+{
+    // Create directly on desktop
+    FString DesktopPath = TEXT("C:\\Users\\dop3b\\Desktop\\SocialGolfRecordings");
+    
+    UE_LOG(LogTemp, Warning, TEXT("Attempting to create: %s"), *DesktopPath);
+    
+    IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
+    
+    if (PlatformFile.CreateDirectoryTree(*DesktopPath))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SUCCESS: Created directory!"));
+        
+        // Test file creation
+        FString TestFilePath = FPaths::Combine(DesktopPath, TEXT("test.txt"));
+        FString TestContent = TEXT("Test file created by SocialGolf camera system");
+        
+        if (FFileHelper::SaveStringToFile(TestContent, *TestFilePath))
+        {
+            UE_LOG(LogTemp, Warning, TEXT("SUCCESS: Created test file at %s"), *TestFilePath);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("FAILED: Could not create test file"));
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("FAILED: Could not create directory"));
+    }
+}

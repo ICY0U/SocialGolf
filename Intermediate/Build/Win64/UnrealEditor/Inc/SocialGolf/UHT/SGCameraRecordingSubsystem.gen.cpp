@@ -260,8 +260,8 @@ struct Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Static
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1406517318
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraRecordingSubsystem_eventGetAllRecordings_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1406517318
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1850499286
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraRecordingSubsystem_eventGetAllRecordings_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1850499286
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings_Statics::NewProp_ReturnValue,
@@ -383,7 +383,7 @@ struct Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_St
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::NewProp_NewState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::NewProp_NewState = { "NewState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraRecordingSubsystem_eventOnCameraStateChanged_Parms, NewState), Z_Construct_UEnum_SocialGolf_ECameraRecorderState, METADATA_PARAMS(0, nullptr) }; // 697588561
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::NewProp_NewState = { "NewState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraRecordingSubsystem_eventOnCameraStateChanged_Parms, NewState), Z_Construct_UEnum_SocialGolf_ECameraRecorderState, METADATA_PARAMS(0, nullptr) }; // 4066271780
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::NewProp_NewState_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged_Statics::NewProp_NewState,
@@ -666,10 +666,10 @@ struct Z_Construct_UClass_USGCameraRecordingSubsystem_Statics
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_ExportAllRecordingsToDesktop, "ExportAllRecordingsToDesktop" }, // 2651473339
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_ExportRecordingToDesktop, "ExportRecordingToDesktop" }, // 299064171
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_Get, "Get" }, // 638606269
-		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings, "GetAllRecordings" }, // 1410821586
+		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_GetAllRecordings, "GetAllRecordings" }, // 620346706
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_GetTotalRecordingCount, "GetTotalRecordingCount" }, // 3679162252
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_LoadCameraRecordings, "LoadCameraRecordings" }, // 2376997011
-		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged, "OnCameraStateChanged" }, // 1424313402
+		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_OnCameraStateChanged, "OnCameraStateChanged" }, // 1831254577
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_RegisterCameraRecorder, "RegisterCameraRecorder" }, // 3340639000
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_SaveCameraRecordings, "SaveCameraRecordings" }, // 4095432928
 		{ &Z_Construct_UFunction_USGCameraRecordingSubsystem_UnregisterCameraRecorder, "UnregisterCameraRecorder" }, // 1995109214
@@ -748,10 +748,10 @@ USGCameraRecordingSubsystem::~USGCameraRecordingSubsystem() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecordingSubsystem_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_USGCameraRecordingSubsystem, USGCameraRecordingSubsystem::StaticClass, TEXT("USGCameraRecordingSubsystem"), &Z_Registration_Info_UClass_USGCameraRecordingSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraRecordingSubsystem), 3145615853U) },
+		{ Z_Construct_UClass_USGCameraRecordingSubsystem, USGCameraRecordingSubsystem::StaticClass, TEXT("USGCameraRecordingSubsystem"), &Z_Registration_Info_UClass_USGCameraRecordingSubsystem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraRecordingSubsystem), 2422802422U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecordingSubsystem_h__Script_SocialGolf_351355164(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecordingSubsystem_h__Script_SocialGolf_2315619595(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecordingSubsystem_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Camera_SGCameraRecordingSubsystem_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

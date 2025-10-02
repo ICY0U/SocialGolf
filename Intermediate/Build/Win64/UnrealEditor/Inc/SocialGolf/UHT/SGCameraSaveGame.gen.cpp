@@ -47,7 +47,7 @@ struct Z_Construct_UFunction_USGCameraSaveGame_AddRecording_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_AddRecording_Statics::NewProp_RecordingData = { "RecordingData", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventAddRecording_Parms, RecordingData), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RecordingData_MetaData), NewProp_RecordingData_MetaData) }; // 1406517318
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_AddRecording_Statics::NewProp_RecordingData = { "RecordingData", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventAddRecording_Parms, RecordingData), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RecordingData_MetaData), NewProp_RecordingData_MetaData) }; // 1850499286
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraSaveGame_AddRecording_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraSaveGame_AddRecording_Statics::NewProp_RecordingData,
 };
@@ -126,7 +126,7 @@ struct Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::NewProp_LocationID = { "LocationID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventGetCameraDataForLocation_Parms, LocationID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LocationID_MetaData), NewProp_LocationID_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventGetCameraDataForLocation_Parms, ReturnValue), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1406517318
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventGetCameraDataForLocation_Parms, ReturnValue), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1850499286
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::NewProp_LocationID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation_Statics::NewProp_ReturnValue,
@@ -325,7 +325,7 @@ struct Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::NewProp_LocationID = { "LocationID", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventSaveCameraDataForLocation_Parms, LocationID), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LocationID_MetaData), NewProp_LocationID_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::NewProp_Data = { "Data", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventSaveCameraDataForLocation_Parms, Data), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Data_MetaData), NewProp_Data_MetaData) }; // 1406517318
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::NewProp_Data = { "Data", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraSaveGame_eventSaveCameraDataForLocation_Parms, Data), Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Data_MetaData), NewProp_Data_MetaData) }; // 1850499286
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::NewProp_LocationID,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation_Statics::NewProp_Data,
@@ -432,13 +432,13 @@ struct Z_Construct_UClass_USGCameraSaveGame_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_USGCameraSaveGame_AddRecording, "AddRecording" }, // 2028953941
+		{ &Z_Construct_UFunction_USGCameraSaveGame_AddRecording, "AddRecording" }, // 349007519
 		{ &Z_Construct_UFunction_USGCameraSaveGame_ClearAllRecordings, "ClearAllRecordings" }, // 1000846768
-		{ &Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation, "GetCameraDataForLocation" }, // 4028675096
+		{ &Z_Construct_UFunction_USGCameraSaveGame_GetCameraDataForLocation, "GetCameraDataForLocation" }, // 3271314506
 		{ &Z_Construct_UFunction_USGCameraSaveGame_GetRecordingCount, "GetRecordingCount" }, // 4128999720
 		{ &Z_Construct_UFunction_USGCameraSaveGame_HasCameraDataForLocation, "HasCameraDataForLocation" }, // 3845108953
 		{ &Z_Construct_UFunction_USGCameraSaveGame_RemoveRecording, "RemoveRecording" }, // 2932229611
-		{ &Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation, "SaveCameraDataForLocation" }, // 1210929518
+		{ &Z_Construct_UFunction_USGCameraSaveGame_SaveCameraDataForLocation, "SaveCameraDataForLocation" }, // 1995936406
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -446,11 +446,11 @@ struct Z_Construct_UClass_USGCameraSaveGame_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_SavedRecordings_Inner = { "SavedRecordings", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1406517318
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_SavedRecordings = { "SavedRecordings", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, SavedRecordings), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedRecordings_MetaData), NewProp_SavedRecordings_MetaData) }; // 1406517318
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_CameraRecordingsByLocation_ValueProp = { "CameraRecordingsByLocation", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1406517318
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_SavedRecordings_Inner = { "SavedRecordings", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1850499286
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_SavedRecordings = { "SavedRecordings", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, SavedRecordings), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SavedRecordings_MetaData), NewProp_SavedRecordings_MetaData) }; // 1850499286
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_CameraRecordingsByLocation_ValueProp = { "CameraRecordingsByLocation", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FCameraRecordingData, METADATA_PARAMS(0, nullptr) }; // 1850499286
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_CameraRecordingsByLocation_Key_KeyProp = { "CameraRecordingsByLocation_Key", nullptr, (EPropertyFlags)0x0000000000020001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_CameraRecordingsByLocation = { "CameraRecordingsByLocation", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, CameraRecordingsByLocation), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraRecordingsByLocation_MetaData), NewProp_CameraRecordingsByLocation_MetaData) }; // 1406517318
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_CameraRecordingsByLocation = { "CameraRecordingsByLocation", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, CameraRecordingsByLocation), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraRecordingsByLocation_MetaData), NewProp_CameraRecordingsByLocation_MetaData) }; // 1850499286
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_LastSaveTime = { "LastSaveTime", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, LastSaveTime), Z_Construct_UScriptStruct_FDateTime, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LastSaveTime_MetaData), NewProp_LastSaveTime_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_USGCameraSaveGame_Statics::NewProp_SaveVersion = { "SaveVersion", nullptr, (EPropertyFlags)0x0010000001020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(USGCameraSaveGame, SaveVersion), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SaveVersion_MetaData), NewProp_SaveVersion_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USGCameraSaveGame_Statics::PropPointers[] = {
@@ -499,10 +499,10 @@ USGCameraSaveGame::~USGCameraSaveGame() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Save_SGCameraSaveGame_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_USGCameraSaveGame, USGCameraSaveGame::StaticClass, TEXT("USGCameraSaveGame"), &Z_Registration_Info_UClass_USGCameraSaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraSaveGame), 3106669552U) },
+		{ Z_Construct_UClass_USGCameraSaveGame, USGCameraSaveGame::StaticClass, TEXT("USGCameraSaveGame"), &Z_Registration_Info_UClass_USGCameraSaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USGCameraSaveGame), 1171850521U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Save_SGCameraSaveGame_h__Script_SocialGolf_3539286455(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Save_SGCameraSaveGame_h__Script_SocialGolf_3176905325(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Save_SGCameraSaveGame_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Save_SGCameraSaveGame_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

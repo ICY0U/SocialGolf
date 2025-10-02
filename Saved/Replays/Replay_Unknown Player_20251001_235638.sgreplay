@@ -1,0 +1,23 @@
+{
+	"replayName": "Untitled Replay",
+	"playerName": "Unknown Player",
+	"recordingDate": "2025.10.01-23.56.11",
+	"totalDuration": 0,
+	"courseName": "Unknown Course",
+	"holeNumber": 1,
+	"finalScore": 0,
+	"frameData": [],
+	"events": [],
+	"startingBallPosition":
+	{
+		"x": 0,
+		"y": 0,
+		"z": 0
+	},
+	"holePosition":
+	{
+		"x": 0,
+		"y": 0,
+		"z": 0
+	}
+}

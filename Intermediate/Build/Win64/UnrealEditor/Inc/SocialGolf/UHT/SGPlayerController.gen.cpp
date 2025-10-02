@@ -12,10 +12,13 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeSGPlayerController() {}
 
 // ********** Begin Cross Module References ********************************************************
+COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_APlayerController();
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGPlayerController();
 SOCIALGOLF_API UClass* Z_Construct_UClass_ASGPlayerController_NoRegister();
+SOCIALGOLF_API UClass* Z_Construct_UClass_USGReplayManager_NoRegister();
+SOCIALGOLF_API UClass* Z_Construct_UClass_USGReplayWidget_NoRegister();
 UPackage* Z_Construct_UPackage__Script_SocialGolf();
 // ********** End Cross Module References **********************************************************
 
@@ -295,6 +298,36 @@ DEFINE_FUNCTION(ASGPlayerController::execEnsureProperCameraSetup)
 }
 // ********** End Class ASGPlayerController Function EnsureProperCameraSetup ***********************
 
+// ********** Begin Class ASGPlayerController Function ExportCameraRecording ***********************
+struct Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Recording" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "ExportCameraRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execExportCameraRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ExportCameraRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function ExportCameraRecording *************************
+
 // ********** Begin Class ASGPlayerController Function ExtinguishAllCandles ************************
 struct Z_Construct_UFunction_ASGPlayerController_ExtinguishAllCandles_Statics
 {
@@ -444,6 +477,51 @@ DEFINE_FUNCTION(ASGPlayerController::execForceTestCandleToggle)
 	P_NATIVE_END;
 }
 // ********** End Class ASGPlayerController Function ForceTestCandleToggle *************************
+
+// ********** Begin Class ASGPlayerController Function GetReplayManager ****************************
+struct Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics
+{
+	struct SGPlayerController_eventGetReplayManager_Parms
+	{
+		USGReplayManager* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGPlayerController_eventGetReplayManager_Parms, ReturnValue), Z_Construct_UClass_USGReplayManager_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReturnValue_MetaData), NewProp_ReturnValue_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "GetReplayManager", Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::SGPlayerController_eventGetReplayManager_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::SGPlayerController_eventGetReplayManager_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGPlayerController_GetReplayManager()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_GetReplayManager_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execGetReplayManager)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(USGReplayManager**)Z_Param__Result=P_THIS->GetReplayManager();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function GetReplayManager ******************************
 
 // ********** Begin Class ASGPlayerController Function HitBallHardPower ****************************
 struct Z_Construct_UFunction_ASGPlayerController_HitBallHardPower_Statics
@@ -772,6 +850,156 @@ DEFINE_FUNCTION(ASGPlayerController::execListGolfBallStatus)
 }
 // ********** End Class ASGPlayerController Function ListGolfBallStatus ****************************
 
+// ********** Begin Class ASGPlayerController Function NextCameraView ******************************
+struct Z_Construct_UFunction_ASGPlayerController_NextCameraView_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_NextCameraView_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "NextCameraView", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_NextCameraView_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_NextCameraView_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_NextCameraView()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_NextCameraView_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execNextCameraView)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->NextCameraView();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function NextCameraView ********************************
+
+// ********** Begin Class ASGPlayerController Function OpenReplayUI ********************************
+struct Z_Construct_UFunction_ASGPlayerController_OpenReplayUI_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_OpenReplayUI_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "OpenReplayUI", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_OpenReplayUI_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_OpenReplayUI_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_OpenReplayUI()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_OpenReplayUI_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execOpenReplayUI)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OpenReplayUI();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function OpenReplayUI **********************************
+
+// ********** Begin Class ASGPlayerController Function PlayCameraRecording *************************
+struct Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Recording" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "PlayCameraRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execPlayCameraRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->PlayCameraRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function PlayCameraRecording ***************************
+
+// ********** Begin Class ASGPlayerController Function PlayLastReplay ******************************
+struct Z_Construct_UFunction_ASGPlayerController_PlayLastReplay_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_PlayLastReplay_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "PlayLastReplay", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_PlayLastReplay_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_PlayLastReplay_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_PlayLastReplay()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_PlayLastReplay_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execPlayLastReplay)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->PlayLastReplay();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function PlayLastReplay ********************************
+
+// ********** Begin Class ASGPlayerController Function PreviousCameraView **************************
+struct Z_Construct_UFunction_ASGPlayerController_PreviousCameraView_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_PreviousCameraView_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "PreviousCameraView", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_PreviousCameraView_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_PreviousCameraView_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_PreviousCameraView()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_PreviousCameraView_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execPreviousCameraView)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->PreviousCameraView();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function PreviousCameraView ****************************
+
 // ********** Begin Class ASGPlayerController Function QuickLoad ***********************************
 struct Z_Construct_UFunction_ASGPlayerController_QuickLoad_Statics
 {
@@ -837,6 +1065,36 @@ DEFINE_FUNCTION(ASGPlayerController::execQuickSave)
 	P_NATIVE_END;
 }
 // ********** End Class ASGPlayerController Function QuickSave *************************************
+
+// ********** Begin Class ASGPlayerController Function QuickSaveReplay *****************************
+struct Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "QuickSaveReplay", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execQuickSaveReplay)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->QuickSaveReplay();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function QuickSaveReplay *******************************
 
 // ********** Begin Class ASGPlayerController Function ReleaseGolfShot *****************************
 struct Z_Construct_UFunction_ASGPlayerController_ReleaseGolfShot_Statics
@@ -1187,6 +1445,42 @@ DEFINE_FUNCTION(ASGPlayerController::execSpawnTestCandle)
 }
 // ********** End Class ASGPlayerController Function SpawnTestCandle *******************************
 
+// ********** Begin Class ASGPlayerController Function StartCameraRecording ************************
+struct Z_Construct_UFunction_ASGPlayerController_StartCameraRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Recording" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// === CAMERA SYSTEM FUNCTIONS ===\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "=== CAMERA SYSTEM FUNCTIONS ===" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_StartCameraRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "StartCameraRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_StartCameraRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_StartCameraRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_StartCameraRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_StartCameraRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execStartCameraRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StartCameraRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function StartCameraRecording **************************
+
 // ********** Begin Class ASGPlayerController Function StartChargingGolfShot ***********************
 struct Z_Construct_UFunction_ASGPlayerController_StartChargingGolfShot_Statics
 {
@@ -1222,6 +1516,265 @@ DEFINE_FUNCTION(ASGPlayerController::execStartChargingGolfShot)
 	P_NATIVE_END;
 }
 // ********** End Class ASGPlayerController Function StartChargingGolfShot *************************
+
+// ********** Begin Class ASGPlayerController Function StartReplayRecording ************************
+struct Z_Construct_UFunction_ASGPlayerController_StartReplayRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_StartReplayRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "StartReplayRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_StartReplayRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_StartReplayRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_StartReplayRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_StartReplayRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execStartReplayRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StartReplayRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function StartReplayRecording **************************
+
+// ********** Begin Class ASGPlayerController Function StopCameraRecording *************************
+struct Z_Construct_UFunction_ASGPlayerController_StopCameraRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Recording" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_StopCameraRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "StopCameraRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_StopCameraRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_StopCameraRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_StopCameraRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_StopCameraRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execStopCameraRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StopCameraRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function StopCameraRecording ***************************
+
+// ********** Begin Class ASGPlayerController Function StopReplayRecording *************************
+struct Z_Construct_UFunction_ASGPlayerController_StopReplayRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_StopReplayRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "StopReplayRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_StopReplayRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_StopReplayRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_StopReplayRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_StopReplayRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execStopReplayRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StopReplayRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function StopReplayRecording ***************************
+
+// ********** Begin Class ASGPlayerController Function SwitchToCameraView **************************
+struct Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics
+{
+	struct SGPlayerController_eventSwitchToCameraView_Parms
+	{
+		int32 ViewIndex;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FIntPropertyParams NewProp_ViewIndex;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::NewProp_ViewIndex = { "ViewIndex", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGPlayerController_eventSwitchToCameraView_Parms, ViewIndex), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::NewProp_ViewIndex,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "SwitchToCameraView", Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::PropPointers), sizeof(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::SGPlayerController_eventSwitchToCameraView_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::Function_MetaDataParams)},  };
+static_assert(sizeof(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::SGPlayerController_eventSwitchToCameraView_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execSwitchToCameraView)
+{
+	P_GET_PROPERTY(FIntProperty,Z_Param_ViewIndex);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SwitchToCameraView(Z_Param_ViewIndex);
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function SwitchToCameraView ****************************
+
+// ********** Begin Class ASGPlayerController Function SwitchToCameraView1 *************************
+struct Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Camera View Functions\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Camera View Functions" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "SwitchToCameraView1", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execSwitchToCameraView1)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SwitchToCameraView1();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function SwitchToCameraView1 ***************************
+
+// ********** Begin Class ASGPlayerController Function SwitchToCameraView2 *************************
+struct Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "SwitchToCameraView2", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execSwitchToCameraView2)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SwitchToCameraView2();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function SwitchToCameraView2 ***************************
+
+// ********** Begin Class ASGPlayerController Function SwitchToCameraView3 *************************
+struct Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "SwitchToCameraView3", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execSwitchToCameraView3)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SwitchToCameraView3();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function SwitchToCameraView3 ***************************
+
+// ********** Begin Class ASGPlayerController Function SwitchToCameraView4 *************************
+struct Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Camera|Views" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "SwitchToCameraView4", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execSwitchToCameraView4)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SwitchToCameraView4();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function SwitchToCameraView4 ***************************
 
 // ********** Begin Class ASGPlayerController Function TestInputMappings ***************************
 struct Z_Construct_UFunction_ASGPlayerController_TestInputMappings_Statics
@@ -1487,6 +2040,42 @@ DEFINE_FUNCTION(ASGPlayerController::execToggleNetworkStats)
 }
 // ********** End Class ASGPlayerController Function ToggleNetworkStats ****************************
 
+// ********** Begin Class ASGPlayerController Function ToggleReplayRecording ***********************
+struct Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Replay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// === REPLAY SYSTEM FUNCTIONS ===\n" },
+#endif
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "=== REPLAY SYSTEM FUNCTIONS ===" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording_Statics::FuncParams = { { (UObject*(*)())Z_Construct_UClass_ASGPlayerController, nullptr, "ToggleReplayRecording", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording_Statics::Function_MetaDataParams)},  };
+UFunction* Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASGPlayerController::execToggleReplayRecording)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ToggleReplayRecording();
+	P_NATIVE_END;
+}
+// ********** End Class ASGPlayerController Function ToggleReplayRecording *************************
+
 // ********** Begin Class ASGPlayerController ******************************************************
 void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 {
@@ -1500,11 +2089,13 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "EmergencyTeleportToSafeLocation", &ASGPlayerController::execEmergencyTeleportToSafeLocation },
 		{ "EnableGameInput", &ASGPlayerController::execEnableGameInput },
 		{ "EnsureProperCameraSetup", &ASGPlayerController::execEnsureProperCameraSetup },
+		{ "ExportCameraRecording", &ASGPlayerController::execExportCameraRecording },
 		{ "ExtinguishAllCandles", &ASGPlayerController::execExtinguishAllCandles },
 		{ "FixPickupCandleIssues", &ASGPlayerController::execFixPickupCandleIssues },
 		{ "ForcePickupNearestCandle", &ASGPlayerController::execForcePickupNearestCandle },
 		{ "ForceStandUpFromBench", &ASGPlayerController::execForceStandUpFromBench },
 		{ "ForceTestCandleToggle", &ASGPlayerController::execForceTestCandleToggle },
+		{ "GetReplayManager", &ASGPlayerController::execGetReplayManager },
 		{ "HitBallHardPower", &ASGPlayerController::execHitBallHardPower },
 		{ "HitBallLightPower", &ASGPlayerController::execHitBallLightPower },
 		{ "HitBallMediumPower", &ASGPlayerController::execHitBallMediumPower },
@@ -1514,8 +2105,14 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "LightAllCandles", &ASGPlayerController::execLightAllCandles },
 		{ "ListAllPickupCandles", &ASGPlayerController::execListAllPickupCandles },
 		{ "ListGolfBallStatus", &ASGPlayerController::execListGolfBallStatus },
+		{ "NextCameraView", &ASGPlayerController::execNextCameraView },
+		{ "OpenReplayUI", &ASGPlayerController::execOpenReplayUI },
+		{ "PlayCameraRecording", &ASGPlayerController::execPlayCameraRecording },
+		{ "PlayLastReplay", &ASGPlayerController::execPlayLastReplay },
+		{ "PreviousCameraView", &ASGPlayerController::execPreviousCameraView },
 		{ "QuickLoad", &ASGPlayerController::execQuickLoad },
 		{ "QuickSave", &ASGPlayerController::execQuickSave },
+		{ "QuickSaveReplay", &ASGPlayerController::execQuickSaveReplay },
 		{ "ReleaseGolfShot", &ASGPlayerController::execReleaseGolfShot },
 		{ "ResetCharacterRotation", &ASGPlayerController::execResetCharacterRotation },
 		{ "ResetGolfBall", &ASGPlayerController::execResetGolfBall },
@@ -1526,7 +2123,16 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "SpawnGolfTee", &ASGPlayerController::execSpawnGolfTee },
 		{ "SpawnPickupCandle", &ASGPlayerController::execSpawnPickupCandle },
 		{ "SpawnTestCandle", &ASGPlayerController::execSpawnTestCandle },
+		{ "StartCameraRecording", &ASGPlayerController::execStartCameraRecording },
 		{ "StartChargingGolfShot", &ASGPlayerController::execStartChargingGolfShot },
+		{ "StartReplayRecording", &ASGPlayerController::execStartReplayRecording },
+		{ "StopCameraRecording", &ASGPlayerController::execStopCameraRecording },
+		{ "StopReplayRecording", &ASGPlayerController::execStopReplayRecording },
+		{ "SwitchToCameraView", &ASGPlayerController::execSwitchToCameraView },
+		{ "SwitchToCameraView1", &ASGPlayerController::execSwitchToCameraView1 },
+		{ "SwitchToCameraView2", &ASGPlayerController::execSwitchToCameraView2 },
+		{ "SwitchToCameraView3", &ASGPlayerController::execSwitchToCameraView3 },
+		{ "SwitchToCameraView4", &ASGPlayerController::execSwitchToCameraView4 },
 		{ "TestInputMappings", &ASGPlayerController::execTestInputMappings },
 		{ "TestPickupSystem", &ASGPlayerController::execTestPickupSystem },
 		{ "ToggleAllCandles", &ASGPlayerController::execToggleAllCandles },
@@ -1535,6 +2141,7 @@ void ASGPlayerController::StaticRegisterNativesASGPlayerController()
 		{ "ToggleGolfBallPhysics", &ASGPlayerController::execToggleGolfBallPhysics },
 		{ "ToggleMiniGolfMode", &ASGPlayerController::execToggleMiniGolfMode },
 		{ "ToggleNetworkStats", &ASGPlayerController::execToggleNetworkStats },
+		{ "ToggleReplayRecording", &ASGPlayerController::execToggleReplayRecording },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -1573,6 +2180,29 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "HideCategories", "Collision Rendering Transformation" },
 		{ "IncludePath", "Framework/SGPlayerController.h" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReplayManager_MetaData[] = {
+		{ "Category", "Replay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// === REPLAY SYSTEM ===\n" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "=== REPLAY SYSTEM ===" },
+#endif
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bAutoRecordOnShot_MetaData[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReplayWidgetClass_MetaData[] = {
+		{ "Category", "Replay" },
+		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReplayWidget_MetaData[] = {
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Framework/SGPlayerController.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bShowFPS_MetaData[] = {
@@ -1622,6 +2252,11 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 #endif
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReplayManager;
+	static void NewProp_bAutoRecordOnShot_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bAutoRecordOnShot;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_ReplayWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReplayWidget;
 	static void NewProp_bShowFPS_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bShowFPS;
 	static void NewProp_bGameInputEnabled_SetBit(void* Obj);
@@ -1643,11 +2278,13 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_EmergencyTeleportToSafeLocation, "EmergencyTeleportToSafeLocation" }, // 1479929423
 		{ &Z_Construct_UFunction_ASGPlayerController_EnableGameInput, "EnableGameInput" }, // 532150832
 		{ &Z_Construct_UFunction_ASGPlayerController_EnsureProperCameraSetup, "EnsureProperCameraSetup" }, // 343219348
+		{ &Z_Construct_UFunction_ASGPlayerController_ExportCameraRecording, "ExportCameraRecording" }, // 3032624760
 		{ &Z_Construct_UFunction_ASGPlayerController_ExtinguishAllCandles, "ExtinguishAllCandles" }, // 3426960129
 		{ &Z_Construct_UFunction_ASGPlayerController_FixPickupCandleIssues, "FixPickupCandleIssues" }, // 273575567
 		{ &Z_Construct_UFunction_ASGPlayerController_ForcePickupNearestCandle, "ForcePickupNearestCandle" }, // 1282517558
 		{ &Z_Construct_UFunction_ASGPlayerController_ForceStandUpFromBench, "ForceStandUpFromBench" }, // 3864635853
 		{ &Z_Construct_UFunction_ASGPlayerController_ForceTestCandleToggle, "ForceTestCandleToggle" }, // 1757903218
+		{ &Z_Construct_UFunction_ASGPlayerController_GetReplayManager, "GetReplayManager" }, // 1630818773
 		{ &Z_Construct_UFunction_ASGPlayerController_HitBallHardPower, "HitBallHardPower" }, // 2356300503
 		{ &Z_Construct_UFunction_ASGPlayerController_HitBallLightPower, "HitBallLightPower" }, // 439971622
 		{ &Z_Construct_UFunction_ASGPlayerController_HitBallMediumPower, "HitBallMediumPower" }, // 1293597241
@@ -1657,8 +2294,14 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_LightAllCandles, "LightAllCandles" }, // 2607296473
 		{ &Z_Construct_UFunction_ASGPlayerController_ListAllPickupCandles, "ListAllPickupCandles" }, // 266598314
 		{ &Z_Construct_UFunction_ASGPlayerController_ListGolfBallStatus, "ListGolfBallStatus" }, // 93474604
+		{ &Z_Construct_UFunction_ASGPlayerController_NextCameraView, "NextCameraView" }, // 4063765511
+		{ &Z_Construct_UFunction_ASGPlayerController_OpenReplayUI, "OpenReplayUI" }, // 1326112749
+		{ &Z_Construct_UFunction_ASGPlayerController_PlayCameraRecording, "PlayCameraRecording" }, // 3739407582
+		{ &Z_Construct_UFunction_ASGPlayerController_PlayLastReplay, "PlayLastReplay" }, // 4172265873
+		{ &Z_Construct_UFunction_ASGPlayerController_PreviousCameraView, "PreviousCameraView" }, // 1054124963
 		{ &Z_Construct_UFunction_ASGPlayerController_QuickLoad, "QuickLoad" }, // 291626661
 		{ &Z_Construct_UFunction_ASGPlayerController_QuickSave, "QuickSave" }, // 114790928
+		{ &Z_Construct_UFunction_ASGPlayerController_QuickSaveReplay, "QuickSaveReplay" }, // 2628996467
 		{ &Z_Construct_UFunction_ASGPlayerController_ReleaseGolfShot, "ReleaseGolfShot" }, // 3196917813
 		{ &Z_Construct_UFunction_ASGPlayerController_ResetCharacterRotation, "ResetCharacterRotation" }, // 2356471706
 		{ &Z_Construct_UFunction_ASGPlayerController_ResetGolfBall, "ResetGolfBall" }, // 2216415632
@@ -1669,7 +2312,16 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_SpawnGolfTee, "SpawnGolfTee" }, // 3817329437
 		{ &Z_Construct_UFunction_ASGPlayerController_SpawnPickupCandle, "SpawnPickupCandle" }, // 1364235835
 		{ &Z_Construct_UFunction_ASGPlayerController_SpawnTestCandle, "SpawnTestCandle" }, // 161903288
+		{ &Z_Construct_UFunction_ASGPlayerController_StartCameraRecording, "StartCameraRecording" }, // 2674755524
 		{ &Z_Construct_UFunction_ASGPlayerController_StartChargingGolfShot, "StartChargingGolfShot" }, // 1354887989
+		{ &Z_Construct_UFunction_ASGPlayerController_StartReplayRecording, "StartReplayRecording" }, // 1789076129
+		{ &Z_Construct_UFunction_ASGPlayerController_StopCameraRecording, "StopCameraRecording" }, // 1086171445
+		{ &Z_Construct_UFunction_ASGPlayerController_StopReplayRecording, "StopReplayRecording" }, // 939735752
+		{ &Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView, "SwitchToCameraView" }, // 4191977462
+		{ &Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView1, "SwitchToCameraView1" }, // 612554936
+		{ &Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView2, "SwitchToCameraView2" }, // 2246762767
+		{ &Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView3, "SwitchToCameraView3" }, // 1614823136
+		{ &Z_Construct_UFunction_ASGPlayerController_SwitchToCameraView4, "SwitchToCameraView4" }, // 1753198717
 		{ &Z_Construct_UFunction_ASGPlayerController_TestInputMappings, "TestInputMappings" }, // 3383149497
 		{ &Z_Construct_UFunction_ASGPlayerController_TestPickupSystem, "TestPickupSystem" }, // 2568701454
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleAllCandles, "ToggleAllCandles" }, // 2634106762
@@ -1678,6 +2330,7 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleGolfBallPhysics, "ToggleGolfBallPhysics" }, // 2312808091
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleMiniGolfMode, "ToggleMiniGolfMode" }, // 794666220
 		{ &Z_Construct_UFunction_ASGPlayerController_ToggleNetworkStats, "ToggleNetworkStats" }, // 2982250596
+		{ &Z_Construct_UFunction_ASGPlayerController_ToggleReplayRecording, "ToggleReplayRecording" }, // 2199206442
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -1685,6 +2338,14 @@ struct Z_Construct_UClass_ASGPlayerController_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayManager = { "ReplayManager", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGPlayerController, ReplayManager), Z_Construct_UClass_USGReplayManager_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReplayManager_MetaData), NewProp_ReplayManager_MetaData) };
+void Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bAutoRecordOnShot_SetBit(void* Obj)
+{
+	((ASGPlayerController*)Obj)->bAutoRecordOnShot = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bAutoRecordOnShot = { "bAutoRecordOnShot", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASGPlayerController), &Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bAutoRecordOnShot_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bAutoRecordOnShot_MetaData), NewProp_bAutoRecordOnShot_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayWidgetClass = { "ReplayWidgetClass", nullptr, (EPropertyFlags)0x0024080000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGPlayerController, ReplayWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_USGReplayWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReplayWidgetClass_MetaData), NewProp_ReplayWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayWidget = { "ReplayWidget", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGPlayerController, ReplayWidget), Z_Construct_UClass_USGReplayWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReplayWidget_MetaData), NewProp_ReplayWidget_MetaData) };
 void Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bShowFPS_SetBit(void* Obj)
 {
 	((ASGPlayerController*)Obj)->bShowFPS = 1;
@@ -1705,6 +2366,10 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGPlayerContro
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_MinPower = { "MinPower", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGPlayerController, MinPower), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MinPower_MetaData), NewProp_MinPower_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ASGPlayerController_Statics::NewProp_MaxPower = { "MaxPower", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASGPlayerController, MaxPower), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxPower_MetaData), NewProp_MaxPower_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASGPlayerController_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayManager,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bAutoRecordOnShot,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_ReplayWidget,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bShowFPS,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bGameInputEnabled,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASGPlayerController_Statics::NewProp_bIsChargingShot,
@@ -1750,10 +2415,10 @@ ASGPlayerController::~ASGPlayerController() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGPlayerController, ASGPlayerController::StaticClass, TEXT("ASGPlayerController"), &Z_Registration_Info_UClass_ASGPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGPlayerController), 4127753737U) },
+		{ Z_Construct_UClass_ASGPlayerController, ASGPlayerController::StaticClass, TEXT("ASGPlayerController"), &Z_Registration_Info_UClass_ASGPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGPlayerController), 1655729338U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_2954076200(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_1869339771(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Framework_SGPlayerController_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

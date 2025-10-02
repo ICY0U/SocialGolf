@@ -146,7 +146,7 @@ struct Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::NewProp_NewState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, nullptr, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::NewProp_NewState = { "NewState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraDemo_eventOnRecordingStateChanged_Parms, NewState), Z_Construct_UEnum_SocialGolf_ECameraRecorderState, METADATA_PARAMS(0, nullptr) }; // 697588561
+const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::NewProp_NewState = { "NewState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(SGCameraDemo_eventOnRecordingStateChanged_Parms, NewState), Z_Construct_UEnum_SocialGolf_ECameraRecorderState, METADATA_PARAMS(0, nullptr) }; // 4066271780
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::NewProp_NewState_Underlying,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged_Statics::NewProp_NewState,
@@ -399,7 +399,7 @@ struct Z_Construct_UClass_ASGCameraDemo_Statics
 		{ &Z_Construct_UFunction_ASGCameraDemo_ClearAllRecordings, "ClearAllRecordings" }, // 2533643471
 		{ &Z_Construct_UFunction_ASGCameraDemo_ExportAllRecordings, "ExportAllRecordings" }, // 90860209
 		{ &Z_Construct_UFunction_ASGCameraDemo_OnRecordingProgress, "OnRecordingProgress" }, // 3790331102
-		{ &Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged, "OnRecordingStateChanged" }, // 3030695174
+		{ &Z_Construct_UFunction_ASGCameraDemo_OnRecordingStateChanged, "OnRecordingStateChanged" }, // 2849006979
 		{ &Z_Construct_UFunction_ASGCameraDemo_PlayAllRecordings, "PlayAllRecordings" }, // 4150109700
 		{ &Z_Construct_UFunction_ASGCameraDemo_SimulateContentWarningGameplay, "SimulateContentWarningGameplay" }, // 742120433
 		{ &Z_Construct_UFunction_ASGCameraDemo_StartRecordingAllCameras, "StartRecordingAllCameras" }, // 977899310
@@ -460,10 +460,10 @@ ASGCameraDemo::~ASGCameraDemo() {}
 struct Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Demo_SGCameraDemo_h__Script_SocialGolf_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASGCameraDemo, ASGCameraDemo::StaticClass, TEXT("ASGCameraDemo"), &Z_Registration_Info_UClass_ASGCameraDemo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGCameraDemo), 1210383226U) },
+		{ Z_Construct_UClass_ASGCameraDemo, ASGCameraDemo::StaticClass, TEXT("ASGCameraDemo"), &Z_Registration_Info_UClass_ASGCameraDemo, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASGCameraDemo), 862756606U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Demo_SGCameraDemo_h__Script_SocialGolf_2954259554(TEXT("/Script/SocialGolf"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Demo_SGCameraDemo_h__Script_SocialGolf_4277359859(TEXT("/Script/SocialGolf"),
 	Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Demo_SGCameraDemo_h__Script_SocialGolf_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_D_Documents_game_SocialGolf_Starter_UE5_6_v2_Source_SocialGolf_Demo_SGCameraDemo_h__Script_SocialGolf_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

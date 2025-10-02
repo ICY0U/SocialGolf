@@ -18,6 +18,8 @@
 #include "SGGameMode.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+#include "../Replay/SGReplayManager.h"
+#include "../Replay/SGReplayWidget.h"
 
 ASGPlayerController::ASGPlayerController()
 {
@@ -36,22 +38,53 @@ ASGPlayerController::ASGPlayerController()
     
     // Enable FPS display by default
     bShowFPS = true;
+    
+    // Initialize replay system
+    ReplayManager = CreateDefaultSubobject<USGReplayManager>(TEXT("ReplayManager"));
 }
 
 void ASGPlayerController::BeginPlay()
 {
     Super::BeginPlay();
     
-    // Enable FPS display for clients
-    if (IsLocalPlayerController())
+    UE_LOG(LogTemp, Log, TEXT("SGPlayerController: BeginPlay started"));
+    
+    // Ensure we have a valid pawn
+    if (!GetPawn())
     {
-        ConsoleCommand("stat fps", true);
+        UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: No pawn found at BeginPlay"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Log, TEXT("SGPlayerController: Pawn found: %s"), *GetPawn()->GetName());
         
-        // Set input mode here instead of constructor - object is fully initialized now
-        EnableGameInput();
-        
-        // Additional useful stats for multiplayer debugging
-        if (GEngine && GEngine->bEnableOnScreenDebugMessages)
+        // Special multiplayer handling
+        if (GetWorld())
+        {
+            ENetMode NetMode = GetWorld()->GetNetMode();
+            UE_LOG(LogTemp, Log, TEXT("SGPlayerController: Network mode: %d"), (int32)NetMode);
+            
+            if (NetMode != NM_Standalone)
+            {
+                UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Multiplayer mode detected"));
+            }
+        }
+    }
+    
+    // Setup replay system
+    SetupReplaySystem();
+    
+    // Initialize HUD reference if needed
+    if (GetHUD())
+    {
+        UE_LOG(LogTemp, Log, TEXT("SGPlayerController: HUD found: %s"), *GetHUD()->GetName());
+    }
+    
+    // Small delay for multiplayer sync
+    if (GetWorld())
+    {
+        // Show network stats if in multiplayer
+        if (GetWorld()->GetNetMode() != NM_Standalone)
         {
             // Show network stats if in multiplayer
             if (GetWorld() && GetWorld()->GetNetMode() != NM_Standalone)
@@ -70,6 +103,22 @@ void ASGPlayerController::BeginPlay()
     }
 }
 
+void ASGPlayerController::SetupReplaySystem()
+{
+    if (ReplayManager)
+    {
+        // Bind to golf shot events for auto-recording
+        // We'll need to add this when we implement golf shot events
+        UE_LOG(LogTemp, Log, TEXT("SGPlayerController: Replay system initialized"));
+        
+        // Auto-start recording if enabled
+        if (bAutoRecordOnShot)
+        {
+            UE_LOG(LogTemp, Log, TEXT("SGPlayerController: Auto-record on shot enabled"));
+        }
+    }
+}
+
 void ASGPlayerController::SetupInputComponent()
 {
     Super::SetupInputComponent();
@@ -77,46 +126,67 @@ void ASGPlayerController::SetupInputComponent()
     // Add debug input bindings for multiplayer testing
     if (InputComponent)
     {
+        // === REPLAY SYSTEM BINDINGS ===
+        InputComponent->BindAction("ToggleReplayRecording", IE_Pressed, this, &ASGPlayerController::ToggleReplayRecording);
+        InputComponent->BindAction("QuickSaveReplay", IE_Pressed, this, &ASGPlayerController::QuickSaveReplay);
+        InputComponent->BindAction("OpenReplayUI", IE_Pressed, this, &ASGPlayerController::OpenReplayUI);
+        InputComponent->BindAction("PlayLastReplay", IE_Pressed, this, &ASGPlayerController::PlayLastReplay);
+        InputComponent->BindAction("ReplayNextCamera", IE_Pressed, this, &ASGPlayerController::NextCameraView);
+        
+        // === CORE DEBUG BINDINGS (Updated to avoid F-key conflicts) ===
         InputComponent->BindAction("ToggleStats", IE_Pressed, this, &ASGPlayerController::ToggleNetworkStats);
         InputComponent->BindAction("ToggleFPS", IE_Pressed, this, &ASGPlayerController::ToggleFPSDisplay);
         
-        // Save System Debug Bindings
+        // === SAVE SYSTEM (Updated to Shift+S/L) ===
         InputComponent->BindAction("QuickSave", IE_Pressed, this, &ASGPlayerController::QuickSave);
         InputComponent->BindAction("QuickLoad", IE_Pressed, this, &ASGPlayerController::QuickLoad);
         
-        // Emergency recovery bindings
+        // === EMERGENCY RECOVERY ===
         InputComponent->BindAction("EmergencyTeleport", IE_Pressed, this, &ASGPlayerController::EmergencyTeleportToSafeLocation);
         InputComponent->BindAction("ForceStandUp", IE_Pressed, this, &ASGPlayerController::ForceStandUpFromBench);
         
-        // Golf ball debug bindings
+        // === GOLF SYSTEM ===
         InputComponent->BindAction("SpawnGolfBall", IE_Pressed, this, &ASGPlayerController::SpawnGolfBall);
         InputComponent->BindAction("HitGolfBall", IE_Pressed, this, &ASGPlayerController::HitGolfBallForwardInput);
         InputComponent->BindAction("ResetGolfBall", IE_Pressed, this, &ASGPlayerController::ResetGolfBall);
         InputComponent->BindAction("ChargeGolfShot", IE_Pressed, this, &ASGPlayerController::StartChargingGolfShot);
         InputComponent->BindAction("ChargeGolfShot", IE_Released, this, &ASGPlayerController::ReleaseGolfShot);
         
-        // Golf Tee debug binding - temporary for testing
-        InputComponent->BindKey(EKeys::T, IE_Pressed, this, &ASGPlayerController::SpawnGolfTee);
+        // Golf Tee (J key)
+        InputComponent->BindAction("SpawnGolfTee", IE_Pressed, this, &ASGPlayerController::SpawnGolfTee);
         
-        // Golf Ball Physics toggle - temporary for testing
-        InputComponent->BindKey(EKeys::P, IE_Pressed, this, &ASGPlayerController::ToggleGolfBallPhysics);
+        // === PHYSICS TESTING (Alt+ combinations) ===
+        InputComponent->BindAction("ToggleGolfPhysics", IE_Pressed, this, &ASGPlayerController::ToggleGolfBallPhysics);
+        InputComponent->BindAction("ToggleMiniGolfMode", IE_Pressed, this, &ASGPlayerController::ToggleMiniGolfMode);
+        InputComponent->BindAction("CheckGolfBallStatus", IE_Pressed, this, &ASGPlayerController::CheckGolfBallStatus);
+
+        // === CAMERA SYSTEM (Updated to Ctrl+ combinations) ===
+        InputComponent->BindAction("StartCameraRecording", IE_Pressed, this, &ASGPlayerController::StartCameraRecording);
+        InputComponent->BindAction("StopCameraRecording", IE_Pressed, this, &ASGPlayerController::StopCameraRecording);
+        InputComponent->BindAction("PlayCameraRecording", IE_Pressed, this, &ASGPlayerController::PlayCameraRecording);
+        InputComponent->BindAction("ExportCameraRecording", IE_Pressed, this, &ASGPlayerController::ExportCameraRecording);
         
-        // Mini Golf Mode toggle - temporary for testing
-        InputComponent->BindKey(EKeys::M, IE_Pressed, this, &ASGPlayerController::ToggleMiniGolfMode);
+        // Camera Views (bracket keys)
+        InputComponent->BindAction("CameraView1", IE_Pressed, this, &ASGPlayerController::SwitchToCameraView1);
+        InputComponent->BindAction("CameraView2", IE_Pressed, this, &ASGPlayerController::SwitchToCameraView2);
+        InputComponent->BindAction("CameraView3", IE_Pressed, this, &ASGPlayerController::SwitchToCameraView3);
+        InputComponent->BindAction("CameraView4", IE_Pressed, this, &ASGPlayerController::SwitchToCameraView4);
+        InputComponent->BindAction("NextCameraView", IE_Pressed, this, &ASGPlayerController::NextCameraView);
+        InputComponent->BindAction("PreviousCameraView", IE_Pressed, this, &ASGPlayerController::PreviousCameraView);
         
-        // Golf Ball Status Check - temporary for testing
-        InputComponent->BindKey(EKeys::B, IE_Pressed, this, &ASGPlayerController::CheckGolfBallStatus);
+        // === TESTING POWER LEVELS (Ctrl+ number combinations) ===
+        InputComponent->BindAction("HitBallLightPower", IE_Pressed, this, &ASGPlayerController::HitBallLightPower);
+        InputComponent->BindAction("HitBallMediumPower", IE_Pressed, this, &ASGPlayerController::HitBallMediumPower);
+        InputComponent->BindAction("HitBallHardPower", IE_Pressed, this, &ASGPlayerController::HitBallHardPower);
         
-        // Chaos Physics toggle - temporary for testing
-        InputComponent->BindKey(EKeys::C, IE_Pressed, this, &ASGPlayerController::ToggleChaosPhysics);
-        
-        // Power level testing - temporary for testing
-        InputComponent->BindKey(EKeys::One, IE_Pressed, this, &ASGPlayerController::HitBallLightPower);
-        InputComponent->BindKey(EKeys::Two, IE_Pressed, this, &ASGPlayerController::HitBallMediumPower);
-        InputComponent->BindKey(EKeys::Three, IE_Pressed, this, &ASGPlayerController::HitBallHardPower);
-        
-        // Drop candle binding
+        // === CANDLE SYSTEM ===
         InputComponent->BindAction("DropCandle", IE_Pressed, this, &ASGPlayerController::DropCandle);
+        
+        UE_LOG(LogTemp, Log, TEXT("SGPlayerController: Input bindings set up successfully"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("SGPlayerController: InputComponent is null!"));
     }
 }
 
@@ -971,6 +1041,22 @@ void ASGPlayerController::HitGolfBallForward(float Power)
         if (GolfBall->TryHitBallFromPlayer(GetPawn(), HitPower))
         {
             UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Successfully hit golf ball with %f%% power"), HitPower);
+            
+            // Trigger replay recording for golf shot
+            FString ClubName = TEXT("Default Club");
+            if (ASGCharacter* SGChar = Cast<ASGCharacter>(GetPawn()))
+            {
+                if (USGGolfClubManager* ClubManager = SGChar->GetGolfClubManager())
+                {
+                    if (USGGolfClubData* ClubData = ClubManager->GetCurrentClubData())
+                    {
+                        ClubName = ClubData->ClubDisplayName.ToString();
+                    }
+                }
+            }
+            
+            // Record the golf shot event for replay system
+            OnGolfShotEvent(HitPower, ClubName);
         }
         else
         {
@@ -1395,4 +1481,278 @@ void ASGPlayerController::HitBallHardPower()
 {
     HitGolfBallForward(75.0f); // 75% power
     UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Hit ball with HARD power"));
+}
+
+// === CAMERA SYSTEM FUNCTIONS ===
+
+void ASGPlayerController::StartCameraRecording()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Starting camera recording..."));
+    
+    // TODO: Implement camera recording start logic
+    // This will need to interface with your SGCameraRecorder system
+    // For now, just log the action
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, TEXT("Camera Recording Started (F6)"));
+    }
+}
+
+void ASGPlayerController::StopCameraRecording()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Stopping camera recording..."));
+    
+    // TODO: Implement camera recording stop logic
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Camera Recording Stopped (F7)"));
+    }
+}
+
+void ASGPlayerController::PlayCameraRecording()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Playing camera recording..."));
+    
+    // TODO: Implement camera recording playback logic
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Blue, TEXT("Playing Camera Recording (F8)"));
+    }
+}
+
+void ASGPlayerController::ExportCameraRecording()
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Exporting camera recording to desktop..."));
+    
+    // TODO: Interface with your SGCameraRecorder export system
+    // This should call the desktop export functionality you implemented
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("Exporting Camera Recording to Desktop (F10)"));
+    }
+}
+
+void ASGPlayerController::SwitchToCameraView1()
+{
+    SwitchToCameraView(1);
+}
+
+void ASGPlayerController::SwitchToCameraView2()
+{
+    SwitchToCameraView(2);
+}
+
+void ASGPlayerController::SwitchToCameraView3()
+{
+    SwitchToCameraView(3);
+}
+
+void ASGPlayerController::SwitchToCameraView4()
+{
+    SwitchToCameraView(4);
+}
+
+void ASGPlayerController::NextCameraView()
+{
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Switching to next camera view (PageUp)"));
+    
+    // TODO: Implement next camera view logic
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, TEXT("Next Camera View"));
+    }
+}
+
+void ASGPlayerController::PreviousCameraView()
+{
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Switching to previous camera view (PageDown)"));
+    
+    // TODO: Implement previous camera view logic
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, TEXT("Previous Camera View"));
+    }
+}
+
+void ASGPlayerController::SwitchToCameraView(int32 ViewIndex)
+{
+    if (!IsLocalPlayerController())
+    {
+        return;
+    }
+    
+    UE_LOG(LogTemp, Warning, TEXT("SGPlayerController: Switching to camera view %d"), ViewIndex);
+    
+    // TODO: Implement camera view switching logic
+    // This should find and switch to the specified camera view
+    
+    if (GEngine)
+    {
+        FString Message = FString::Printf(TEXT("Switched to Camera View %d"), ViewIndex);
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Cyan, Message);
+    }
+}
+
+// === REPLAY SYSTEM IMPLEMENTATIONS ===
+
+void ASGPlayerController::ToggleReplayRecording()
+{
+    if (!ReplayManager)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Replay: ReplayManager is null"));
+        return;
+    }
+    
+    if (ReplayManager->IsRecording())
+    {
+        ReplayManager->StopRecording();
+        UE_LOG(LogTemp, Log, TEXT("Replay: Recording stopped via toggle"));
+    }
+    else
+    {
+        FString ReplayName = FString::Printf(TEXT("Manual Recording %s"), *FDateTime::Now().ToString());
+        ReplayManager->StartRecording(ReplayName);
+        UE_LOG(LogTemp, Log, TEXT("Replay: Recording started via toggle"));
+    }
+}
+
+void ASGPlayerController::StartReplayRecording()
+{
+    if (ReplayManager && !ReplayManager->IsRecording())
+    {
+        FString ReplayName = FString::Printf(TEXT("Recording %s"), *FDateTime::Now().ToString());
+        ReplayManager->StartRecording(ReplayName);
+        UE_LOG(LogTemp, Log, TEXT("Replay: Recording started manually"));
+    }
+}
+
+void ASGPlayerController::StopReplayRecording()
+{
+    if (ReplayManager && ReplayManager->IsRecording())
+    {
+        ReplayManager->StopRecording();
+        UE_LOG(LogTemp, Log, TEXT("Replay: Recording stopped manually"));
+    }
+}
+
+void ASGPlayerController::OpenReplayUI()
+{
+    if (!ReplayWidgetClass)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Replay: ReplayWidgetClass not set"));
+        return;
+    }
+    
+    if (!ReplayWidget)
+    {
+        ReplayWidget = CreateWidget<USGReplayWidget>(this, ReplayWidgetClass);
+        if (ReplayWidget)
+        {
+            ReplayWidget->InitializeReplayWidget(ReplayManager);
+        }
+    }
+    
+    if (ReplayWidget)
+    {
+        if (ReplayWidget->IsInViewport())
+        {
+            ReplayWidget->RemoveFromParent();
+            SetInputMode(FInputModeGameOnly());
+            SetShowMouseCursor(false);
+            UE_LOG(LogTemp, Log, TEXT("Replay: UI closed"));
+        }
+        else
+        {
+            ReplayWidget->AddToViewport();
+            SetInputMode(FInputModeUIOnly());
+            SetShowMouseCursor(true);
+            UE_LOG(LogTemp, Log, TEXT("Replay: UI opened"));
+        }
+    }
+}
+
+void ASGPlayerController::QuickSaveReplay()
+{
+    if (ReplayManager)
+    {
+        if (ReplayManager->IsRecording())
+        {
+            ReplayManager->StopRecording(); // This will auto-save
+            UE_LOG(LogTemp, Log, TEXT("Replay: Quick save - stopped recording and saved"));
+        }
+        else
+        {
+            ReplayManager->SaveReplay();
+            UE_LOG(LogTemp, Log, TEXT("Replay: Quick save - saved current replay data"));
+        }
+    }
+}
+
+void ASGPlayerController::PlayLastReplay()
+{
+    if (!ReplayManager)
+    {
+        UE_LOG(LogTemp, Error, TEXT("Replay: ReplayManager is null"));
+        return;
+    }
+    
+    TArray<FString> AvailableReplays = ReplayManager->GetAvailableReplays();
+    if (AvailableReplays.Num() > 0)
+    {
+        // Load and play the most recent replay
+        FString LastReplay = AvailableReplays.Last();
+        if (ReplayManager->LoadReplay(LastReplay))
+        {
+            FSGReplayData ReplayData = ReplayManager->GetCurrentReplayData();
+            ReplayManager->StartPlayback(ReplayData, ECameraReplayMode::Cinematic);
+            UE_LOG(LogTemp, Log, TEXT("Replay: Playing last replay: %s"), *LastReplay);
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Replay: No replays available to play"));
+    }
+}
+
+void ASGPlayerController::OnGolfShotEvent(float Power, const FString& ClubName)
+{
+    if (ReplayManager && bAutoRecordOnShot)
+    {
+        if (!ReplayManager->IsRecording())
+        {
+            // Auto-start recording on golf shot
+            FString ReplayName = FString::Printf(TEXT("Auto Shot %s"), *FDateTime::Now().ToString(TEXT("%H:%M:%S")));
+            ReplayManager->StartRecording(ReplayName);
+        }
+        
+        // Record the golf shot event
+        FVector ShotLocation = GetPawn() ? GetPawn()->GetActorLocation() : FVector::ZeroVector;
+        ReplayManager->RecordGolfShot(Power, ClubName, ShotLocation);
+    }
 }

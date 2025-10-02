@@ -5,6 +5,7 @@
 
 class ASGHUD;
 class UCameraComponent;
+class USGReplayManager;
 
 UCLASS()
 class SOCIALGOLF_API ASGPlayerController : public APlayerController
@@ -17,6 +18,28 @@ public:
     virtual void BeginPlay() override;
     virtual void SetupInputComponent() override;
     virtual void Tick(float DeltaTime) override;
+
+    // === REPLAY SYSTEM FUNCTIONS ===
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void ToggleReplayRecording();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void StartReplayRecording();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void StopReplayRecording();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void OpenReplayUI();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void QuickSaveReplay();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    void PlayLastReplay();
+
+    UFUNCTION(BlueprintCallable, Category = "Replay")
+    USGReplayManager* GetReplayManager() const { return ReplayManager; }
 
     // Debug functions
     UFUNCTION(BlueprintCallable, Category = "Debug")
@@ -166,8 +189,56 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Debug|Golf")
     void HitBallHardPower(); // 75% power
+    
+    // === CAMERA SYSTEM FUNCTIONS ===
+    UFUNCTION(BlueprintCallable, Category = "Camera|Recording")
+    void StartCameraRecording();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Recording")
+    void StopCameraRecording();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Recording")
+    void PlayCameraRecording();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Recording")
+    void ExportCameraRecording();
+    
+    // Camera View Functions
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void SwitchToCameraView1();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void SwitchToCameraView2();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void SwitchToCameraView3();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void SwitchToCameraView4();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void NextCameraView();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void PreviousCameraView();
+    
+    UFUNCTION(BlueprintCallable, Category = "Camera|Views")
+    void SwitchToCameraView(int32 ViewIndex);
 
 protected:
+    // === REPLAY SYSTEM ===
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Replay")
+    USGReplayManager* ReplayManager;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Replay")
+    bool bAutoRecordOnShot = true;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Replay")
+    TSubclassOf<class USGReplayWidget> ReplayWidgetClass;
+
+    UPROPERTY()
+    class USGReplayWidget* ReplayWidget = nullptr;
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
     bool bShowFPS;
 
@@ -189,4 +260,9 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Golf")
     float MaxPower = 100.0f; // Maximum power percentage
+
+private:
+    // === REPLAY SYSTEM PRIVATE ===
+    void OnGolfShotEvent(float Power, const FString& ClubName);
+    void SetupReplaySystem();
 };
