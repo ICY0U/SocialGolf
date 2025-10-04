@@ -20,6 +20,10 @@ ASGBasketball::ASGBasketball()
     PrimaryActorTick.bCanEverTick = true;
     bReplicates = true;
 
+    // UPDATED: Small ball radius - increased from 6cm to 10cm for better visibility
+    float DesiredRadius = 10.0f; // cm - small basketball (increased from 6cm)
+    BallRadius = DesiredRadius;
+
     // Create root collision component
     CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
     RootComponent = CollisionComponent;
@@ -42,12 +46,13 @@ ASGBasketball::ASGBasketball()
     if (SphereMeshAsset.Succeeded())
     {
         BallMesh->SetStaticMesh(SphereMeshAsset.Object);
-        // FIXED: Proper scale calculation - Engine sphere has 100cm diameter, so we need (BallRadius*2)/100
-        // For BallRadius = 24cm, we want 48cm diameter, so scale = 48/100 = 0.48
-        float MeshScale = (BallRadius * 2.0f) / 100.0f; // Convert ball diameter to match engine sphere
-        BallMesh->SetRelativeScale3D(FVector(MeshScale));
+        // UPDATED: Small scale to match 10cm radius (increased from 0.24)
+        // 20cm diameter / 100cm diameter = 0.20, but mesh needs to be doubled = 0.40
+        FVector DesiredScale = FVector(0.40f, 0.40f, 0.40f);
+        BallMesh->SetRelativeScale3D(DesiredScale);
         
-        UE_LOG(LogTemp, Warning, TEXT("SGBasketball: Mesh scale set to %f for radius %f cm"), MeshScale, BallRadius);
+        UE_LOG(LogTemp, Warning, TEXT("SGBasketball: Mesh scale set to %s for radius %f cm (SMALL)"), 
+               *DesiredScale.ToString(), BallRadius);
         
         // Apply basketball material if available
         static ConstructorHelpers::FObjectFinder<UMaterialInterface> BasketballMaterial(TEXT("/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"));
@@ -86,7 +91,7 @@ ASGBasketball::ASGBasketball()
     ThrowStartLocation = FVector::ZeroVector;
     ThrowStartTime = 0.0f;
 
-    UE_LOG(LogTemp, Warning, TEXT("SGBasketball: Basketball created with ENHANCED REALISTIC PHYSICS (radius: %f cm)"), BallRadius);
+    UE_LOG(LogTemp, Warning, TEXT("SGBasketball: Basketball created with VERY SMALL SIZE (radius: %f cm, scale: 0.24)"), BallRadius);
 }
 
 void ASGBasketball::BeginPlay()
@@ -442,7 +447,7 @@ void ASGBasketball::PlayEnhancedBounceSound(float ImpactForce, const FHitResult&
                 Pitch = FMath::RandRange(1.3f, 1.6f); // Very high pitch on metal
                 break;
             default:
-                Pitch = FMath::RandRange(0.8f, 1.2f);
+                Pitch = FMath::RandRange(0.9f, 1.1f);
                 break;
         }
     }

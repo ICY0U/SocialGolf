@@ -162,18 +162,18 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     USGFocusableComponent* FocusableComponent;
 
-    // Basketball properties - INCREASED TO REALISTIC SIZE
+    // Basketball properties - VERY SMALL SIZE
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Basketball")
     float BallMass = 0.6f; // kg, realistic basketball weight
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Basketball", Replicated)
-    float BallRadius = 24.0f; // cm, realistic basketball radius (was 18.0f, now proper basketball size)
+    float BallRadius = 6.0f; // cm, very small basketball radius (reduced from 12.0f)
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Basketball")
     float BounceRestitution = 0.8f; // How much it bounces
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Basketball", Replicated)
-    float PickupRange = 300.0f; // Range for pickup (increased from 200.0f)
+    float PickupRange = 300.0f; // Range for pickup
 
     // Replicated throw properties for multiplayer
     UPROPERTY(Replicated, BlueprintReadOnly, Category = "Basketball")

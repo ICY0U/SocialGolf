@@ -1,7 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/TextRenderComponent.h"
 #include "Engine/TimerHandle.h"
@@ -39,29 +38,21 @@ protected:
 
     // ========== COMPONENTS ==========
     
-    /** Main machine body/frame */
+    /** Root component for positioning */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-    UStaticMeshComponent* MachineMesh;
+    USceneComponent* RootSceneComponent;
 
-    /** The hoop/rim */
+    /** Physical button mesh players can walk into to start game */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-    UStaticMeshComponent* HoopMesh;
+    UStaticMeshComponent* StartButton;
 
-    /** Backboard */
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-    UStaticMeshComponent* BackboardMesh;
-
-    /** Ball return area at the front */
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-    UStaticMeshComponent* BallReturnMesh;
-
-    /** Scoring trigger zone */
+    /** Scoring trigger zone - place this where you want baskets to score */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
     UBoxComponent* ScoringZone;
 
-    /** Pre-scoring validation zone (above hoop) */
+    /** Ball return/spawn zone - place this where balls should spawn */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-    UBoxComponent* PreScoringZone;
+    UBoxComponent* BallReturnZone;
 
     /** Score display text */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -230,6 +221,11 @@ protected:
     void OnInteractionZoneBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
                                       UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
                                       bool bFromSweep, const FHitResult& SweepResult);
+
+    UFUNCTION()
+    void OnStartButtonOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+                             UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+                             bool bFromSweep, const FHitResult& SweepResult);
 
     // ========== INTERNAL FUNCTIONS ==========
     

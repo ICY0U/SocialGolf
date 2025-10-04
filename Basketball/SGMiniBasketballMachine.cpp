@@ -18,63 +18,32 @@ ASGMiniBasketballMachine::ASGMiniBasketballMachine()
     PrimaryActorTick.bCanEverTick = true;
     bReplicates = true;
 
-    // Create root component - machine frame/body
-    MachineMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MachineMesh"));
-    RootComponent = MachineMesh;
-    MachineMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-    MachineMesh->SetCollisionObjectType(ECC_WorldStatic);
-    MachineMesh->SetCollisionResponseToAllChannels(ECR_Block);
+    // Create simple root scene component for positioning
+    RootSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootSceneComponent"));
+    RootComponent = RootSceneComponent;
 
-    // Load cube mesh for machine body
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMeshAsset(TEXT("/Engine/BasicShapes/Cube.Cube"));
-    if (CubeMeshAsset.Succeeded())
+    // ========== CREATE START BUTTON MESH ==========
+    StartButton = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StartButton"));
+    StartButton->SetupAttachment(RootComponent);
+    StartButton->SetRelativeLocation(FVector(100.0f, 0.0f, 50.0f)); // In front of machine, at button height
+    StartButton->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f)); // Smaller button size
+    
+    // Setup button collision - make it interactable via trace
+    StartButton->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+    StartButton->SetCollisionObjectType(ECC_WorldDynamic); // Important for trace detection
+    StartButton->SetCollisionResponseToAllChannels(ECR_Block);
+    StartButton->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap); // Allow pawns to walk through
+    StartButton->SetGenerateOverlapEvents(true);
+    
+    // Load cube mesh for button
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube"));
+    if (CubeMesh.Succeeded())
     {
-        MachineMesh->SetStaticMesh(CubeMeshAsset.Object);
-        MachineMesh->SetRelativeScale3D(FVector(2.0f, 1.5f, 2.5f)); // Wide, arcade-style frame
+        StartButton->SetStaticMesh(CubeMesh.Object);
     }
-
-    // Create backboard - attached to top back of machine
-    BackboardMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BackboardMesh"));
-    BackboardMesh->SetupAttachment(RootComponent);
-    BackboardMesh->SetRelativeLocation(FVector(-80.0f, 0.0f, 200.0f)); // High and back
-    BackboardMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-    BackboardMesh->SetCollisionObjectType(ECC_WorldStatic);
-    BackboardMesh->SetCollisionResponseToAllChannels(ECR_Block);
-
-    if (CubeMeshAsset.Succeeded())
-    {
-        BackboardMesh->SetStaticMesh(CubeMeshAsset.Object);
-        BackboardMesh->SetRelativeScale3D(FVector(0.05f, 1.0f, 0.8f)); // Thin rectangular backboard
-    }
-
-    // Create hoop/rim - positioned in front of backboard
-    HoopMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HoopMesh"));
-    HoopMesh->SetupAttachment(RootComponent);
-    HoopMesh->SetRelativeLocation(FVector(-50.0f, 0.0f, 180.0f)); // In front of backboard
-    HoopMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-    HoopMesh->SetCollisionObjectType(ECC_WorldStatic);
-    HoopMesh->SetCollisionResponseToAllChannels(ECR_Block);
-
-    // Use cylinder for rim (rotated to be horizontal)
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> CylinderMeshAsset(TEXT("/Engine/BasicShapes/Cylinder.Cylinder"));
-    if (CylinderMeshAsset.Succeeded())
-    {
-        HoopMesh->SetStaticMesh(CylinderMeshAsset.Object);
-        HoopMesh->SetRelativeScale3D(FVector(0.6f, 0.6f, 0.03f)); // Smaller rim for mini basketball
-        HoopMesh->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f)); // Rotate to be horizontal
-    }
-
-    // Create ball return area at front/bottom
-    BallReturnMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BallReturnMesh"));
-    BallReturnMesh->SetupAttachment(RootComponent);
-    BallReturnMesh->SetRelativeLocation(FVector(120.0f, 0.0f, -100.0f)); // Front and low
-    BallReturnMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-    if (CubeMeshAsset.Succeeded())
-    {
-        BallReturnMesh->SetStaticMesh(CubeMeshAsset.Object);
-        BallReturnMesh->SetRelativeScale3D(FVector(0.3f, 1.2f, 0.3f)); // Tray shape
-    }
+    
+    // Bind overlap event for button
+    StartButton->OnComponentBeginOverlap.AddDynamic(this, &ASGMiniBasketballMachine::OnStartButtonOverlap);
 
     // Setup collision zones
     SetupCollision();
@@ -82,7 +51,7 @@ ASGMiniBasketballMachine::ASGMiniBasketballMachine()
     // Create score display
     ScoreDisplay = CreateDefaultSubobject<UTextRenderComponent>(TEXT("ScoreDisplay"));
     ScoreDisplay->SetupAttachment(RootComponent);
-    ScoreDisplay->SetRelativeLocation(FVector(105.0f, 0.0f, 150.0f)); // Front, high
+    ScoreDisplay->SetRelativeLocation(FVector(0.0f, 0.0f, 150.0f)); // High above root
     ScoreDisplay->SetRelativeRotation(FRotator(0.0f, 180.0f, 0.0f)); // Face forward
     ScoreDisplay->SetHorizontalAlignment(EHTA_Center);
     ScoreDisplay->SetVerticalAlignment(EVRTA_TextCenter);
@@ -93,56 +62,66 @@ ASGMiniBasketballMachine::ASGMiniBasketballMachine()
     // Create timer display
     TimerDisplay = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TimerDisplay"));
     TimerDisplay->SetupAttachment(RootComponent);
-    TimerDisplay->SetRelativeLocation(FVector(105.0f, 0.0f, 80.0f)); // Below score
+    TimerDisplay->SetRelativeLocation(FVector(0.0f, 0.0f, 80.0f)); // Below score
     TimerDisplay->SetRelativeRotation(FRotator(0.0f, 180.0f, 0.0f)); // Face forward
     TimerDisplay->SetHorizontalAlignment(EHTA_Center);
     TimerDisplay->SetVerticalAlignment(EVRTA_TextCenter);
     TimerDisplay->SetTextRenderColor(FColor::Yellow);
     TimerDisplay->SetWorldSize(60.0f);
-    TimerDisplay->SetText(FText::FromString(TEXT("PRESS TO START")));
+    TimerDisplay->SetText(FText::FromString(TEXT("PRESS START")));
 
-    // ADDED: Enable debug visualization by default for testing
+    // Enable debug visualization by default
     bShowDebugInfo = true;
 
-    UE_LOG(LogTemp, Log, TEXT("SGMiniBasketballMachine: Created with DEBUG MODE ENABLED"));
+    UE_LOG(LogTemp, Log, TEXT("SGMiniBasketballMachine: Created with START BUTTON mesh and trigger zones"));
 }
 
 void ASGMiniBasketballMachine::SetupCollision()
 {
-    // Create scoring zone (below the hoop)
+    // Create scoring zone - this is where balls score (position this at your hoop location)
     ScoringZone = CreateDefaultSubobject<UBoxComponent>(TEXT("ScoringZone"));
     ScoringZone->SetupAttachment(RootComponent);
-    ScoringZone->SetRelativeLocation(FVector(-50.0f, 0.0f, 160.0f)); // Below rim
-    ScoringZone->SetBoxExtent(FVector(30.0f, 30.0f, 15.0f));
+    ScoringZone->SetRelativeLocation(FVector(0.0f, 0.0f, 180.0f)); // Default: 180cm above root (adjust in editor)
+    ScoringZone->SetBoxExtent(FVector(30.0f, 30.0f, 15.0f)); // Default scoring area size
     ScoringZone->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
     ScoringZone->SetCollisionObjectType(ECC_WorldStatic);
     ScoringZone->SetCollisionResponseToAllChannels(ECR_Ignore);
-    // CRITICAL FIX: Enable overlap with WorldDynamic for basketball detection
     ScoringZone->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
-    ScoringZone->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Overlap); // Also check PhysicsBody
-    // ADDED: Always show debug visualization for scoring zone
+    ScoringZone->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Overlap);
     ScoringZone->SetHiddenInGame(false);
     ScoringZone->SetVisibility(true);
     ScoringZone->ShapeColor = FColor::Green;
-    // CRITICAL: Generate overlap events
     ScoringZone->SetGenerateOverlapEvents(true);
 
-    // Create interaction zone at front of machine
+    // Create ball return/spawn zone - this is where balls spawn at game start
+    BallReturnZone = CreateDefaultSubobject<UBoxComponent>(TEXT("BallReturnZone"));
+    BallReturnZone->SetupAttachment(RootComponent);
+    BallReturnZone->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f)); // Default: at root (adjust in editor)
+    BallReturnZone->SetBoxExtent(FVector(50.0f, 80.0f, 30.0f)); // Default spawn area size
+    BallReturnZone->SetCollisionEnabled(ECollisionEnabled::NoCollision); // No collision, just for positioning
+    BallReturnZone->SetHiddenInGame(false);
+    BallReturnZone->SetVisibility(true);
+    BallReturnZone->ShapeColor = FColor::Cyan;
+
+    // Create interaction zone - where players can start the game
     InteractionZone = CreateDefaultSubobject<UBoxComponent>(TEXT("InteractionZone"));
     InteractionZone->SetupAttachment(RootComponent);
-    InteractionZone->SetRelativeLocation(FVector(150.0f, 0.0f, 0.0f)); // In front of machine
+    InteractionZone->SetRelativeLocation(FVector(100.0f, 0.0f, 0.0f)); // Default: 100cm in front
     InteractionZone->SetBoxExtent(FVector(50.0f, 100.0f, 150.0f)); // Large interaction area
     InteractionZone->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
     InteractionZone->SetCollisionObjectType(ECC_WorldStatic);
     InteractionZone->SetCollisionResponseToAllChannels(ECR_Ignore);
     InteractionZone->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
     InteractionZone->SetGenerateOverlapEvents(true);
+    InteractionZone->SetHiddenInGame(false);
+    InteractionZone->SetVisibility(true);
+    InteractionZone->ShapeColor = FColor::Yellow;
 
     // Bind collision events
     ScoringZone->OnComponentBeginOverlap.AddDynamic(this, &ASGMiniBasketballMachine::OnScoringZoneBeginOverlap);
     InteractionZone->OnComponentBeginOverlap.AddDynamic(this, &ASGMiniBasketballMachine::OnInteractionZoneBeginOverlap);
     
-    UE_LOG(LogTemp, Error, TEXT("SGMiniBasketballMachine: COLLISION ZONES FIXED - Now detecting WorldDynamic AND PhysicsBody channels!"));
+    UE_LOG(LogTemp, Log, TEXT("SGMiniBasketballMachine: Simplified collision zones setup complete"));
 }
 
 void ASGMiniBasketballMachine::BeginPlay()
@@ -173,10 +152,29 @@ void ASGMiniBasketballMachine::Tick(float DeltaTime)
         UpdateTimerDisplay();
     }
     
-    // ADDED: Continuously draw scoring zones for debugging
+    // Draw all zones for easy positioning in editor
     if (bShowDebugInfo && GetWorld())
     {
-        // Draw scoring zone (green) - below hoop
+        // Draw START BUTTON (BRIGHT MAGENTA) - the actual interaction point!
+        if (StartButton)
+        {
+            FVector ButtonLocation = StartButton->GetComponentLocation();
+            FVector ButtonExtent = StartButton->Bounds.BoxExtent;
+            
+            DrawDebugBox(GetWorld(), 
+                        ButtonLocation, 
+                        ButtonExtent,
+                        StartButton->GetComponentQuat(),
+                        FColor::Magenta, 
+                        false, -1.0f, 0, 5.0f); // Thick magenta outline
+            
+            DrawDebugString(GetWorld(), 
+                           ButtonLocation + FVector(0, 0, ButtonExtent.Z + 20), 
+                           TEXT("? START BUTTON ?\n(Walk into this!)"),
+                           nullptr, FColor::Magenta, 0.0f, true, 1.5f);
+        }
+        
+        // Draw scoring zone (GREEN) - where balls score
         if (ScoringZone)
         {
             DrawDebugBox(GetWorld(), 
@@ -184,65 +182,62 @@ void ASGMiniBasketballMachine::Tick(float DeltaTime)
                         ScoringZone->GetScaledBoxExtent(), 
                         ScoringZone->GetComponentQuat(),
                         FColor::Green, 
-                        false, -1.0f, 0, 2.0f);
+                        false, -1.0f, 0, 3.0f);
             
             DrawDebugString(GetWorld(), 
-                           ScoringZone->GetComponentLocation() + FVector(0, 0, 30), 
-                           TEXT("SCORING ZONE\n(Ball scores when passing through)"),
+                           ScoringZone->GetComponentLocation() + FVector(0, 0, 50), 
+                           TEXT("SCORING ZONE\n(Position at hoop)"),
                            nullptr, FColor::Green, 0.0f, true);
         }
         
-        // Draw hoop reference
-        if (HoopMesh)
+        // Draw ball return zone (CYAN) - where balls spawn
+        if (BallReturnZone)
         {
-            DrawDebugSphere(GetWorld(),
-                           HoopMesh->GetComponentLocation(),
-                           30.0f, 12, FColor::Red, false, -1.0f, 0, 3.0f);
+            DrawDebugBox(GetWorld(), 
+                        BallReturnZone->GetComponentLocation(), 
+                        BallReturnZone->GetScaledBoxExtent(), 
+                        BallReturnZone->GetComponentQuat(),
+                        FColor::Cyan, 
+                        false, -1.0f, 0, 3.0f);
+            
+            DrawDebugString(GetWorld(), 
+                           BallReturnZone->GetComponentLocation() + FVector(0, 0, 100), 
+                           TEXT("BALL RETURN ZONE\n(Adjust spawn location)"),
+                           nullptr, FColor::Cyan, 0.0f, true);
         }
         
-        // Draw info about tracked balls
+        // Draw interaction zone (YELLOW) - where players interact via E key
+        if (InteractionZone)
+        {
+            DrawDebugBox(GetWorld(), 
+                        InteractionZone->GetComponentLocation(), 
+                        InteractionZone->GetScaledBoxExtent(), 
+                        InteractionZone->GetComponentQuat(),
+                        FColor::Yellow, 
+                        false, -1.0f, 0, 2.0f);
+            
+            DrawDebugString(GetWorld(), 
+                           InteractionZone->GetComponentLocation() + FVector(0, 0, 50), 
+                           TEXT("INTERACTION ZONE\n(Press E here)"),
+                           nullptr, FColor::Yellow, 0.0f, true);
+        }
+        
+        // Draw game state info
         if (bIsGameActive)
         {
-            FString GameStateInfo = FString::Printf(TEXT("Game Active | Score: %d | Time: %.1fs\nTracked Balls: %d"),
-                                                   CurrentScore, TimeRemaining, BallsInPreScoringZone.Num());
+            FString GameStateInfo = FString::Printf(TEXT("GAME ACTIVE | Score: %d | Time: %.1fs\nBalls: %d"),
+                                                   CurrentScore, TimeRemaining, SpawnedBasketballs.Num());
             DrawDebugString(GetWorld(),
                            GetActorLocation() + FVector(0, 0, 300),
                            GameStateInfo,
-                           nullptr, FColor::Cyan, 0.0f, true);
-            
-            // Draw state of each spawned basketball
-            int32 BallIndex = 0;
-            for (ASGBasketball* Ball : SpawnedBasketballs)
-            {
-                if (IsValid(Ball))
-                {
-                    FVector BallLocation = Ball->GetActorLocation();
-                    FVector Velocity = Ball->GetCollisionComponent() ? 
-                                      Ball->GetCollisionComponent()->GetPhysicsLinearVelocity() : 
-                                      FVector::ZeroVector;
-                    
-                    bool bIsThrown = Ball->HasBeenThrown();
-                    bool bInPreZone = BallsInPreScoringZone.Contains(Ball);
-                    
-                    FColor BallColor = bIsThrown ? FColor::Orange : FColor::White;
-                    if (bInPreZone) BallColor = FColor::Cyan;
-                    
-                    // Draw ball status sphere
-                    DrawDebugSphere(GetWorld(), BallLocation, 35.0f, 8, BallColor, false, -1.0f, 0, 2.0f);
-                    
-                    // Draw ball info
-                    FString BallInfo = FString::Printf(TEXT("Ball %d\nThrown: %s\nPreZone: %s\nVel.Z: %.0f"),
-                                                      BallIndex,
-                                                      bIsThrown ? TEXT("YES") : TEXT("NO"),
-                                                      bInPreZone ? TEXT("YES") : TEXT("NO"),
-                                                      Velocity.Z);
-                    DrawDebugString(GetWorld(),
-                                   BallLocation + FVector(0, 0, 50),
-                                   BallInfo,
-                                   nullptr, BallColor, 0.0f, true);
-                }
-                BallIndex++;
-            }
+                           nullptr, FColor::White, 0.0f, true, 1.5f);
+        }
+        else
+        {
+            DrawDebugString(GetWorld(),
+                           GetActorLocation() + FVector(0, 0, 300),
+                           TEXT("READY TO PLAY\n(Walk into MAGENTA button OR press E in yellow zone)"),
+                           nullptr, FColor::White, 0.0f, true, 1.5f);
         }
     }
 }
@@ -417,12 +412,13 @@ void ASGMiniBasketballMachine::SpawnBasketballs()
     // Clean up any existing basketballs
     ReturnBasketballs();
 
-    // Spawn new basketballs at the ball return area
-    FVector SpawnBaseLocation = GetActorLocation() + GetActorForwardVector() * 120.0f + FVector(0.0f, 0.0f, -50.0f);
+    // Spawn basketballs at the ball return zone location
+    FVector SpawnBaseLocation = BallReturnZone->GetComponentLocation();
 
     for (int32 i = 0; i < NumberOfBalls; i++)
     {
-        FVector SpawnLocation = SpawnBaseLocation + FVector(0.0f, i * 30.0f - (NumberOfBalls - 1) * 15.0f, 0.0f);
+        // Spread balls out in a line
+        FVector SpawnLocation = SpawnBaseLocation + FVector(0.0f, i * 30.0f - (NumberOfBalls - 1) * 15.0f, 20.0f);
 
         FActorSpawnParameters SpawnParams;
         SpawnParams.Owner = this;
@@ -434,11 +430,14 @@ void ASGMiniBasketballMachine::SpawnBasketballs()
         if (NewBasketball)
         {
             SpawnedBasketballs.Add(NewBasketball);
-            UE_LOG(LogTemp, Warning, TEXT("SGMiniBasketballMachine: *** SPAWNED BASKETBALL %d *** at %s"), 
+            UE_LOG(LogTemp, Warning, TEXT("SGMiniBasketballMachine: Spawned basketball %d at %s"), 
                    i, *SpawnLocation.ToString());
             
             // Draw spawn location for debugging
-            DrawDebugSphere(GetWorld(), SpawnLocation, 30.0f, 12, FColor::Magenta, false, 5.0f, 0, 3.0f);
+            if (bShowDebugInfo)
+            {
+                DrawDebugSphere(GetWorld(), SpawnLocation, 30.0f, 12, FColor::Magenta, false, 5.0f, 0, 3.0f);
+            }
         }
         else
         {
@@ -479,14 +478,9 @@ bool ASGMiniBasketballMachine::IsValidScoringBall(ASGBasketball* Basketball) con
         return false;
     }
 
-    // Must be one of our spawned basketballs or a thrown basketball
-    if (!Basketball->HasBeenThrown())
-    {
-        UE_LOG(LogTemp, Warning, TEXT("SGMiniBasketballMachine: IsValidScoringBall - Ball has NOT been thrown"));
-        return false;
-    }
-    
-    UE_LOG(LogTemp, Warning, TEXT("SGMiniBasketballMachine: IsValidScoringBall - Ball IS VALID (has been thrown)"));
+    // ULTRA SIMPLIFIED: ANY basketball is valid for scoring (removed throw requirement)
+    // This allows even freshly spawned balls to score
+    UE_LOG(LogTemp, Warning, TEXT("SGMiniBasketballMachine: IsValidScoringBall - Ball IS VALID (no requirements)"));
     return true;
 }
 
@@ -625,6 +619,40 @@ void ASGMiniBasketballMachine::OnInteractionZoneBeginOverlap(UPrimitiveComponent
     // The overlap is just for showing interaction prompts to the player
 }
 
+void ASGMiniBasketballMachine::OnStartButtonOverlap(UPrimitiveComponent* OverlappedComponent, 
+                                                  AActor* OtherActor,
+                                                  UPrimitiveComponent* OtherComp, 
+                                                  int32 OtherBodyIndex,
+                                                  bool bFromSweep, 
+                                                  const FHitResult& SweepResult)
+{
+    UE_LOG(LogTemp, Warning, TEXT("??? START BUTTON OVERLAP! ??? Actor: %s"), 
+           OtherActor ? *OtherActor->GetName() : TEXT("NULL"));
+
+    // Only server handles game start
+    if (!HasAuthority())
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Start Button: Not server, ignoring"));
+        return;
+    }
+
+    // Try to start game if it's a character
+    ASGCharacter* Character = Cast<ASGCharacter>(OtherActor);
+    if (Character && CanStartGame(Character))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("? START BUTTON: Starting game for %s! ?"), *Character->GetName());
+        StartGame(Character);
+    }
+    else if (Character)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Start Button: Cannot start game - already active or invalid state"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Start Button: Not a character, ignoring"));
+    }
+}
+
 // ========== DISPLAY UPDATES ==========
 
 void ASGMiniBasketballMachine::UpdateScoreDisplay()
@@ -663,7 +691,7 @@ void ASGMiniBasketballMachine::UpdateTimerDisplay()
         }
         else
         {
-            TimerDisplay->SetText(FText::FromString(TEXT("PRESS TO START")));
+            TimerDisplay->SetText(FText::FromString(TEXT("PRESS START")));
             TimerDisplay->SetTextRenderColor(FColor::Yellow);
         }
     }
@@ -679,7 +707,7 @@ void ASGMiniBasketballMachine::UpdateDisplaysToIdle()
     
     if (TimerDisplay)
     {
-        TimerDisplay->SetText(FText::FromString(TEXT("PRESS TO START")));
+        TimerDisplay->SetText(FText::FromString(TEXT("PRESS START")));
         TimerDisplay->SetTextRenderColor(FColor::Yellow);
     }
 }
@@ -787,11 +815,11 @@ FText ASGMiniBasketballMachine::GetInteractionText_Implementation() const
     
     if (HighScore > 0)
     {
-        return FText::FromString(FString::Printf(TEXT("Mini Basketball\nHigh Score: %d by %s\nPress E to Play"), 
+        return FText::FromString(FString::Printf(TEXT("Mini Basketball\nHigh Score: %d by %s\nPress E to Start OR Walk into button"), 
                                                  HighScore, *HighScorePlayerName));
     }
     
-    return FText::FromString(TEXT("Mini Basketball\nPress E to Play"));
+    return FText::FromString(TEXT("Mini Basketball\nPress E to Start OR Walk into button"));
 }
 
 void ASGMiniBasketballMachine::Interact_Implementation(APawn* InstigatorPawn)
@@ -839,5 +867,6 @@ void ASGMiniBasketballMachine::OnPreScoringZoneEndOverlap(UPrimitiveComponent* O
                                                          int32 OtherBodyIndex)
 {
     // PRE-SCORING ZONE DISABLED - No longer required for scoring
-    UE_LOG(LogTemp, Log, TEXT("SGMiniBasketballMachine: Pre-scoring zone exit (DISABLED - not required for scoring)"));
+    // This function is kept for compatibility but does nothing
+    UE_LOG(LogTemp, Log, TEXT("SGMiniBasketballMachine: Pre-scoring zone end overlap (DISABLED - not required for scoring)"));
 }
